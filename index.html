@@ -101,30 +101,25 @@
             color: #000;
         }
 
-        .products {
-            display: none;
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .products.active {
+        .banner-products {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            gap: 15px;
+            padding: 20px;
         }
 
-        .card {
+        .banner-card {
             border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
             overflow: hidden;
-            margin: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .card img {
-            width: 300px;
+        .banner-card img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
             border-radius: 12px;
-            display: block;
         }
 
         .explore-btn {
@@ -190,39 +185,27 @@
     <a onclick="showProduct('product7')">Flora Pottery Collection</a>
 </div>
 
-<!-- Products sections as banner style -->
-<div id="product1" class="products">
-    <div class="card">
+<!-- Banner style previews on homepage -->
+<div class="banner-products">
+    <div class="banner-card">
         <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
     </div>
-</div>
-<div id="product2" class="products">
-    <div class="card">
+    <div class="banner-card">
         <img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate">
     </div>
-</div>
-<div id="product3" class="products">
-    <div class="card">
+    <div class="banner-card">
         <img src="IMG-20251128-WA0021.jpg" alt="Flora Jam">
     </div>
-</div>
-<div id="product4" class="products">
-    <div class="card">
+    <div class="banner-card">
         <img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum">
     </div>
-</div>
-<div id="product5" class="products">
-    <div class="card">
+    <div class="banner-card">
         <img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream">
     </div>
-</div>
-<div id="product6" class="products">
-    <div class="card">
+    <div class="banner-card">
         <img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil">
     </div>
-</div>
-<div id="product7" class="products">
-    <div class="card">
+    <div class="banner-card">
         <img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection">
     </div>
 </div>
@@ -258,20 +241,9 @@
 
 <script>
     const sidebar = document.getElementById('sidebar');
-    const productSections = document.querySelectorAll('.products');
 
     function toggleSidebar() {
         sidebar.classList.toggle('show');
-    }
-
-    function showProduct(id) {
-        productSections.forEach(section => {
-            if(section.id === id){
-                section.classList.add('active');
-            } else {
-                section.classList.remove('active');
-            }
-        });
     }
 </script>
 
