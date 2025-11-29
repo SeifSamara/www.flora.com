@@ -101,10 +101,30 @@
             color: #000;
         }
 
+        .product-display {
+            display: none;
+            max-width: 300px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 15px;
+        }
+
+        .product-display img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .product-display h3, .product-display p {
+            margin: 10px 0;
+        }
+
         .banner-products {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
             gap: 15px;
             padding: 20px;
         }
@@ -185,7 +205,6 @@
     <a onclick="showProduct('product7')">Flora Pottery Collection</a>
 </div>
 
-<!-- Banner style previews on homepage -->
 <div class="banner-products">
     <div class="banner-card">
         <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
@@ -210,33 +229,41 @@
     </div>
 </div>
 
-<div style="padding:20px; max-width:800px; margin:20px auto; background:#fff; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.1);">
-    <h3>من هي فلورا؟</h3>
-    <p>
-        في فلورا نؤمن بأن الجمال يكمن في التفاصيل الصغيرة، وأن المزج بين الطبيعة والابتكار قادر على صناعة لحظة لا تُنسى. نحن علامة متخصصة في تقديم منتجات راقية تجمع بين الزهور الطبيعية والفنون الحرفية، لنقدم لكِ قطعًا تحمل روحًا مختلفة وتجربة حسية فريدة.<br><br>
-        نعمل في فلورا على تطوير تشكيلات متنوعة من المنتجات تشمل تنسيقات الزهور، والهدايا المميزة، وقطع الديكور المصنوعة يدويًا، إلى جانب إبداعات من العطور والفخار المصمم بعناية. كل منتج يُصنع بروح مبتكرة وجودة عالية ليعبّر عن ذوق عصري ويلائم كل مناسبة.<br><br>
-        نلتزم في فلورا بتقديم تجربة راقية من لحظة اختيار المنتج وحتى تسليمه، مع حرصنا الدائم على استخدام خامات مستدامة.<br>
-        فلورا.. تفاصيل تصنع الفرق
-    </p>
+<!-- Product display on click -->
+<div id="product1" class="product-display">
+    <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
+    <h3>Flora Candle</h3>
+    <p>السعر: 150 جنيه</p>
 </div>
-
-<div style="padding:20px; max-width:800px; margin:20px auto; background:#fff; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.1);">
-    <h3>Terms and Policies</h3>
-    <p>
-        Our return and exchange policy ensures that you receive products that meet your expectations. If there is any issue with your order, you may request a return or exchange within the specified timeframe, provided the item is in its original condition.<br><br>
-        تلتزم فلورا بتقديم منتجات تلبي توقعاتكم. وفي حال وجود أي مشكلة في الطلب، يمكنكم طلب الاستبدال أو الاسترجاع خلال المدة المحددة، بشرط أن يكون المنتج بحالته الأصلية.
-    </p>
+<div id="product2" class="product-display">
+    <img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate">
+    <h3>Flora Chocolate</h3>
+    <p>السعر: 800 جنيه</p>
 </div>
-
-<a href="https://bit.ly/3JT6WyX" target="_blank" class="explore-btn">Click here to explore Flora's pages</a>
-
-<div class="contact-info">
-    <h3>Contact Us</h3>
-    <p>Email: info@flora.eg</p>
-    <p>Phone: +20 113668010</p>
-    <p>For customer support: support@flora.eg</p>
-    <p>Visit us: Cairo, Egypt</p>
-    <p>Full location details available upon request.</p>
+<div id="product3" class="product-display">
+    <img src="IMG-20251128-WA0021.jpg" alt="Flora Jam">
+    <h3>Flora Jam</h3>
+    <p>السعر: 200 جنيه</p>
+</div>
+<div id="product4" class="product-display">
+    <img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum">
+    <h3>Flora Parfum</h3>
+    <p>السعر: 750 جنيه</p>
+</div>
+<div id="product5" class="product-display">
+    <img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream">
+    <h3>Flora Rose Cream</h3>
+    <p>السعر: 200 جنيه</p>
+</div>
+<div id="product6" class="product-display">
+    <img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil">
+    <h3>Flora Rose Oil</h3>
+    <p>السعر: 400 جنيه</p>
+</div>
+<div id="product7" class="product-display">
+    <img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection">
+    <h3>Flora Pottery Collection</h3>
+    <p>السعر: 200 جنيه</p>
 </div>
 
 <script>
@@ -245,7 +272,16 @@
     function toggleSidebar() {
         sidebar.classList.toggle('show');
     }
+
+    function showProduct(id) {
+        const products = document.querySelectorAll('.product-display');
+        products.forEach(p => p.style.display = 'none');
+        document.getElementById(id).style.display = 'block';
+        window.scrollTo({ top: 300, behavior: 'smooth' });
+    }
 </script>
 
 </body>
 </html>
+
+            
