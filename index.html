@@ -45,9 +45,9 @@
 
         .controls-section {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            gap: 40px;
+            width: 100%;
         }
 
         .menu-btn {
@@ -249,7 +249,6 @@
             background: #b5895a;
         }
 
-        /* البنر في الصفحة الرئيسية */
         .banner-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -288,7 +287,6 @@
             font-size: 18px;
         }
 
-        /* عرض المنتج الفردي */
         .products {
             display: none;
             padding: 20px;
@@ -440,7 +438,6 @@
             transform: scale(1.1);
         }
 
-        /* للشاشات الصغيرة */
         @media (max-width: 1200px) {
             .banner-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -466,10 +463,6 @@
             
             .cart-sidebar {
                 width: 280px;
-            }
-            
-            .controls-section {
-                gap: 25px;
             }
             
             .menu-btn {
@@ -511,10 +504,6 @@
             
             .logo-section span {
                 font-size: 16px;
-            }
-            
-            .controls-section {
-                gap: 20px;
             }
         }
     </style>
@@ -566,8 +555,6 @@
     </div>
 </div>
 
-<!-- باقي الكود يظل كما هو -->
-<!-- الصفحة الرئيسية - البنر -->
 <div id="home" class="banner-grid">
     <div class="banner-card" onclick="showProduct('product1')">
         <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
@@ -599,7 +586,6 @@
     </div>
 </div>
 
-<!-- صفحات المنتجات الفردية -->
 <div id="product1" class="products">
     <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
@@ -611,126 +597,88 @@
     </div>
 </div>
 
-<!-- باقي المنتجات بنفس الطريقة -->
-<!-- ... -->
+<div id="product2" class="products">
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
+    <div class="product-card">
+        <img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate">
+        <h2>Flora Chocolate</h2>
+        <div class="price">السعر: 800 جنيه</div>
+        <p>شوكولاتة فلورا الفاخرة - نكهات استثنائية</p>
+        <button class="add-to-cart" onclick="addToCart('product2', 'Flora Chocolate', 800, 'IMG-20251128-WA0024.jpg')">أضف إلى السلة</button>
+    </div>
+</div>
 
-<script>
-    // نفس الكود السابق تماماً
-    const sidebar = document.getElementById('sidebar');
-    const homeSection = document.getElementById('home');
-    const productSections = document.querySelectorAll('.products');
-    let cart = [];
+<div id="product3" class="products">
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
+    <div class="product-card">
+        <img src="IMG-20251128-WA0021.jpg" alt="Flora Jam">
+        <h2>Flora Jam</h2>
+        <div class="price">السعر: 200 جنيه</div>
+        <p>مربى فلورا - مصنوع من أفضل الفواكه</p>
+        <button class="add-to-cart" onclick="addToCart('product3', 'Flora Jam', 200, 'IMG-20251128-WA0021.jpg')">أضف إلى السلة</button>
+    </div>
+</div>
 
-    function toggleSidebar() {
-        sidebar.classList.toggle('show');
-    }
+<div id="product4" class="products">
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
+    <div class="product-card">
+        <img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum">
+        <h2>Flora Parfum</h2>
+        <div class="price">السعر: 750 جنيه</div>
+        <p>عطر فلورا - رائحة أنيقة تدوم طويلاً</p>
+        <button class="add-to-cart" onclick="addToCart('product4', 'Flora Parfum', 750, 'IMG-20251128-WA0025.jpg')">أضف إلى السلة</button>
+    </div>
+</div>
 
-    function toggleCart() {
-        document.getElementById('cartSidebar').classList.toggle('show');
-    }
+<div id="product5" class="products">
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
+    <div class="product-card">
+        <img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream">
+        <h2>Flora Rose Cream</h2>
+        <div class="price">السعر: 200 جنيه</div>
+        <p>كريم الورد - ترطيب عميق للبشرة</p>
+        <button class="add-to-cart" onclick="addToCart('product5', 'Flora Rose Cream', 200, 'IMG-20251121-WA0009.jpg')">أضف إلى السلة</button>
+    </div>
+</div>
 
-    function showHome() {
-        homeSection.style.display = 'grid';
-        productSections.forEach(section => {
-            section.classList.remove('active');
-        });
-        sidebar.classList.remove('show');
-        document.getElementById('cartSidebar').classList.remove('show');
-    }
+<div id="product6" class="products">
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
+    <div class="product-card">
+        <img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil">
+        <h2>Flora Rose Oil</h2>
+        <div class="price">السعر: 400 جنيه</div>
+        <p>زيت الورد - فوائد متعددة للبشرة والشعر</p>
+        <button class="add-to-cart" onclick="addToCart('product6', 'Flora Rose Oil', 400, 'IMG-20251128-WA0020.jpg')">أضف إلى السلة</button>
+    </div>
+</div>
 
-    function showProduct(id) {
-        homeSection.style.display = 'none';
-        productSections.forEach(section => {
-            if(section.id === id){
-                section.classList.add('active');
-            } else {
-                section.classList.remove('active');
-            }
-        });
-        sidebar.classList.remove('show');
-        document.getElementById('cartSidebar').classList.remove('show');
-    }
+<div id="product7" class="products">
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
+    <div class="product-card">
+        <img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection">
+        <h2>Flora Pottery Collection</h2>
+        <div class="price">السعر: 200 جنيه</div>
+        <p>مجموعة الفخار - قطع يدوية الصنع</p>
+        <button class="add-to-cart" onclick="addToCart('product7', 'Flora Pottery Collection', 200, 'IMG-20251126-WA0143.jpg')">أضف إلى السلة</button>
+    </div>
+</div>
 
-    function addToCart(productId, productName, price, image) {
-        const existingItem = cart.find(item => item.id === productId);
-        
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            cart.push({
-                id: productId,
-                name: productName,
-                price: price,
-                image: image,
-                quantity: 1
-            });
-        }
-        
-        updateCart();
-        showNotification('تمت الإضافة إلى السلة!');
-        
-        // إظهار السلة تلقائياً
-        document.getElementById('cartSidebar').classList.add('show');
-    }
+<div class="info-section">
+    <h3>من هي فلورا؟</h3>
+    <p>
+        في فلورا نؤمن بأن الجمال يكمن في التفاصيل الصغيرة، وأن المزج بين الطبيعة والابتكار قادر على صناعة لحظة لا تُنسى. نحن علامة متخصصة في تقديم منتجات راقية تجمع بين الزهور الطبيعية والفنون الحرفية، لنقدم لكِ قطعًا تحمل روحًا مختلفة وتجربة حسية فريدة.<br><br>
+        نعمل في فلورا على تطوير تشكيلات متنوعة من المنتجات تشمل تنسيقات الزهور، والهدايا المميزة، وقطع الديكور المصنوعة يدويًا، إلى جانب إبداعات من العطور والفخار المصمم بعناية. كل منتج يُصنع بروح مبتكرة وجودة عالية ليعبّر عن ذوق عصري ويلائم كل مناسبة.<br><br>
+        نلتزم في فلورا بتقديم تجربة راقية من لحظة اختيار المنتج وحتى تسليمه، مع حرصنا الدائم على استخدام خامات مستدامة.<br>
+        فلورا.. تفاصيل تصنع الفرق
+    </p>
+</div>
 
-    function removeFromCart(productId) {
-        cart = cart.filter(item => item.id !== productId);
-        updateCart();
-    }
+<div class="info-section">
+    <h3>سياسة الاستبدال والاسترجاع</h3>
+    <p>
+        Our return and exchange policy ensures that you receive products that meet your expectations. If there is any issue with your order, you may request a return or exchange within the specified timeframe, provided the item is in its original condition.<br><br>
+        تلتزم فلورا بتقديم منتجات تلبي توقعاتكم. وفي حال وجود أي مشكلة في الطلب، يمكنكم طلب الاستبدال أو الاسترجاع خلال المدة المحددة، بشرط أن يكون المنتج بحالته الأصلية.
+    </p>
+</div>
 
-    function updateCart() {
-        const cartItems = document.getElementById('cartItems');
-        const cartCount = document.getElementById('cart-count');
-        const totalPrice = document.getElementById('total-price');
-        
-        cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
-        
-        cartItems.innerHTML = '';
-        
-        if (cart.length === 0) {
-            cartItems.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">السلة فارغة</p>';
-        } else {
-            cart.forEach(item => {
-                cartItems.innerHTML += `
-                    <div class="cart-item">
-                        <img src="${item.image}" alt="${item.name}">
-                        <div class="cart-item-info">
-                            <div style="font-weight: bold;">${item.name}</div>
-                            <div class="cart-item-price">${item.price} جنيه × ${item.quantity}</div>
-                        </div>
-                        <button class="remove-item" onclick="removeFromCart('${item.id}')">×</button>
-                    </div>
-                `;
-            });
-        }
-        
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        totalPrice.textContent = total;
-    }
-
-    function showNotification(message) {
-        const notification = document.createElement('div');
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #4CAF50;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            z-index: 10000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            font-size: 16px;
-        `;
-        notification.textContent = message;
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.remove();
-        }, 3000);
-    }
-
-    function checkout() {
-        if (cart.length === 0) {
-    
+<a href="https://bit.ly/3JT6WyX" target="_blank" class="expl
