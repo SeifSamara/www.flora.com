@@ -1,650 +1,934 @@
-<!DOCTYPE html>  <html lang="ar" dir="rtl">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Flora</title>  
-    <style>  
-        body {  
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
-            margin: 0;  
-            background-color: #fdf3e7;  
-        }  header {  
-        display: flex;  
-        align-items: center;  
-        justify-content: flex-start;  
-        gap: 15px;  
-        background-color: #cfa87c;  
-        color: #fff;  
-        padding: 25px 50px;  
-        font-size: 28px;  
-        font-weight: bold;  
-        position: relative;  
-        box-shadow: 0 4px 12px rgba(0,0,0,0.25);  
-        z-index: 100;  
-    }  
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flora</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #fdf3e7;
+        }
 
-    header img {  
-        height: 100px;  
-        border-radius: 12px;  
-        transition: transform 0.3s;  
-    }  
+        header {
+            background-color: #cfa87c;
+            color: #fff;
+            padding: 20px 50px;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
 
-    header img:hover {  
-        transform: scale(1.1);  
-    }  
+        .logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
 
-    header span {  
-        font-size: 24px;  
-        color: #fff;  
-    }  
+        .logo-section img {
+            height: 100px;
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
 
-    .menu-btn {  
-        position: absolute;  
-        right: 20px;  
-        top: 50%;  
-        transform: translateY(-50%);  
-        width: 35px;  
-        height: 30px;  
-        cursor: pointer;  
-        display: flex;  
-        flex-direction: column;  
-        justify-content: space-between;  
-        z-index: 101;  
-    }  
+        .logo-section img:hover {
+            transform: scale(1.1);
+        }
 
-    .menu-btn span {  
-        height: 4px;  
-        background: #fff;  
-        border-radius: 3px;  
-        transition: all 0.3s ease;  
-    }  
+        .logo-section span {
+            font-size: 24px;
+            color: #fff;
+            font-weight: bold;
+        }
 
-    .cart-icon {  
-        position: absolute;  
-        left: 20px;  
-        top: 50%;  
-        transform: translateY(-50%);  
-        background: #fff;  
-        color: #cfa87c;  
-        padding: 10px 15px;  
-        border-radius: 20px;  
-        cursor: pointer;  
-        font-size: 18px;  
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);  
-        z-index: 101;  
-    }  
+        .controls-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
 
-    .cart-icon span {  
-        background: #ff4444;  
-        color: white;  
-        border-radius: 50%;  
-        padding: 2px 6px;  
-        font-size: 12px;  
-        margin-right: 5px;  
-    }  
+        .menu-btn {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 35px;
+            height: 30px;
+            cursor: pointer;
+            order: 2;
+        }
 
-    .sidebar {  
-        position: fixed;  
-        top: 0;  
-        right: 0;  
-        width: 280px;  
-        height: 100vh;  
-        background-color: #f5e0c9;  
-        padding: 25px;  
-        box-shadow: -3px 0 15px rgba(0,0,0,0.2);  
-        overflow-y: auto;  
-        z-index: 1000;  
-        transform: translateX(100%);  
-        transition: transform 0.4s ease;  
-    }  
+        .menu-btn span {
+            height: 4px;
+            background: #fff;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
 
-    .sidebar.show {  
-        transform: translateX(0);  
-    }  
+        .cart-icon {
+            background: #fff;
+            color: #cfa87c;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            order: 1;
+        }
 
-    .sidebar h3 {  
-        font-size: 20px;  
-        margin-bottom: 15px;  
-        color: #333;  
-        border-bottom: 2px solid #cfa87c;  
-        padding-bottom: 5px;  
-    }  
+        .cart-icon:hover {
+            transform: scale(1.05);
+        }
 
-    .sidebar a {  
-        display: block;  
-        text-decoration: none;  
-        color: #333;  
-        padding: 10px 0;  
-        border-bottom: 1px solid #cfa87c;  
-        cursor: pointer;  
-        transition: color 0.3s;  
-    }  
+        .cart-icon span {
+            background: #ff4444;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
 
-    .sidebar a:hover {  
-        color: #000;  
-        background-color: rgba(207, 168, 124, 0.1);  
-    }  
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 280px;
+            height: 100vh;
+            background-color: #f5e0c9;
+            padding: 25px;
+            box-shadow: -3px 0 15px rgba(0,0,0,0.2);
+            overflow-y: auto;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.4s ease;
+        }
 
-    .cart-sidebar {  
-        position: fixed;  
-        top: 0;  
-        left: 0;  
-        width: 320px;  
-        height: 100vh;  
-        background: #fff;  
-        box-shadow: 3px 0 15px rgba(0,0,0,0.2);  
-        z-index: 1001;  
-        transform: translateX(-100%);  
-        transition: transform 0.4s ease;  
-        display: flex;  
-        flex-direction: column;  
-    }  
+        .sidebar.show {
+            transform: translateX(0);
+        }
 
-    .cart-sidebar.show {  
-        transform: translateX(0);  
-    }  
+        .sidebar h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 2px solid #cfa87c;
+            padding-bottom: 5px;
+        }
 
-    .cart-header {  
-        display: flex;  
-        justify-content: space-between;  
-        align-items: center;  
-        padding: 20px;  
-        background: #cfa87c;  
-        color: white;  
-    }  
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            padding: 10px 0;
+            border-bottom: 1px solid #cfa87c;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
 
-    .close-cart {  
-        background: none;  
-        border: none;  
-        color: white;  
-        font-size: 20px;  
-        cursor: pointer;  
-        padding: 5px;  
-    }  
+        .sidebar a:hover {
+            color: #000;
+            background-color: rgba(207, 168, 124, 0.1);
+        }
 
-    .cart-items {  
-        flex: 1;  
-        padding: 15px;  
-        overflow-y: auto;  
-    }  
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 100vh;
+            background: #fff;
+            box-shadow: 3px 0 15px rgba(0,0,0,0.2);
+            z-index: 1001;
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .cart-item {  
-        display: flex;  
-        align-items: center;  
-        padding: 10px;  
-        border-bottom: 1px solid #eee;  
-        gap: 10px;  
-    }  
+        .cart-sidebar.show {
+            transform: translateX(0);
+        }
 
-    .cart-item img {  
-        width: 50px;  
-        height: 50px;  
-        border-radius: 8px;  
-        object-fit: cover;  
-    }  
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: #cfa87c;
+            color: white;
+        }
 
-    .cart-item-info {  
-        flex: 1;  
-    }  
+        .close-cart {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 5px;
+        }
 
-    .cart-item-price {  
-        color: #cfa87c;  
-        font-weight: bold;  
-    }  
+        .cart-items {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
 
-    .remove-item {  
-        background: #ff4444;  
-        color: white;  
-        border: none;  
-        border-radius: 50%;  
-        width: 25px;  
-        height: 25px;  
-        cursor: pointer;  
-        font-size: 14px;  
-    }  
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            gap: 10px;
+        }
 
-    .cart-total {  
-        padding: 20px;  
-        border-top: 2px solid #cfa87c;  
-        background: #f9f9f9;  
-    }  
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
 
-    .checkout-btn {  
-        width: 100%;  
-        padding: 12px;  
-        background: #cfa87c;  
-        color: white;  
-        border: none;  
-        border-radius: 8px;  
-        font-size: 16px;  
-        cursor: pointer;  
-        margin-top: 10px;  
-        transition: background 0.3s;  
-    }  
+        .cart-item-info {
+            flex: 1;
+        }
 
-    .checkout-btn:hover {  
-        background: #b5895a;  
-    }  
+        .cart-item-price {
+            color: #cfa87c;
+            font-weight: bold;
+        }
 
-    .add-to-cart {  
-        background: #cfa87c;  
-        color: white;  
-        border: none;  
-        padding: 12px 24px;  
-        border-radius: 8px;  
-        cursor: pointer;  
-        margin-top: 15px;  
-        transition: background 0.3s;  
-        font-size: 16px;  
-    }  
+        .remove-item {
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-size: 14px;
+        }
 
-    .add-to-cart:hover {  
-        background: #b5895a;  
-    }  
+        .cart-total {
+            padding: 20px;
+            border-top: 2px solid #cfa87c;
+            background: #f9f9f9;
+        }
 
-    /* البنر في الصفحة الرئيسية */  
-    .banner-grid {  
-        display: grid;  
-        grid-template-columns: repeat(4, 1fr);  
-        gap: 20px;  
-        padding: 20px;  
-        max-width: 1400px;  
-        margin: 0 auto;  
-    }  
+        .checkout-btn {
+            width: 100%;
+            padding: 12px;
+            background: #cfa87c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
 
-    .banner-card {  
-        background-color: #fff;  
-        border-radius: 15px;  
-        padding: 20px;  
-        text-align: center;  
-        box-shadow: 0 6px 20px rgba(0,0,0,0.15);  
-        transition: transform 0.3s, box-shadow 0.3s;  
-        cursor: pointer;  
-    }  
+        .checkout-btn:hover {
+            background: #b5895a;
+        }
 
-    .banner-card:hover {  
-        transform: translateY(-5px);  
-        box-shadow: 0 12px 25px rgba(0,0,0,0.25);  
-    }  
+        .add-to-cart {
+            background: #cfa87c;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s;
+            font-size: 16px;
+        }
 
-    .banner-card img {  
-        width: 100%;  
-        height: 180px;  
-        object-fit: cover;  
-        border-radius: 12px;  
-        margin-bottom: 10px;  
-    }  
+        .add-to-cart:hover {
+            background: #b5895a;
+        }
 
-    .banner-card h2 {  
-        margin: 10px 0 5px;  
-        color: #333;  
-        font-size: 18px;  
-    }  
+        .banner-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
-    /* عرض المنتج الفردي */  
-    .products {  
-        display: none;  
-        padding: 20px;  
-        max-width: 800px;  
-        margin: 0 auto;  
-    }  
+        .banner-card {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
 
-    .products.active {  
-        display: block;  
-    }  
+        .banner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+        }
 
-    .product-card {  
-        background-color: #fff;  
-        border-radius: 15px;  
-        padding: 30px;  
-        text-align: center;  
-        box-shadow: 0 6px 20px rgba(0,0,0,0.15);  
-    }  
+        .banner-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
 
-    .product-card img {  
-        width: 100%;  
-        max-width: 400px;  
-        border-radius: 12px;  
-        margin-bottom: 20px;  
-    }  
+        .banner-card h2 {
+            margin: 10px 0 5px;
+            color: #333;
+            font-size: 18px;
+        }
 
-    .product-card h2 {  
-        margin: 10px 0 5px;  
-        color: #333;  
-        font-size: 28px;  
-    }  
+        .products {
+            display: none;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-    .product-card .price {  
-        font-size: 24px;  
-        color: #cfa87c;  
-        font-weight: bold;  
-        margin: 15px 0;  
-    }  
+        .products.active {
+            display: block;
+        }
 
-    .product-card p {  
-        font-size: 16px;  
-        color: #555;  
-        margin: 0;  
-        line-height: 1.6;  
-    }  
+        .product-card {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
 
-    .back-btn {  
-        display: inline-block;  
-        margin: 20px 0;  
-        padding: 12px 24px;  
-        background-color: #cfa87c;  
-        color: #000;  
-        border-radius: 20px;  
-        text-decoration: none;  
-        cursor: pointer;  
-        transition: background 0.3s;  
-        border: none;  
-        font-size: 16px;  
-    }  
+        .product-card img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
 
-    .back-btn:hover {  
-        background-color: #b5895a;  
-    }  
+        .product-card h2 {
+            margin: 10px 0 5px;
+            color: #333;
+            font-size: 28px;
+        }
 
-    .info-section {  
-        padding: 30px;  
-        max-width: 1000px;  
-        margin: 40px auto;  
-        background: #fff;  
-        border-radius: 15px;  
-        box-shadow: 0 6px 20px rgba(0,0,0,0.1);  
-        text-align: center;  
-    }  
+        .product-card .price {
+            font-size: 24px;
+            color: #cfa87c;
+            font-weight: bold;
+            margin: 15px 0;
+        }
 
-    .info-section h3 {  
-        margin-bottom: 20px;  
-        color: #cfa87c;  
-        font-size: 24px;  
-        border-bottom: 2px solid #cfa87c;  
-        padding-bottom: 10px;  
-        display: inline-block;  
-    }  
+        .product-card p {
+            font-size: 16px;
+            color: #555;
+            margin: 0;
+            line-height: 1.6;
+        }
 
-    .info-section p {  
-        font-size: 16px;  
-        color: #555;  
-        line-height: 1.8;  
-        text-align: right;  
-    }  
+        .back-btn {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 12px 24px;
+            background-color: #cfa87c;
+            color: #000;
+            border-radius: 20px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            border: none;
+            font-size: 16px;
+        }
 
-    .explore-btn {  
-        display: block;  
-        width: fit-content;  
-        margin: 40px auto;  
-        padding: 14px 28px;  
-        background-color: #cfa87c;  
-        color: #000;  
-        border-radius: 20px;  
-        font-size: 18px;  
-        font-weight: bold;  
-        text-decoration: none;  
-        transition: background 0.3s, transform 0.3s;  
-    }  
+        .back-btn:hover {
+            background-color: #b5895a;
+        }
 
-    .explore-btn:hover {  
-        background-color: #b5895a;  
-        transform: scale(1.05);  
-    }  
+        .info-section {
+            padding: 30px;
+            max-width: 1000px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
 
-    .contact-info {  
-        padding: 20px;  
-        max-width: 800px;  
-        margin: 20px auto;  
-        background: #fff;  
-        border-radius: 12px;  
-        box-shadow: 0 6px 20px rgba(0,0,0,0.1);  
-    }  
+        .info-section h3 {
+            margin-bottom: 20px;
+            color: #cfa87c;
+            font-size: 24px;
+            border-bottom: 2px solid #cfa87c;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
 
-    .contact-info h3 {  
-        margin-bottom: 15px;  
-        color: #333;  
-    }  
+        .info-section p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+            text-align: right;
+        }
 
-    .contact-info p {  
-        margin: 5px 0;  
-        color: #555;  
-    }  
+        .explore-btn {
+            display: block;
+            width: fit-content;
+            margin: 40px auto;
+            padding: 14px 28px;
+            background-color: #cfa87c;
+            color: #000;
+            border-radius: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.3s;
+        }
 
-    .whatsapp-float {  
-        position: fixed;  
-        bottom: 20px;  
-        left: 20px;  
-        background: #25D366;  
-        color: white;  
-        width: 60px;  
-        height: 60px;  
-        border-radius: 50%;  
-        display: flex;  
-        align-items: center;  
-        justify-content: center;  
-        font-size: 24px;  
-        text-decoration: none;  
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);  
-        z-index: 999;  
-        transition: transform 0.3s;  
-    }  
+        .explore-btn:hover {
+            background-color: #b5895a;
+            transform: scale(1.05);
+        }
 
-    .whatsapp-float:hover {  
-        transform: scale(1.1);  
-    }  
+        .contact-info {
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
 
-    /* للشاشات الصغيرة */  
-    @media (max-width: 1200px) {  
-        .banner-grid {  
-            grid-template-columns: repeat(3, 1fr);  
-        }  
-    }  
+        .contact-info h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
 
-    @media (max-width: 768px) {  
-        .banner-grid {  
-            grid-template-columns: repeat(2, 1fr);  
-        }  
-          
-        header {  
-            padding: 15px 20px;  
-            font-size: 22px;  
-        }  
-          
-        header img {  
-            height: 70px;  
-        }  
-          
-        header span {  
-            font-size: 18px;  
-        }  
-          
-        .cart-sidebar {  
-            width: 280px;  
-        }  
-          
-        .menu-btn {  
-            right: 15px;  
-            width: 30px;  
-            height: 25px;  
-        }  
-          
-        .cart-icon {  
-            left: 15px;  
-            padding: 8px 12px;  
-            font-size: 16px;  
-        }  
-    }  
+        .contact-info p {
+            margin: 5px 0;
+            color: #555;
+        }
 
-    @media (max-width: 480px) {  
-        .banner-grid {  
-            grid-template-columns: 1fr;  
-        }  
-          
-        .cart-icon {  
-            left: 10px;  
-            padding: 6px 10px;  
-            font-size: 14px;  
-        }  
-          
-        .whatsapp-float {  
-            width: 50px;  
-            height: 50px;  
-            font-size: 20px;  
-            bottom: 15px;  
-            left: 15px;  
-        }  
-          
-        header {  
-            padding: 10px 15px;  
-        }  
-          
-        header img {  
-            height: 60px;  
-        }  
-          
-        header span {  
-            font-size: 16px;  
-        }  
-    }  
-</style>
+        .social-media {
+            text-align: center;
+            padding: 30px;
+            background: #fff;
+            margin: 20px auto;
+            max-width: 1000px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
 
-</head>  
-<body>  <header>  
-    <div class="menu-btn" onclick="toggleSidebar()">  
-        <span></span>  
-        <span></span>  
-        <span></span>  
-    </div>  
-    <div class="cart-icon" onclick="toggleCart()">  
-        🛒 <span id="cart-count">0</span>  
-    </div>  
-    <img src="PicsArt_11-28-08.40.20.png" alt="لوجو Flora">  
-    <span>The taste The scent the bloome</span>  
-</header>  <div class="sidebar" id="sidebar">  
-    <h3>القائمة</h3>  
-    <a onclick="showHome()">الرئيسية</a>  
-    <div style="margin: 15px 0; color: #666; font-weight: bold;">المنتجات</div>  
-    <a onclick="showProduct('product1')">Flora Candle</a>  
-    <a onclick="showProduct('product2')">Flora Chocolate</a>  
-    <a onclick="showProduct('product3')">Flora Jam</a>  
-    <a onclick="showProduct('product4')">Flora Parfum</a>  
-    <a onclick="showProduct('product5')">Flora Rose Cream</a>  
-    <a onclick="showProduct('product6')">Flora Rose Oil</a>  
-    <a onclick="showProduct('product7')">Flora Pottery Collection</a>  
-</div>  <div class="cart-sidebar" id="cartSidebar">  
-    <div class="cart-header">  
-        <h3>سلة التسوق</h3>  
-        <button class="close-cart" onclick="toggleCart()">✕</button>  
-    </div>  
-    <div class="cart-items" id="cartItems">  
-        <!-- المنتجات تضاف هنا -->  
-    </div>  
-    <div class="cart-total">  
-        <p>المجموع: <span id="total-price">0</span> جنيه</p>  
-        <button class="checkout-btn" onclick="checkout()">إتمام الطلب عبر واتساب</button>  
-    </div>  
-</div>  <!-- الصفحة الرئيسية - البنر -->  <div id="home" class="banner-grid">  
-    <div class="banner-card" onclick="showProduct('product1')">  
-        <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">  
-        <h2>Flora Candle</h2>  
-    </div>  
-    <div class="banner-card" onclick="showProduct('product2')">  
-        <img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate">  
-        <h2>Flora Chocolate</h2>  
-    </div>  
-    <div class="banner-card" onclick="showProduct('product3')">  
-        <img src="IMG-20251128-WA0021.jpg" alt="Flora Jam">  
-        <h2>Flora Jam</h2>  
-    </div>  
-    <div class="banner-card" onclick="showProduct('product4')">  
-        <img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum">  
-        <h2>Flora Parfum</h2>  
-    </div>  
-    <div class="banner-card" onclick="showProduct('product5')">  
-        <img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream">  
-        <h2>Flora Rose Cream</h2>  
-    </div>  
-    <div class="banner-card" onclick="showProduct('product6')">  
-        <img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil">  
-        <h2>Flora Rose Oil</h2>  
-    </div>  
-    <div class="banner-card" onclick="showProduct('product7')">  
-        <img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection">  
-        <h2>Flora Pottery Collection</h2>  
-    </div>  
-</div>  <!-- صفحات المنتجات الفردية -->  <div id="product1" class="products">  
-    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>  
-    <div class="product-card">  
-        <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">  
-        <h2>Flora Candle</h2>  
-        <div class="price">السعر: 150 جنيه</div>  
-        <p>شمعة فلورا العطرية - تجربة حسية فريدة</p>  
-        <button class="add-to-cart" onclick="addToCart('product1', 'Flora Candle', 150, 'IMG-20251128-WA0019.jpg')">أضف إلى السلة</button>  
-    </div>  
-</div>  <div id="product2" class="products">  
-    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>  
-    <div class="product-card">  
-        <img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate">  
-        <h2>Flora Chocolate</h2>  
-        <div class="price">السعر: 800 جنيه</div>  
-        <p>شوكولاتة فلورا الفاخرة - نكهات استثنائية</p>  
-        <button class="add-to-cart" onclick="addToCart('product2', 'Flora Chocolate', 800, 'IMG-20251128-WA0024.jpg')">أضف إلى السلة</button>  
-    </div>  
-</div>  <div id="product3" class="products">  
-    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>  
-    <div class="product-card">  
-        <img src="IMG-20251128-WA0021.jpg" alt="Flora Jam">  
-        <h2>Flora Jam</h2>  
-        <div class="price">السعر: 200 جنيه</div>  
-        <p>مربى فلورا - مصنوع من أفضل الفواكه</p>  
-        <button class="add-to-cart" onclick="addToCart('product3', 'Flora Jam', 200, 'IMG-20251128-WA0021.jpg')">أضف إلى السلة</button>  
-    </div>  
-</div>  <div id="product4" class="products">  
-    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>  
-    <div class="product-card">  
-        <img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum">  
-        <h2>Flora Parfum</h2>  
-        <div class="price">السعر: 750 جنيه</div>  
-        <p>عطر فلورا - رائحة أنيقة تدوم طويلاً</p>  
-        <button class="add-to-cart" onclick="addToCart('product4', 'Flora Parfum', 750, 'IMG-20251128-WA0025.jpg')">أضف إلى السلة</button>  
-    </div>  
-</div>  <div id="product5" class="products">  
-    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>  
-    <div class="product-card">  
-        <img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream">  
-        <h2>Flora Rose Cream</h2>  
-        <div class="price">السعر: 200 جنيه</div>  
-        <p>كريم الورد - ترطيب عميق للبشرة</p>  
-        <button class="add-to-cart" onclick="addToCart('product5', 'Flora Rose Cream', 200, 'IMG-20251121-WA0009.jpg')">أضف إلى السلة</button>  
-    </div>  
-</div>  <div id="product6" class="products">  
-    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>  
-    <div class="product-card">  
-        <img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil">  
-        <h2>Flora Rose Oil</h2>  
-        <div class="price">السعر: 400 جنيه</div>  
-        <p>زيت الورد - فوائد متعددة للبشرة والشعر</p>  
-        <button class="add-to-cart" onclick="addToCart('product6', 'Flora Rose Oil', 400, 'IMG-20251128-WA0020.jpg')">أضف إلى السلة</button>  
-    </div>  
-</div>  <div id="product7" class="products">  
-    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>  
-    <div class="product-card">  
-        <img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection">  
-        <h2>Flora Pottery Collection</h2>  
-        <div class="price">السعر: 200 جنيه</div>  
-        <p>مجموعة الفخار - قطع يدوية الصنع</p>  
-        <button class="add-to-cart" onclick="addToCart('product7', 'Flora Pottery Collection', 200, 'IMG-20251126-WA0143.jpg')">أضف إلى السلة</button>  
-    </div>  
-</div>  <!-- قسم "من هي فلورا" -->  <div class="info-section">  
-    <h3>من هي فلورا؟</h3>  
-    <p>  
-        في فلورا نؤمن بأن الجمال يكمن في التفاصيل الصغيرة، وأن المزج بين الطبيعة والابتكار قادر على صناعة لحظة لا تُنسى. نحن علامة متخصصة في تقديم منتجات راقية تجمع بين الزهور الطبيعية والفنون الحرفية، لنقدم لكِ قطعًا تحمل روحًا مختلفة وتجربة حسية فريدة.<br><br>  
-        نعمل في فلورا على تطوير تشكيلات متنوعة من المنتجات تشمل تنسيقات الزهور، والهدايا المميزة، وقطع الديكور المصنوعة يدويًا، إلى جانب إبداعات من العطور والفخار المصمم بعناية. كل منتج يُصنع بروح مبتكرة وجودة عالية ليعبّر عن ذوق عصري ويلائم كل مناسبة.<br><br>  
-        نلتزم في فلورا بتقديم تجربة راقية من لحظة اختيار المنتج وحتى تسليمه، مع حرصنا الدائم على استخدام خامات مستدامة.<br>  
-        فلورا.. تفاصيل تصنع الفرق  
-    </p>  
-</div>  <!-- قسم سياسة الاستبدال والاسترجاع -->  <div class="info-section">  
-    <h3>سياسة الاستبدال والاسترجاع</h3>  
-    <p>  
-        Our return and exchange policy ensures that you receive products that meet your expectations. If there is any issue with your order, you may request a return or exchange within the specified timeframe, provided the item is in its original condition.<br><br>  
-        تلتزم فلورا بتقديم منتجات تلبي توقعاتكم. وفي حال وجود أي مشكلة في الطلب
+        .social-media h3 {
+            color: #cfa87c;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #f5e0c9;
+            border-radius: 25px;
+            text-decoration: none;
+            color: #333;
+            transition: transform 0.3s;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            background: #cfa87c;
+            color: white;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 999;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        .footer-section {
+            text-align: center;
+            padding: 40px 20px;
+            background: #f5e0c9;
+            margin-top: 40px;
+        }
+
+        .footer-section h3 {
+            color: #cfa87c;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 1200px) {
+            .banner-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .banner-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            header {
+                padding: 15px 20px;
+            }
+            
+            .logo-section img {
+                height: 70px;
+            }
+            
+            .logo-section span {
+                font-size: 18px;
+            }
+            
+            .cart-sidebar {
+                width: 280px;
+            }
+            
+            .menu-btn {
+                width: 30px;
+                height: 25px;
+            }
+            
+            .cart-icon {
+                padding: 8px 12px;
+                font-size: 16px;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-icon {
+                padding: 6px 10px;
+                font-size: 14px;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                bottom: 15px;
+                left: 15px;
+            }
+            
+            header {
+                padding: 10px 15px;
+            }
+            
+            .logo-section img {
+                height: 60px;
+            }
+            
+            .logo-section span {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-section">
+        <img src="PicsArt_11-28-08.40.20.png" alt="لوجو Flora">
+        <span>The taste The scent the bloome</span>
+    </div>
+    
+    <div class="controls-section">
+        <div class="cart-icon" onclick="toggleCart()">
+            🛒 <span id="cart-count">0</span>
+        </div>
+        <div class="menu-btn" onclick="toggleSidebar()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</header>
+
+<div class="sidebar" id="sidebar">
+    <h3>القائمة</h3>
+    <a onclick="showHome()">الرئيسية</a>
+    <div style="margin: 15px 0; color: #666; font-weight: bold;">المنتجات</div>
+    <a onclick="showProduct('product1')">Flora Candle</a>
+    <a onclick="showProduct('product2')">Flora Chocolate</a>
+    <a onclick="showProduct('product3')">Flora Jam</a>
+    <a onclick="showProduct('product4')">Flora Parfum</a>
+    <a onclick="showProduct('product5')">Flora Rose Cream</a>
+    <a onclick="showProduct('product6')">Flora Rose Oil</a>
+    <a onclick="showProduct('product7')">Flora Pottery Collection</a>
+</div>
+
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h3>سلة التسوق</h3>
+        <button class="close-cart" onclick="toggleCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+        <!-- المنتجات تضاف هنا -->
+    </div>
+    <div class="cart-total">
+        <p>المجموع: <span id="total-price">0</span> جنيه</p>
+        <button class="checkout-btn" onclick="checkout()">إتمام الطلب عبر واتساب</button>
+    </div>
+</div>
+
+<div id="home" class="banner-grid">
+    <div class="banner-card" onclick="showProduct('product1')">
+        <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
+        <h2>Flora Candle</h2>
+    </div>
+    <div class="banner-card" onclick="showProduct('product2')">
+        <img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate">
+        <h2>Flora Chocolate</h2>
+    </div>
+    <div class="banner-card" onclick="showProduct('product3')">
+        <img src="IMG-20251128-WA0021.jpg" alt="Flora Jam">
+        <h2>Flora Jam</h2>
+    </div>
+    <div class="banner-card" onclick="showProduct('product4')">
+        <img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum">
+        <h2>Flora Parfum</h2>
+    </div>
+    <div class="banner-card" onclick="showProduct('product5')">
+        <img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream">
+        <h2>Flora Rose Cream</h2>
+    </div>
+    <div class="banner-card" onclick="showProduct('product6')">
+        <img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil">
+        <h2>Flora Rose Oil</h2>
+    </div>
+    <div class="banner-card" onclick="showProduct('product7')">
+        <img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection">
+        <h2>Flora Pottery Collection</h2>
+    </div>
+</div>
+
+<div id="product1" class="products">
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
+    <div class="product-card">
+        <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
+        <h2>Flora Candle</h2>
+        <div class="price">السعر: 150 جنيه</div>
+        <p>شمعة فلورا العطرية - تجربة حسية فريدة</p>
+        <button class="add-to-cart" onclick="addToCart('product1', 'Flora Candle', 150, 'IMG-20251128-WA0019.jpg')">أضف إلى السلة</button>
+    </div>
+</div>
+
+<div id="product2" class="products">
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
+    <div class="product-card">
+        <img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate">
+        <h2>Flora Chocolate</h2>
+        <div class="price">السعر: 800 جنيه</div>
+        <p>شوكولاتة فلورا الفاخرة - نكهات استثنائية</p>
+        <button class="add-to-cart" onclick="addToCart('product2', 'Flora Chocolate', 800, 'IMG-20251128-WA0024.jpg')">أضف إلى السلة</button>
+    </div>
+</div>
+
+<div id="product3" class="products">
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
+    <div class="product-card">
+        <img src="IMG-20251128-WA0021.jpg" alt="Flora Jam">
+        <h2>Flora Jam</h2>
+        <div class="price">السعر: 200 جنيه</div>
+        <p>مربى فلورا - مصنوع من أفضل الفواكه</p>
+        <button class="add-to-cart" onclick="addToCart('product3', 'Flora Jam', 200, 'IMG-20251128-WA0021.jpg')">أضف إلى السلة</button>
+    </div>
+</div>
+
+<div id="product4" class="products">
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
+    <div class="product-card">
+        <img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum">
+        <h2>Flora Parfum</h2>
+        <div class="price">السعر: 750 جنيه</div>
+        <p>عطر فلورا - رائحة أنيقة تدوم طويلاً</p>
+        <button class="add-to-cart" onclick="addToCart('product4', 'Flora Parfum', 750, 'IMG-20251128-WA0025.jpg')">أضف إلى السلة</button>
+    </div>
+</div>
+
+<div id="product5" class="products">
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
+    <div class="product-card">
+        <img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream">
+        <h2>Flora Rose Cream</h2>
+        <div class="price">السعر: 200 جنيه</div>
+        <p>كريم الورد - ترطيب عميق للبشرة</p>
+        <button class="add-to-cart" onclick="addToCart('product5', 'Flora Rose Cream', 200, 'IMG-20251121-WA0009.jpg')">أضف إلى السلة</button>
+    </div>
+</div>
+
+<div id="product6" class="products">
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
+    <div class="product-card">
+        <img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil">
+        <h2>Flora Rose Oil</h2>
+        <div class="price">السعر: 400 جنيه</div>
+        <p>زيت الورد - فوائد متعددة للبشرة والشعر</p>
+        <button class="add-to-cart" onclick="addToCart('product6', 'Flora Rose Oil', 400, 'IMG-20251128-WA0020.jpg')">أضف إلى السلة</button>
+    </div>
+</div>
+
+<div id="product7" class="products">
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
+    <div class="product-card">
+        <img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection">
+        <h2>Flora Pottery Collection</h2>
+        <div class="price">السعر: 200 جنيه</div>
+        <p>مجموعة الفخار - قطع يدوية الصنع</p>
+        <button class="add-to-cart" onclick="addToCart('product7', 'Flora Pottery Collection', 200, 'IMG-20251126-WA0143.jpg')">أضف إلى السلة</button>
+    </div>
+</div>
+
+<div class="info-section">
+    <h3>من هي فلورا؟</h3>
+    <p>
+        في فلورا نؤمن بأن الجمال يكمن في التفاصيل الصغيرة، وأن المزج بين الطبيعة والابتكار قادر على صناعة لحظة لا تُنسى. نحن علامة متخصصة في تقديم منتجات راقية تجمع بين الزهور الطبيعية والفنون الحرفية، لنقدم لكِ قطعًا تحمل روحًا مختلفة وتجربة حسية فريدة.<br><br>
+        نعمل في فلورا على تطوير تشكيلات متنوعة من المنتجات تشمل تنسيقات الزهور، والهدايا المميزة، وقطع الديكور المصنوعة يدويًا، إلى جانب إبداعات من العطور والفخار المصمم بعناية. كل منتج يُصنع بروح مبتكرة وجودة عالية ليعبّر عن ذوق عصري ويلائم كل مناسبة.<br><br>
+        نلتزم في فلورا بتقديم تجربة راقية من لحظة اختيار المنتج وحتى تسليمه، مع حرصنا الدائم على استخدام خامات مستدامة.<br>
+        فلورا.. تفاصيل تصنع الفرق
+    </p>
+</div>
+
+<div class="info-section">
+    <h3>سياسة الاستبدال والاسترجاع</h3>
+    <p>
+        Our return and exchange policy ensures that you receive products that meet your expectations. If there is any issue with your order, you may request a return or exchange within the specified timeframe, provided the item is in its original condition.<br><br>
+        تلتزم فلورا بتقديم منتجات تلبي توقعاتكم. وفي حال وجود أي مشكلة في الطلب، يمكنكم طلب الاستبدال أو الاسترجاع خلال المدة المحددة، بشرط أن يكون المنتج بحالته الأصلية.
+    </p>
+</div>
+
+<div class="social-media">
+    <h3>تابعونا على وسائل التواصل الاجتماعي</h3>
+    <div class="social-links">
+        <a href="https://www.facebook.com/yourpage" target="_blank" class="social-link">
+            📘 Facebook
+        </a>
+        <a href="https://www.instagram.com/yourpage" target="_blank" class="social-link">
+            📷 Instagram
+        </a>
+        <a href="https://www.tiktok.com/@yourpage" target="_blank" class="social-link">
+            🎵 TikTok
+        </a>
+        <a href="https://twitter.com/yourpage" target="_blank" class="social-link">
+            🐦 Twitter
+        </a>
+    </div>
+</div>
+
+<a href="https://seifsamara.github.io/Flora/" target="_blank" class="explore-btn">
+    Click here to explore Flora's pages
+</a>
+
+<div class="contact-info">
+    <h3>Contact Us</h3>
+    <p>Email: info@flora.eg</p>
+    <p>Phone: +20 113668010</p>
+    <p>For customer support: support@flora.eg</p>
+    <p>Visit us: Cairo, Egypt</p>
+    <p>Full location details available upon request.</p>
+</div>
+
+<div class="footer-section">
+    <h3>زوروا موقعنا الرسمي</h3>
+    <a href="https://seifsamara.github.io/Flora/" target="_blank" class="explore-btn">
+        🌐 زيارة موقع فلورا الرسمي
+    </a>
+</div>
+
+<a href="https://wa.me/20113668010" class="whatsapp-float" target="_blank">
+    💬
+</a>
+
+<script>
+    const sidebar = document.getElementById('sidebar');
+    const homeSection = document.getElementById('home');
+    const productSections = document.querySelectorAll('.products');
+    let cart = [];
+
+    function toggleSidebar() {
+        sidebar.classList.toggle('show');
+    }
+
+    function toggleCart() {
+        document.getElementById('cartSidebar').classList.toggle('show');
+    }
+
+    function showHome() {
+        homeSection.style.display = 'grid';
+        productSections.forEach(section => {
+            section.classList.remove('active');
+        });
+        sidebar.classList.remove('show');
+        document.getElementById('cartSidebar').classList.remove('show');
+    }
+
+    function showProduct(id) {
+        homeSection.style.display = 'none';
+        productSections.forEach(section => {
+            if(section.id === id){
+                section.classList.add('active');
+            } else {
+                section.classList.remove('active');
+            }
+        });
+        sidebar.classList.remove('show');
+        document.getElementById('cartSidebar').classList.remove('show');
+    }
+
+    function addToCart(productId, productName, price, image) {
+        const existingItem = cart.find(item => item.id === productId);
+        
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({
+                id: productId,
+                name: productName,
+                price: price,
+                image: image,
+                quantity: 1
+            });
+        }
+        
+        updateCart();
+        showNotification('تمت الإضافة إلى السلة!');
+        document.getElementById('cartSidebar').classList.add('show');
+    }
+
+    function removeFromCart(productId) {
+        cart = cart.filter(item => item.id !== productId);
+        updateCart();
+    }
+
+    function updateCart() {
+        const cartItems = document.getElementById('cartItems');
+        const cartCount = document.getElementById('cart-count');
+        const totalPrice = document.getElementById('total-price');
+        
+        cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+        
+        cartItems.innerHTML = '';
+        
+        if (cart.length === 0) {
+            cartItems.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">السلة فارغة</p>';
+        } else {
+            cart.forEach(item => {
+                cartItems.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-info">
+                            <div style="font-weight: bold;">${item.name}</div>
+                            <div class="cart-item-price">${item.price} جنيه × ${item.quantity}</div>
+                        </div>
+                        <button class="remove-item" onclick="removeFromCart('${item.id}')">×</button>
+                    </div>
+                `;
+            });
+        }
+        
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        totalPrice.textContent = total;
+    }
+
+    function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            font-size: 16px;
+        `;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+
+    function checkout() {
+        if (cart.length === 0) {
+            alert('السلة فارغة!');
+            return;
+        }
+        
+        const orderDetails = cart.map(item => 
+            `${item.name} - ${item.quantity} × ${item.price} جنيه`
+        ).join('%0A');
+        
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        
+        const message = `مرحباً، أريد طلب:%0A%0A${orderDetails}%0A%0Aالمجموع: ${total} جنيه%0A%0Aشكراً!`;
+        
+        window.open(`https://wa.me/20113668010?text=${message}`, '_blank');
+    }
+
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.sidebar') && !event.target.closest('.menu-btn')) {
+            sidebar.classList.remove('show');
+        }
+        if (!event.target.closest('.cart-sidebar') && !event.target.closest('.cart-icon')) {
+            document.getElementById('cartSidebar').classList.remove('show');
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        showHome();
+        updateCart();
+    });
+</script>
+
+</body>
+</html>
