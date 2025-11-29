@@ -101,73 +101,100 @@
             color: #000;
         }
 
-        .products {
-            display: none;
+        /* البنر في الصفحة الرئيسية */
+        .banner-grid {
+            display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             padding: 20px;
         }
 
-        .products.active {
-            display: grid;
-        }
-
-        .card {
+        .banner-card {
             background-color: #fff;
             border-radius: 15px;
             padding: 20px;
             text-align: center;
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
             transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
         }
 
-        .card:hover {
+        .banner-card:hover {
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 12px 25px rgba(0,0,0,0.25);
         }
 
-        .card img {
+        .banner-card img {
             width: 100%;
             border-radius: 12px;
             margin-bottom: 10px;
         }
 
-        .card h2 {
+        .banner-card h2 {
             margin: 10px 0 5px;
             color: #333;
         }
 
-        /* كروت المنتجات اللي في الصفحة الرئيسية */
-        .preview-products {
+        /* عرض المنتج الفردي */
+        .products {
+            display: none;
             padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .preview-card {
+        .products.active {
+            display: block;
+        }
+
+        .product-card {
             background-color: #fff;
             border-radius: 15px;
-            padding: 15px;
+            padding: 30px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
 
-        .preview-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .preview-card img {
+        .product-card img {
             width: 100%;
+            max-width: 400px;
             border-radius: 12px;
+            margin-bottom: 20px;
         }
 
-        .preview-card h4 {
-            margin: 10px 0 0;
+        .product-card h2 {
+            margin: 10px 0 5px;
             color: #333;
-            font-size: 18px;
+            font-size: 28px;
+        }
+
+        .product-card .price {
+            font-size: 24px;
+            color: #cfa87c;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .product-card p {
+            font-size: 16px;
+            color: #555;
+            margin: 0;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #cfa87c;
+            color: #000;
+            border-radius: 20px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: #b5895a;
         }
 
         .explore-btn {
@@ -197,6 +224,16 @@
             border-radius: 12px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.1);
         }
+
+        .contact-info h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+            color: #555;
+        }
     </style>
 </head>
 <body>
@@ -207,52 +244,14 @@
         <span></span>
         <span></span>
     </div>
-
     <img src="PicsArt_11-28-08.40.20.png" alt="لوجو Flora">
     <span>The taste The scent the bloome</span>
 </header>
 
-<!-- ⭐⭐ المنتجات في الصفحة الرئيسية — بدون أسعار ⭐⭐ -->
-<div class="preview-products">
-    <div class="preview-card" onclick="showProduct('product1')">
-        <img src="IMG-20251128-WA0019.jpg">
-        <h4>Flora Candle</h4>
-    </div>
-
-    <div class="preview-card" onclick="showProduct('product2')">
-        <img src="IMG-20251128-WA0024.jpg">
-        <h4>Flora Chocolate</h4>
-    </div>
-
-    <div class="preview-card" onclick="showProduct('product3')">
-        <img src="IMG-20251128-WA0021.jpg">
-        <h4>Flora Jam</h4>
-    </div>
-
-    <div class="preview-card" onclick="showProduct('product4')">
-        <img src="IMG-20251128-WA0025.jpg">
-        <h4>Flora Parfum</h4>
-    </div>
-
-    <div class="preview-card" onclick="showProduct('product5')">
-        <img src="IMG-20251121-WA0009.jpg">
-        <h4>Flora Rose Cream</h4>
-    </div>
-
-    <div class="preview-card" onclick="showProduct('product6')">
-        <img src="IMG-20251128-WA0020.jpg">
-        <h4>Flora Rose Oil</h4>
-    </div>
-
-    <div class="preview-card" onclick="showProduct('product7')">
-        <img src="IMG-20251126-WA0143.jpg">
-        <h4>Flora Pottery Collection</h4>
-    </div>
-</div>
-
-<!-- 🎯 القائمة الجانبية (زي ما هي من غير أي تغيير) -->
 <div class="sidebar" id="sidebar">
     <h3>القائمة</h3>
+    <a onclick="showHome()">الرئيسية</a>
+    <div class="section-title">المنتجات</div>
     <a onclick="showProduct('product1')">Flora Candle</a>
     <a onclick="showProduct('product2')">Flora Chocolate</a>
     <a onclick="showProduct('product3')">Flora Jam</a>
@@ -262,78 +261,169 @@
     <a onclick="showProduct('product7')">Flora Pottery Collection</a>
 </div>
 
-<!-- الصفحات الداخلية — فيها السعر زي ما هو -->
-<div id="product1" class="products active">
-    <div class="card">
-        <img src="IMG-20251128-WA0019.jpg">
+<!-- الصفحة الرئيسية - البنر -->
+<div id="home" class="banner-grid">
+    <div class="banner-card" onclick="showProduct('product1')">
+        <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
         <h2>Flora Candle</h2>
-        <p>السعر: 150 جنيه</p>
+    </div>
+    <div class="banner-card" onclick="showProduct('product2')">
+        <img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate">
+        <h2>Flora Chocolate</h2>
+    </div>
+    <div class="banner-card" onclick="showProduct('product3')">
+        <img src="IMG-20251128-WA0021.jpg" alt="Flora Jam">
+        <h2>Flora Jam</h2>
+    </div>
+    <div class="banner-card" onclick="showProduct('product4')">
+        <img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum">
+        <h2>Flora Parfum</h2>
+    </div>
+    <div class="banner-card" onclick="showProduct('product5')">
+        <img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream">
+        <h2>Flora Rose Cream</h2>
+    </div>
+    <div class="banner-card" onclick="showProduct('product6')">
+        <img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil">
+        <h2>Flora Rose Oil</h2>
+    </div>
+    <div class="banner-card" onclick="showProduct('product7')">
+        <img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection">
+        <h2>Flora Pottery Collection</h2>
+    </div>
+</div>
+
+<!-- صفحات المنتجات الفردية -->
+<div id="product1" class="products">
+    <div class="back-btn" onclick="showHome()">← الرجوع للرئيسية</div>
+    <div class="product-card">
+        <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
+        <h2>Flora Candle</h2>
+        <div class="price">السعر: 150 جنيه</div>
+        <p>شمعة فلورا العطرية - تجربة حسية فريدة</p>
     </div>
 </div>
 
 <div id="product2" class="products">
-    <div class="card">
-        <img src="IMG-20251128-WA0024.jpg">
+    <div class="back-btn" onclick="showHome()">← الرجوع للرئيسية</div>
+    <div class="product-card">
+        <img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate">
         <h2>Flora Chocolate</h2>
-        <p>السعر: 800 جنيه</p>
+        <div class="price">السعر: 800 جنيه</div>
+        <p>شوكولاتة فلورا الفاخرة - نكهات استثنائية</p>
     </div>
 </div>
 
 <div id="product3" class="products">
-    <div class="card">
-        <img src="IMG-20251128-WA0021.jpg">
+    <div class="back-btn" onclick="showHome()">← الرجوع للرئيسية</div>
+    <div class="product-card">
+        <img src="IMG-20251128-WA0021.jpg" alt="Flora Jam">
         <h2>Flora Jam</h2>
-        <p>السعر: 200 جنيه</p>
+        <div class="price">السعر: 200 جنيه</div>
+        <p>مربى فلورا - مصنوع من أفضل الفواكه</p>
     </div>
 </div>
 
 <div id="product4" class="products">
-    <div class="card">
-        <img src="IMG-20251128-WA0025.jpg">
+    <div class="back-btn" onclick="showHome()">← الرجوع للرئيسية</div>
+    <div class="product-card">
+        <img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum">
         <h2>Flora Parfum</h2>
-        <p>السعر: 750 جنيه</p>
+        <div class="price">السعر: 750 جنيه</div>
+        <p>عطر فلورا - رائحة أنيقة تدوم طويلاً</p>
     </div>
 </div>
 
 <div id="product5" class="products">
-    <div class="card">
-        <img src="IMG-20251121-WA0009.jpg">
+    <div class="back-btn" onclick="showHome()">← الرجوع للرئيسية</div>
+    <div class="product-card">
+        <img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream">
         <h2>Flora Rose Cream</h2>
-        <p>السعر: 200 جنيه</p>
+        <div class="price">السعر: 200 جنيه</div>
+        <p>كريم الورد - ترطيب عميق للبشرة</p>
     </div>
 </div>
 
 <div id="product6" class="products">
-    <div class="card">
-        <img src="IMG-20251128-WA0020.jpg">
+    <div class="back-btn" onclick="showHome()">← الرجوع للرئيسية</div>
+    <div class="product-card">
+        <img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil">
         <h2>Flora Rose Oil</h2>
-        <p>السعر: 400 جنيه</p>
+        <div class="price">السعر: 400 جنيه</div>
+        <p>زيت الورد - فوائد متعددة للبشرة والشعر</p>
     </div>
 </div>
 
 <div id="product7" class="products">
-    <div class="card">
-        <img src="IMG-20251126-WA0143.jpg">
+    <div class="back-btn" onclick="showHome()">← الرجوع للرئيسية</div>
+    <div class="product-card">
+        <img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection">
         <h2>Flora Pottery Collection</h2>
-        <p>السعر: 200 جنيه</p>
+        <div class="price">السعر: 200 جنيه</div>
+        <p>مجموعة الفخار - قطع يدوية الصنع</p>
     </div>
+</div>
+
+<!-- باقي المحتوى -->
+<div style="padding:20px; max-width:800px; margin:20px auto; background:#fff; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.1);">
+    <h3>من هي فلورا؟</h3>
+    <p>...</p>
+</div>
+
+<div style="padding:20px; max-width:800px; margin:20px auto; background:#fff; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.1);">
+    <h3>Terms and Policies</h3>
+    <p>...</p>
+</div>
+
+<a href="https://bit.ly/3JT6WyX" target="_blank" class="explore-btn">Click here to explore Flora's pages</a>
+
+<div class="contact-info">
+    <h3>Contact Us</h3>
+    <p>Email: info@flora.eg</p>
+    <p>Phone: +20 113668010</p>
+    <p>For customer support: support@flora.eg</p>
+    <p>Visit us: Cairo, Egypt</p>
+    <p>Full location details available upon request.</p>
 </div>
 
 <script>
     const sidebar = document.getElementById('sidebar');
+    const homeSection = document.getElementById('home');
     const productSections = document.querySelectorAll('.products');
 
     function toggleSidebar() {
         sidebar.classList.toggle('show');
     }
 
-    function showProduct(id) {
+    function showHome() {
+        // إظهار الرئيسية وإخفاء كل المنتجات
+        homeSection.style.display = 'grid';
         productSections.forEach(section => {
             section.classList.remove('active');
         });
-        document.getElementById(id).classList.add('active');
-        window.scrollTo(0, 0);
+        // إخفاء القائمة
+        sidebar.classList.remove('show');
     }
+
+    function showProduct(id) {
+        // إخفاء الرئيسية
+        homeSection.style.display = 'none';
+        // إظهار المنتج المحدد فقط
+        productSections.forEach(section => {
+            if(section.id === id){
+                section.classList.add('active');
+            } else {
+                section.classList.remove('active');
+            }
+        });
+        // إخفاء القائمة
+        sidebar.classList.remove('show');
+    }
+
+    // التأكد من عرض الرئيسية عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', function() {
+        showHome();
+    });
 </script>
 
 </body>
