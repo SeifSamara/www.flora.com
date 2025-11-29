@@ -23,6 +23,7 @@
             font-weight: bold;
             position: relative;
             box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            z-index: 100;
         }
 
         header img {
@@ -51,7 +52,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            z-index: 1001;
+            z-index: 101;
         }
 
         .menu-btn span {
@@ -73,6 +74,7 @@
             cursor: pointer;
             font-size: 18px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 101;
         }
 
         .cart-icon span {
@@ -118,10 +120,12 @@
             padding: 10px 0;
             border-bottom: 1px solid #cfa87c;
             cursor: pointer;
+            transition: color 0.3s;
         }
 
         .sidebar a:hover {
             color: #000;
+            background-color: rgba(207, 168, 124, 0.1);
         }
 
         .cart-sidebar {
@@ -132,7 +136,7 @@
             height: 100vh;
             background: #fff;
             box-shadow: 3px 0 15px rgba(0,0,0,0.2);
-            z-index: 1002;
+            z-index: 1001;
             transform: translateX(-100%);
             transition: transform 0.4s ease;
             display: flex;
@@ -158,6 +162,7 @@
             color: white;
             font-size: 20px;
             cursor: pointer;
+            padding: 5px;
         }
 
         .cart-items {
@@ -178,6 +183,7 @@
             width: 50px;
             height: 50px;
             border-radius: 8px;
+            object-fit: cover;
         }
 
         .cart-item-info {
@@ -197,6 +203,7 @@
             width: 25px;
             height: 25px;
             cursor: pointer;
+            font-size: 14px;
         }
 
         .cart-total {
@@ -215,17 +222,23 @@
             font-size: 16px;
             cursor: pointer;
             margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background: #b5895a;
         }
 
         .add-to-cart {
             background: #cfa87c;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 8px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 15px;
             transition: background 0.3s;
+            font-size: 16px;
         }
 
         .add-to-cart:hover {
@@ -253,7 +266,7 @@
         }
 
         .banner-card:hover {
-            transform: translateY(-5px) scale(1.05);
+            transform: translateY(-5px);
             box-shadow: 0 12px 25px rgba(0,0,0,0.25);
         }
 
@@ -315,18 +328,21 @@
             font-size: 16px;
             color: #555;
             margin: 0;
+            line-height: 1.6;
         }
 
         .back-btn {
             display: inline-block;
             margin: 20px 0;
-            padding: 10px 20px;
+            padding: 12px 24px;
             background-color: #cfa87c;
             color: #000;
             border-radius: 20px;
             text-decoration: none;
             cursor: pointer;
             transition: background 0.3s;
+            border: none;
+            font-size: 16px;
         }
 
         .back-btn:hover {
@@ -412,7 +428,7 @@
             font-size: 24px;
             text-decoration: none;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            z-index: 1000;
+            z-index: 999;
             transition: transform 0.3s;
         }
 
@@ -448,6 +464,18 @@
             .cart-sidebar {
                 width: 280px;
             }
+            
+            .menu-btn {
+                right: 15px;
+                width: 30px;
+                height: 25px;
+            }
+            
+            .cart-icon {
+                left: 15px;
+                padding: 8px 12px;
+                font-size: 16px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -457,14 +485,28 @@
             
             .cart-icon {
                 left: 10px;
-                padding: 8px 12px;
-                font-size: 16px;
+                padding: 6px 10px;
+                font-size: 14px;
             }
             
             .whatsapp-float {
                 width: 50px;
                 height: 50px;
                 font-size: 20px;
+                bottom: 15px;
+                left: 15px;
+            }
+            
+            header {
+                padding: 10px 15px;
+            }
+            
+            header img {
+                height: 60px;
+            }
+            
+            header span {
+                font-size: 16px;
             }
         }
     </style>
@@ -487,7 +529,7 @@
 <div class="sidebar" id="sidebar">
     <h3>القائمة</h3>
     <a onclick="showHome()">الرئيسية</a>
-    <div class="section-title">المنتجات</div>
+    <div style="margin: 15px 0; color: #666; font-weight: bold;">المنتجات</div>
     <a onclick="showProduct('product1')">Flora Candle</a>
     <a onclick="showProduct('product2')">Flora Chocolate</a>
     <a onclick="showProduct('product3')">Flora Jam</a>
@@ -507,7 +549,7 @@
     </div>
     <div class="cart-total">
         <p>المجموع: <span id="total-price">0</span> جنيه</p>
-        <button class="checkout-btn" onclick="checkout()">إتمام الطلب</button>
+        <button class="checkout-btn" onclick="checkout()">إتمام الطلب عبر واتساب</button>
     </div>
 </div>
 
@@ -545,7 +587,7 @@
 
 <!-- صفحات المنتجات الفردية -->
 <div id="product1" class="products">
-    <div class="back-btn" onclick="showHome()">← الرجوع للرئيسية</div>
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
         <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
         <h2>Flora Candle</h2>
@@ -556,7 +598,7 @@
 </div>
 
 <div id="product2" class="products">
-    <div class="back-btn" onclick="showHome()">← الرجوع للرئيسية</div>
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
         <img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate">
         <h2>Flora Chocolate</h2>
@@ -567,7 +609,7 @@
 </div>
 
 <div id="product3" class="products">
-    <div class="back-btn" onclick="showHome()">← الرجوع للرئيسية</div>
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
         <img src="IMG-20251128-WA0021.jpg" alt="Flora Jam">
         <h2>Flora Jam</h2>
@@ -578,7 +620,7 @@
 </div>
 
 <div id="product4" class="products">
-    <div class="back-btn" onclick="showHome()">← الرجوع للرئيسية</div>
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
         <img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum">
         <h2>Flora Parfum</h2>
@@ -589,7 +631,7 @@
 </div>
 
 <div id="product5" class="products">
-    <div class="back-btn" onclick="showHome()">← الرجوع للرئيسية</div>
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
         <img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream">
         <h2>Flora Rose Cream</h2>
@@ -600,7 +642,7 @@
 </div>
 
 <div id="product6" class="products">
-    <div class="back-btn" onclick="showHome()">← الرجوع للرئيسية</div>
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
         <img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil">
         <h2>Flora Rose Oil</h2>
@@ -611,7 +653,7 @@
 </div>
 
 <div id="product7" class="products">
-    <div class="back-btn" onclick="showHome()">← الرجوع للرئيسية</div>
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
         <img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection">
         <h2>Flora Pottery Collection</h2>
@@ -673,4 +715,137 @@
     function showHome() {
         homeSection.style.display = 'grid';
         productSections.forEach(section => {
-            section.classList.remove('active
+            section.classList.remove('active');
+        });
+        sidebar.classList.remove('show');
+        document.getElementById('cartSidebar').classList.remove('show');
+    }
+
+    function showProduct(id) {
+        homeSection.style.display = 'none';
+        productSections.forEach(section => {
+            if(section.id === id){
+                section.classList.add('active');
+            } else {
+                section.classList.remove('active');
+            }
+        });
+        sidebar.classList.remove('show');
+        document.getElementById('cartSidebar').classList.remove('show');
+    }
+
+    function addToCart(productId, productName, price, image) {
+        const existingItem = cart.find(item => item.id === productId);
+        
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({
+                id: productId,
+                name: productName,
+                price: price,
+                image: image,
+                quantity: 1
+            });
+        }
+        
+        updateCart();
+        showNotification('تمت الإضافة إلى السلة!');
+        
+        // إظهار السلة تلقائياً
+        document.getElementById('cartSidebar').classList.add('show');
+    }
+
+    function removeFromCart(productId) {
+        cart = cart.filter(item => item.id !== productId);
+        updateCart();
+    }
+
+    function updateCart() {
+        const cartItems = document.getElementById('cartItems');
+        const cartCount = document.getElementById('cart-count');
+        const totalPrice = document.getElementById('total-price');
+        
+        cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+        
+        cartItems.innerHTML = '';
+        
+        if (cart.length === 0) {
+            cartItems.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">السلة فارغة</p>';
+        } else {
+            cart.forEach(item => {
+                cartItems.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-info">
+                            <div style="font-weight: bold;">${item.name}</div>
+                            <div class="cart-item-price">${item.price} جنيه × ${item.quantity}</div>
+                        </div>
+                        <button class="remove-item" onclick="removeFromCart('${item.id}')">×</button>
+                    </div>
+                `;
+            });
+        }
+        
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        totalPrice.textContent = total;
+    }
+
+    function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            font-size: 16px;
+        `;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+
+    function checkout() {
+        if (cart.length === 0) {
+            alert('السلة فارغة!');
+            return;
+        }
+        
+        const orderDetails = cart.map(item => 
+            `${item.name} - ${item.quantity} × ${item.price} جنيه`
+        ).join('%0A');
+        
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        
+        const message = `مرحباً، أريد طلب:%0A%0A${orderDetails}%0A%0Aالمجموع: ${total} جنيه%0A%0Aشكراً!`;
+        
+        window.open(`https://wa.me/20113668010?text=${message}`, '_blank');
+    }
+
+    // إغلاق القوائم عند الضغط خارجها
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.sidebar') && !event.target.closest('.menu-btn')) {
+            sidebar.classList.remove('show');
+        }
+        if (!event.target.closest('.cart-sidebar') && !event.target.closest('.cart-icon')) {
+            document.getElementById('cartSidebar').classList.remove('show');
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        showHome();
+        updateCart();
+    });
+</script>
+
+</body>
+</html>
