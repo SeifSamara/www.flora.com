@@ -121,6 +121,8 @@ header img:hover {
     justify-content: space-between;
     cursor: pointer;
     z-index: 1003;
+    /* مخفي في الصفحة الرئيسية */
+    display: none;
 }
 .hamburger span {
     height: 4px;
@@ -147,23 +149,7 @@ header img:hover {
     <span>The taste The scent the bloome</span>
 </header>
 
-<div class="hamburger" onclick="toggleSearchMenu()">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
-
-<div id="search-menu">
-    <a onclick="showDetailOnly('product1')">Flora Candle</a>
-    <a onclick="showDetailOnly('product2')">Flora Chocolate</a>
-    <a onclick="showDetailOnly('product3')">Flora Jam</a>
-    <a onclick="showDetailOnly('product4')">Flora Parfum</a>
-    <a onclick="showDetailOnly('product5')">Flora Rose Cream</a>
-    <a onclick="showDetailOnly('product6')">Flora Rose Oil</a>
-    <a onclick="showDetailOnly('product7')">Flora Pottery Collection</a>
-</div>
-
-<div class="products-grid" id="products-grid">
+<div id="products-grid" class="products-grid">
     <div onclick="showDetailOnly('product1')"><img src="IMG-20251128-WA0019.jpg" alt="Flora Candle"></div>
     <div onclick="showDetailOnly('product2')"><img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate"></div>
     <div onclick="showDetailOnly('product3')"><img src="IMG-20251128-WA0021.jpg" alt="Flora Jam"></div>
@@ -223,7 +209,7 @@ const productsGrid = document.getElementById('products-grid');
 const searchMenu = document.getElementById('search-menu');
 
 function toggleSearchMenu() {
-    searchMenu.classList.toggle('show');
+    // مخفي في الصفحة الرئيسية
 }
 
 function showDetailOnly(id) {
@@ -231,7 +217,6 @@ function showDetailOnly(id) {
     details.forEach(d => d.style.display = 'none');
     document.getElementById(id).style.display = 'block';
     productsGrid.style.display = 'none';
-    searchMenu.classList.remove('show');
     document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
 </script>
