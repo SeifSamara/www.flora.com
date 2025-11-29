@@ -160,7 +160,7 @@ header img:hover {
         <span></span>
     </div>
     <img src="PicsArt_11-28-08.40.20.png" alt="لوجو Flora">
-    <span>Flora</span>
+    <span>The taste The scent the bloome</span>
 </header>
 
 <div class="sidebar" id="sidebar">
@@ -235,12 +235,12 @@ header img:hover {
 <script>
 const sidebar = document.getElementById('sidebar');
 const productsGrid = document.getElementById('products-grid');
+const valueProducts = document.getElementById('value-products');
 function toggleSidebar() {
     sidebar.classList.toggle('show');
 }
 function toggleValueSection() {
-    const section = document.getElementById('value-products');
-    section.style.display = section.style.display === 'none' ? 'block' : 'none';
+    valueProducts.style.display = valueProducts.style.display === 'block' ? 'none' : 'block';
 }
 function showDetailOnly(id) {
     const details = document.querySelectorAll('.product-detail');
