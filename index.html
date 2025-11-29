@@ -1,4 +1,4 @@
-            <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -103,44 +103,28 @@
 
         .products {
             display: none;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             padding: 20px;
         }
 
         .products.active {
-            display: grid;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .card {
-            background-color: #fff;
             border-radius: 15px;
-            padding: 20px;
             text-align: center;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
             transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+            overflow: hidden;
+            margin: 10px;
         }
 
         .card img {
-            width: 100%;
+            width: 300px;
             border-radius: 12px;
-            margin-bottom: 10px;
-        }
-
-        .card h2 {
-            margin: 10px 0 5px;
-            color: #333;
-        }
-
-        .card p {
-            font-size: 16px;
-            color: #555;
-            margin: 0;
+            display: block;
         }
 
         .explore-btn {
@@ -206,54 +190,40 @@
     <a onclick="showProduct('product7')">Flora Pottery Collection</a>
 </div>
 
-<!-- Products sections -->
+<!-- Products sections as banner style -->
 <div id="product1" class="products">
     <div class="card">
         <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
-        <h2>Flora Candle</h2>
-        <p>السعر: 150 جنيه</p>
     </div>
 </div>
 <div id="product2" class="products">
     <div class="card">
         <img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate">
-        <h2>Flora Chocolate</h2>
-        <p>السعر: 800 جنيه</p>
     </div>
 </div>
 <div id="product3" class="products">
     <div class="card">
         <img src="IMG-20251128-WA0021.jpg" alt="Flora Jam">
-        <h2>Flora Jam</h2>
-        <p>السعر: 200 جنيه</p>
     </div>
 </div>
 <div id="product4" class="products">
     <div class="card">
         <img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum">
-        <h2>Flora Parfum</h2>
-        <p>السعر: 750 جنيه</p>
     </div>
 </div>
 <div id="product5" class="products">
     <div class="card">
         <img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream">
-        <h2>Flora Rose Cream</h2>
-        <p>السعر: 200 جنيه</p>
     </div>
 </div>
 <div id="product6" class="products">
     <div class="card">
         <img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil">
-        <h2>Flora Rose Oil</h2>
-        <p>السعر: 400 جنيه</p>
     </div>
 </div>
 <div id="product7" class="products">
     <div class="card">
         <img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection">
-        <h2>Flora Pottery Collection</h2>
-        <p>السعر: 200 جنيه</p>
     </div>
 </div>
 
