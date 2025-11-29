@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8" />
@@ -24,6 +24,7 @@
             font-weight:bold;
             border-radius:10px;
             position:relative;
+            z-index: 1000;
         }
 
         /* زر قائمة الهامبرجر */
@@ -38,6 +39,7 @@
             display:flex;
             flex-direction:column;
             justify-content:space-between;
+            z-index: 1001;
         }
 
         .menu-btn span {
@@ -45,24 +47,26 @@
             height:5px;
             background:#000;
             border-radius:5px;
+            transition: all 0.3s;
         }
 
         /* الشريط الجانبي */
         .sidebar {
-            width: 220px;
+            width: 250px;
             background: #e8d9c3;
             padding: 20px;
             height: 100vh;
             position: fixed;
             top: 0;
-            right: -240px;
+            right: -260px;
             display: flex;
             flex-direction: column;
             gap: 15px;
             border-left: 2px solid #c7b396;
             font-size: 18px;
             font-weight: bold;
-            transition: 0.4s;
+            transition: right 0.4s ease;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
         }
 
         .sidebar.show {
@@ -72,11 +76,12 @@
         .sidebar a {
             text-decoration: none;
             color: #333;
+            padding: 8px 0;
+            border-bottom: 1px solid #c7b396;
         }
 
         .sidebar a:hover {
             color: #000;
-            transform: scale(1.05);
         }
 
         /* المنتجات */
@@ -85,6 +90,11 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             padding: 20px;
+            transition: margin-right 0.4s ease;
+        }
+
+        .products.shift {
+            margin-right: 250px;
         }
 
         .card {
@@ -93,7 +103,7 @@
             padding: 15px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
             text-align: center;
-            transition: .3s;
+            transition: transform 0.3s;
         }
 
         .card:hover { transform: scale(1.03); }
@@ -103,6 +113,21 @@
         .card h1, .card h2, .card h3 { margin: 10px 0 5px; }
 
         .card p { margin: 0; font-size: 16px; color: #444; }
+
+        /* زر الانتقال */
+        .explore-btn {
+            display:block;  
+            width: fit-content;  
+            margin: 40px auto;  
+            padding:12px 22px;  
+            background:#d8c4a3;  
+            color:#000;  
+            border-radius:12px;  
+            text-decoration:none;  
+            font-size:18px;  
+            font-weight:bold;  
+            text-align:center;
+        }
     </style>
 </head>
 <body>
@@ -126,7 +151,7 @@
     <a href="#">التواصل</a>
 </div>
 
-<div class="products">
+<div class="products" id="products">
 
     <div class="card">
         <img src="IMG-20251128-WA0019.jpg" alt="منتج جديد">
@@ -171,26 +196,15 @@
     </div>
 </div>
 
-<a href="https://bit.ly/3JT6WyX" target="_blank"  
-   style="  
-       display:block;  
-       width: fit-content;  
-       margin: 40px auto;  
-       padding:12px 22px;  
-       background:#d8c4a3;  
-       color:#000;  
-       border-radius:12px;  
-       text-decoration:none;  
-       font-size:18px;  
-       font-weight:bold;  
-       text-align:center;  
-   ">  
-    Click here to explore Flora's pages  
-</a>
+<a href="https://bit.ly/3JT6WyX" target="_blank" class="explore-btn">Click here to explore Flora's pages</a>
 
 <script>
+    const sidebar = document.getElementById('sidebar');
+    const products = document.getElementById('products');
+
     function toggleSidebar() {
-        document.getElementById('sidebar').classList.toggle('show');
+        sidebar.classList.toggle('show');
+        products.classList.toggle('shift');
     }
 </script>
 
