@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -9,14 +10,15 @@
         body { 
             font-family: Arial, sans-serif; 
             margin: 0; 
-            background: #f5e6d3;
+            background: linear-gradient(to bottom right, #f5e6d3, #fff0e0);
+            transition: background 0.5s ease;
         }
 
         header {
             display:flex; 
             align-items:center; 
             justify-content:center; 
-            gap:10px; 
+            gap:15px; 
             background:#d8c4a3;
             color:white; 
             padding:25px; 
@@ -25,6 +27,7 @@
             border-radius:10px;
             position:relative;
             z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
         .menu-btn {
@@ -50,21 +53,21 @@
         }
 
         .sidebar {
-            width: 250px;
+            width: 270px;
             background: #e8d9c3;
-            padding: 20px;
+            padding: 25px;
             height: 100vh;
             position: fixed;
             top: 0;
-            right: -260px;
+            right: -280px;
             display: flex;
             flex-direction: column;
             gap: 15px;
             border-left: 2px solid #c7b396;
             font-size: 18px;
             font-weight: bold;
-            transition: right 0.4s ease;
-            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+            transition: right 0.5s ease;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.2);
             overflow-y: auto;
         }
 
@@ -75,8 +78,9 @@
         .sidebar a {
             text-decoration: none;
             color: #333;
-            padding: 8px 0;
+            padding: 10px 0;
             border-bottom: 1px solid #c7b396;
+            transition: color 0.3s;
         }
 
         .sidebar a:hover {
@@ -91,30 +95,40 @@
             padding-bottom: 5px;
         }
 
+        .sidebar p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+
         .products {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            transition: margin-right 0.4s ease;
+            gap: 25px;
+            padding: 25px;
+            transition: margin-right 0.5s ease;
         }
 
         .products.shift {
-            margin-right: 250px;
+            margin-right: 270px;
         }
 
         .card {
             background: #fff;
-            border-radius: 12px;
-            padding: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             text-align: center;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
         }
 
-        .card:hover { transform: scale(1.03); }
+        .card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+        }
 
-        .card img { width: 100%; border-radius: 10px; }
+        .card img { width: 100%; border-radius: 12px; }
 
         .card h1, .card h2, .card h3 { margin: 10px 0 5px; }
 
@@ -124,15 +138,21 @@
             display:block;  
             width: fit-content;  
             margin: 40px auto;  
-            padding:12px 22px;  
-            background:#d8c4a3;  
+            padding:14px 26px;  
+            background:#cfa87c;  
             color:#000;  
-            border-radius:12px;  
+            border-radius:15px;  
             text-decoration:none;  
             font-size:18px;  
             font-weight:bold;  
             text-align:center;
+            transition: background 0.3s;
         }
+
+        .explore-btn:hover {
+            background:#b5895a;
+        }
+
     </style>
 </head>
 <body>
@@ -144,7 +164,7 @@
         <span></span>
     </div>
 
-    <img src="PicsArt_11-28-08.40.20.png" alt="لوجو Flora" style="height:100px;">
+    <img src="PicsArt_11-28-08.40.20.png" alt="لوجو Flora" style="height:120px;">
     <span>Flora</span>
 </header>
 
@@ -158,8 +178,9 @@
     <a href="#product5">Flora Rose Cream</a>
     <a href="#product6">Flora Rose Oil</a>
     <a href="#product7">Flora Pottery Collection</a>
+
     <div class="section-title">Terms and Policies</div>
-    <p style="font-size:14px; color:#555;">
+    <p>
         Our return and exchange policy ensures that you receive products that meet your expectations. If there is any issue with your order, you may request a return or exchange within the specified timeframe, provided the item is in its original condition.
         <br><br>
         تلتزم فلورا بتقديم منتجات تلبي توقعاتكم. وفي حال وجود أي مشكلة في الطلب، يمكنكم طلب الاستبدال أو الاسترجاع خلال المدة المحددة، بشرط أن يكون المنتج بحالته الأصلية.
