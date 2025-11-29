@@ -38,19 +38,16 @@ header img:hover {
     max-width: 1200px;
     margin: 20px auto;
 }
-.product-item {
+.products-grid div {
     cursor: pointer;
     border-radius: 12px;
     overflow: hidden;
     transition: transform 0.3s;
 }
-.product-item img {
+.products-grid div img {
     width: 100%;
     height: 200px;
     object-fit: cover;
-}
-.product-item:hover {
-    transform: scale(1.05);
 }
 .product-detail {
     display: none;
@@ -98,8 +95,6 @@ header img:hover {
     background-color: #b5895a;
     transform: scale(1.05);
 }
-
-/* شريط البحث الجانبي */
 #value-products {
     position: fixed;
     top: 80px;
@@ -110,6 +105,8 @@ header img:hover {
     box-shadow: -3px 0 15px rgba(0,0,0,0.2);
     transition: right 0.4s ease;
     z-index: 1002;
+    overflow-y: auto;
+    max-height: 80vh;
 }
 #value-products.show {
     right: 0;
@@ -126,16 +123,22 @@ header img:hover {
     cursor: pointer;
     z-index: 1003;
 }
-#value-products a {
-    display: block;
-    margin: 10px 0;
+footer {
+    background-color: #f5e0c9;
+    padding: 40px 20px;
     color: #333;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
+    text-align: right;
+    margin-top: 50px;
 }
-#value-products a:hover {
-    color: #000;
+footer h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+footer p, footer a {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+    text-decoration: none;
 }
 </style>
 </head>
@@ -146,27 +149,25 @@ header img:hover {
     <span>The taste The scent the bloome</span>
 </header>
 
-<div class="toggle-btn" onclick="toggleValueSection()">Search</div>
-
+<div class="toggle-btn" onclick="toggleValueSection()">search</div>
 <div id="value-products">
-    <a onclick="showGroup('group1')">مجموعة 1</a>
-    <a onclick="showGroup('group2')">مجموعة 2</a>
-    <a onclick="showGroup('group3')">مجموعة 3</a>
+    <a onclick="showDetailOnly('product1')">Flora Candle</a>
+    <a onclick="showDetailOnly('product2')">Flora Chocolate</a>
+    <a onclick="showDetailOnly('product3')">Flora Jam</a>
+    <a onclick="showDetailOnly('product4')">Flora Parfum</a>
+    <a onclick="showDetailOnly('product5')">Flora Rose Cream</a>
+    <a onclick="showDetailOnly('product6')">Flora Rose Oil</a>
+    <a onclick="showDetailOnly('product7')">Flora Pottery Collection</a>
 </div>
 
 <div class="products-grid" id="products-grid">
-    <!-- مجموعة 1 -->
-    <div class="product-item group1" onclick="showDetailOnly('product1')"><img src="IMG-20251128-WA0019.jpg" alt="Flora Candle"></div>
-    <div class="product-item group1" onclick="showDetailOnly('product2')"><img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate"></div>
-    <div class="product-item group1" onclick="showDetailOnly('product3')"><img src="IMG-20251128-WA0021.jpg" alt="Flora Jam"></div>
-    
-    <!-- مجموعة 2 -->
-    <div class="product-item group2" onclick="showDetailOnly('product4')"><img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum"></div>
-    <div class="product-item group2" onclick="showDetailOnly('product5')"><img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream"></div>
-    <div class="product-item group2" onclick="showDetailOnly('product6')"><img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil"></div>
-    
-    <!-- مجموعة 3 -->
-    <div class="product-item group3" onclick="showDetailOnly('product7')"><img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection"></div>
+    <div onclick="showDetailOnly('product1')"><img src="IMG-20251128-WA0019.jpg" alt="Flora Candle"></div>
+    <div onclick="showDetailOnly('product2')"><img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate"></div>
+    <div onclick="showDetailOnly('product3')"><img src="IMG-20251128-WA0021.jpg" alt="Flora Jam"></div>
+    <div onclick="showDetailOnly('product4')"><img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum"></div>
+    <div onclick="showDetailOnly('product5')"><img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream"></div>
+    <div onclick="showDetailOnly('product6')"><img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil"></div>
+    <div onclick="showDetailOnly('product7')"><img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection"></div>
 </div>
 
 <div id="product1" class="product-detail">
@@ -214,24 +215,26 @@ header img:hover {
 
 <a href="https://seifsamara.github.io/Flora/" target="_blank" class="explore-btn">Click here to explore Flora's pages</a>
 
+<footer>
+    <h3>من هي فلورا؟</h3>
+    <p>في فلورا نؤمن بأن الجمال يكمن في التفاصيل الصغيرة، وأن المزج بين الطبيعة والابتكار قادر على صناعة لحظة لا تُنسى. نحن علامة متخصصة في تقديم منتجات راقية تجمع بين الزهور الطبيعية والفنون الحرفية، لنقدم لكِ قطعًا تحمل روحًا مختلفة وتجربة حسية فريدة.</p>
+    <p>نعمل في فلورا على تطوير تشكيلات متنوعة من المنتجات تشمل تنسيقات الزهور، والهدايا المميزة، وقطع الديكور المصنوعة يدويًا، إلى جانب إبداعات من العطور والفخار المصمم بعناية. كل منتج يُصنع بروح مبتكرة وجودة عالية ليعبّر عن ذوق عصري ويلائم كل مناسبة.</p>
+    <p>نلتزم في فلورا بتقديم تجربة راقية من لحظة اختيار المنتج وحتى تسليمه، مع حرصنا الدائم على استخدام خامات مستدامة.<br>فلورا.. تفاصيل تصنع الفرق</p>
+    <h3>Terms and Policies</h3>
+    <p>Our return and exchange policy ensures that you receive products that meet your expectations. If there is any issue with your order, you may request a return or exchange within the specified timeframe, provided the item is in its original condition.</p>
+    <p>تلتزم فلورا بتقديم منتجات تلبي توقعاتكم. وفي حال وجود أي مشكلة في الطلب، يمكنكم طلب الاستبدال أو الاسترجاع خلال المدة المحددة، بشرط أن يكون المنتج بحالته الأصلية.</p>
+    <h3>Contact Us</h3>
+    <p>Email: info@flora.eg<br>Phone: +20 113668010</p>
+    <p>For customer support: support@flora.eg</p>
+    <p>Visit us: Cairo, Egypt<br>Full location details available upon request.</p>
+</footer>
+
 <script>
 const productsGrid = document.getElementById('products-grid');
 const valueProducts = document.getElementById('value-products');
 
 function toggleValueSection() {
     valueProducts.classList.toggle('show');
-}
-
-function showGroup(group) {
-    const allItems = document.querySelectorAll('.product-item');
-    allItems.forEach(item => {
-        if(item.classList.contains(group)) {
-            item.style.display = 'block';
-        } else {
-            item.style.display = 'none';
-        }
-    });
-    valueProducts.classList.remove('show');
 }
 
 function showDetailOnly(id) {
