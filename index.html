@@ -166,7 +166,19 @@ header img:hover {
 <div class="sidebar" id="sidebar">
     <h3>القيمة</h3>
     <a onclick="toggleValueSection()">عرض المنتجات</a>
-    <div id="value-products" style="display:none; margin-top:10px;">
+    <div id=#value-products {
+    display: none; /* متظهرش خالص */
+    opacity: 0;    /* نخفيه بصريًا */
+    height: 0;     /* ما يسيبش فراغ */
+    overflow: hidden; /* يمنع أي ظهور محتوى */
+    transition: all 0.4s ease; /* حركة سلسة لما يظهر */
+}
+
+#value-products.show {
+    display: block;
+    opacity: 1;
+    height: auto;
+}
         <a onclick="showDetailOnly('product1')">Flora Candle</a>
         <a onclick="showDetailOnly('product2')">Flora Chocolate</a>
         <a onclick="showDetailOnly('product3')">Flora Jam</a>
@@ -240,7 +252,8 @@ function toggleSidebar() {
     sidebar.classList.toggle('show');
 }
 function toggleValueSection() {
-    valueProducts.style.display = valueProducts.style.display === 'block' ? 'none' : 'block';
+    valueProducts.classList.toggle('show');
+    }
 }
 function showDetailOnly(id) {
     const details = document.querySelectorAll('.product-detail');
