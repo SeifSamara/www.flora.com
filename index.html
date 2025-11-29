@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+            <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -29,10 +29,6 @@
             height: 100px;
             border-radius: 12px;
             transition: transform 0.3s;
-        }
-
-        header img:hover {
-            transform: scale(1.1);
         }
 
         header span {
@@ -101,6 +97,29 @@
             color: #000;
         }
 
+        .banner-products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .banner-card {
+            width: 200px;
+            height: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .banner-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .product-display {
             display: none;
             max-width: 300px;
@@ -119,46 +138,6 @@
 
         .product-display h3, .product-display p {
             margin: 10px 0;
-        }
-
-        .banner-products {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            padding: 20px;
-        }
-
-        .banner-card {
-            border-radius: 15px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .banner-card img {
-            width: 250px;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 12px;
-        }
-
-        .explore-btn {
-            display: block;
-            width: fit-content;
-            margin: 40px auto;
-            padding: 14px 28px;
-            background-color: #cfa87c;
-            color: #000;
-            border-radius: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            text-decoration: none;
-            transition: background 0.3s, transform 0.3s;
-        }
-
-        .explore-btn:hover {
-            background-color: #b5895a;
-            transform: scale(1.05);
         }
 
         .contact-info {
@@ -195,7 +174,6 @@
 
 <div class="sidebar" id="sidebar">
     <h3>القائمة</h3>
-    <div class="section-title">المنتجات</div>
     <a onclick="showProduct('product1')">Flora Candle</a>
     <a onclick="showProduct('product2')">Flora Chocolate</a>
     <a onclick="showProduct('product3')">Flora Jam</a>
@@ -206,30 +184,15 @@
 </div>
 
 <div class="banner-products">
-    <div class="banner-card">
-        <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
-    </div>
-    <div class="banner-card">
-        <img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate">
-    </div>
-    <div class="banner-card">
-        <img src="IMG-20251128-WA0021.jpg" alt="Flora Jam">
-    </div>
-    <div class="banner-card">
-        <img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum">
-    </div>
-    <div class="banner-card">
-        <img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream">
-    </div>
-    <div class="banner-card">
-        <img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil">
-    </div>
-    <div class="banner-card">
-        <img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection">
-    </div>
+    <div class="banner-card" onclick="showProduct('product1')"><img src="IMG-20251128-WA0019.jpg" alt="Flora Candle"></div>
+    <div class="banner-card" onclick="showProduct('product2')"><img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate"></div>
+    <div class="banner-card" onclick="showProduct('product3')"><img src="IMG-20251128-WA0021.jpg" alt="Flora Jam"></div>
+    <div class="banner-card" onclick="showProduct('product4')"><img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum"></div>
+    <div class="banner-card" onclick="showProduct('product5')"><img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream"></div>
+    <div class="banner-card" onclick="showProduct('product6')"><img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil"></div>
+    <div class="banner-card" onclick="showProduct('product7')"><img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection"></div>
 </div>
 
-<!-- Product display on click -->
 <div id="product1" class="product-display">
     <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
     <h3>Flora Candle</h3>
@@ -283,5 +246,3 @@
 
 </body>
 </html>
-
-            
