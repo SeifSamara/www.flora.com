@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flora</title>
+
     <style>
         body { 
             font-family: Arial, sans-serif; 
@@ -22,23 +23,50 @@
             font-size:28px; 
             font-weight:bold;
             border-radius:10px;
+            position:relative;
+        }
+
+        /* زر قائمة الهامبرجر */
+        .menu-btn {
+            position:absolute;
+            right:20px;
+            top:50%;
+            transform:translateY(-50%);
+            width:35px;
+            height:30px;
+            cursor:pointer;
+            display:flex;
+            flex-direction:column;
+            justify-content:space-between;
+        }
+
+        .menu-btn span {
+            display:block;
+            height:5px;
+            background:#000;
+            border-radius:5px;
         }
 
         /* الشريط الجانبي */
         .sidebar {
-            width: 200px;
+            width: 220px;
             background: #e8d9c3;
             padding: 20px;
             height: 100vh;
             position: fixed;
             top: 0;
-            right: 0;
+            right: -240px;
             display: flex;
             flex-direction: column;
             gap: 15px;
             border-left: 2px solid #c7b396;
             font-size: 18px;
             font-weight: bold;
+            transition: 0.4s;
+        }
+
+        .sidebar.show {
+            right: 0;
         }
 
         .sidebar a {
@@ -57,7 +85,6 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             padding: 20px;
-            margin-right: 220px; /* مكان الشريط */
         }
 
         .card {
@@ -68,21 +95,31 @@
             text-align: center;
             transition: .3s;
         }
+
         .card:hover { transform: scale(1.03); }
+
         .card img { width: 100%; border-radius: 10px; }
-        .card h3, .card h1, .card h2 { margin: 10px 0 5px; }
+
+        .card h1, .card h2, .card h3 { margin: 10px 0 5px; }
+
         .card p { margin: 0; font-size: 16px; color: #444; }
     </style>
 </head>
 <body>
 
 <header>
+    <div class="menu-btn" onclick="toggleSidebar()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
     <img src="PicsArt_11-28-08.40.20.png" alt="لوجو Flora" style="height:100px;">
     <span>Flora</span>
 </header>
 
 <!-- الشريط الجانبي -->
-<div class="sidebar">
+<div class="sidebar" id="sidebar">
     <h3>القائمة</h3>
     <a href="#">عرض المنتجات</a>
     <a href="#">العروض</a>
@@ -98,7 +135,7 @@
     </div>
 
     <div class="card">
-        <img src="IMG-20251128-WA0024.jpg" alt="منتج شكولاتة">
+        <img src="IMG-20251128-WA0024.jpg" alt="منتج شوكولاتة">
         <h2>Flora Chocolate</h2>
         <p>السعر: 800 جنيه</p>
     </div>
@@ -116,19 +153,19 @@
     </div>
 
     <div class="card">
-        <img src="IMG-20251121-WA0009.jpg" alt="منتج 2">
+        <img src="IMG-20251121-WA0009.jpg" alt="منتج كريم الورد">
         <h3>Flora Rose Cream</h3>
         <p>السعر: 200 جنيه</p>
     </div>
 
     <div class="card">
-        <img src="IMG-20251128-WA0020.jpg" alt="منتج 3">
+        <img src="IMG-20251128-WA0020.jpg" alt="منتج زيت الورد">
         <h3>Flora Rose Oil</h3>
         <p>السعر: 400 جنيه</p>
     </div>
 
     <div class="card">
-        <img src="IMG-20251126-WA0143.jpg" alt="منتج 4">
+        <img src="IMG-20251126-WA0143.jpg" alt="منتج الفخار">
         <h3>Flora Pottery Collection</h3>
         <p>السعر: 200 جنيه</p>
     </div>
@@ -150,6 +187,12 @@
    ">  
     Click here to explore Flora's pages  
 </a>
+
+<script>
+    function toggleSidebar() {
+        document.getElementById('sidebar').classList.toggle('show');
+    }
+</script>
 
 </body>
 </html>
