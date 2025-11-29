@@ -14,19 +14,22 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 15px;
     background-color: #cfa87c;
-    padding: 20px 40px;
+    color: #fff;
+    padding: 25px 15px;
+    font-size: 28px;
+    font-weight: bold;
     position: relative;
     box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 header img {
     height: 100px;
     border-radius: 12px;
+    transition: transform 0.3s;
 }
-header span {
-    font-size: 24px;
-    color: #fff;
-    margin-left: 15px;
+header img:hover {
+    transform: scale(1.1);
 }
 .menu-btn {
     position: absolute;
@@ -61,68 +64,181 @@ header span {
     z-index: 1000;
 }
 .sidebar.show { right: 0; }
-.sidebar h3 { font-size: 20px; margin-bottom: 15px; border-bottom: 2px solid #cfa87c; padding-bottom: 5px; color: #333; }
-.sidebar a { display: block; text-decoration: none; color: #333; padding: 10px 0; border-bottom: 1px solid #cfa87c; cursor: pointer; }
+.sidebar h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 2px solid #cfa87c;
+    padding-bottom: 5px;
+}
+.sidebar a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    padding: 10px 0;
+    border-bottom: 1px solid #cfa87c;
+    cursor: pointer;
+}
 .sidebar a:hover { color: #000; }
-.main-content { display: flex; flex-direction: column; align-items: center; padding: 20px; }
-.banner-products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
-.banner-products div { cursor: pointer; border-radius: 12px; overflow: hidden; transition: transform 0.3s; }
-.banner-products div img { width: 100%; height: 150px; object-fit: cover; }
-.product-display { display: none; max-width: 300px; background: #fff; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: center; padding: 15px; margin-bottom: 20px; }
-.product-display img { width: 100%; border-radius: 12px; }
-.description { padding: 20px; max-width: 800px; margin: 20px auto; background: #fff; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
-.description h3 { margin-bottom: 15px; color: #333; }
-.description p { margin: 10px 0; color: #555; line-height: 1.6; }
-.contact-info { padding: 20px; max-width: 800px; margin: 20px auto; background: #fff; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
-.contact-info h3 { margin-bottom: 15px; color: #333; }
-.contact-info p { margin: 5px 0; color: #555; }
-@media (max-width: 900px) { .banner-products { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .banner-products { grid-template-columns: 1fr; } }
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+.card {
+    position: relative;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+}
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.card h2 {
+    margin: 10px;
+    font-size: 18px;
+    color: #333;
+}
+.product-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+    z-index: 2000;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+.product-popup img {
+    width: 100%;
+    border-radius: 12px;
+}
+.product-popup h3 {
+    margin: 15px 0 10px;
+    color: #333;
+}
+.product-popup p {
+    margin: 10px 0;
+    color: #555;
+    font-size: 16px;
+}
+.product-popup button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #cfa87c;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+.product-popup button:hover {
+    background-color: #b5895a;
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1500;
+}
+.description, .contact-info {
+    padding: 20px;
+    max-width: 900px;
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+.description h3, .contact-info h3 { color: #333; margin-bottom: 10px; }
+.description p, .contact-info p { color: #555; line-height: 1.6; }
 </style>
 </head>
 <body>
+
 <header>
-    <span>The taste The scent the bloome</span>
+    <div class="menu-btn" onclick="toggleSidebar()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
     <img src="PicsArt_11-28-08.40.20.png" alt="لوجو Flora">
-    <div class="menu-btn" onclick="toggleSidebar()"><span></span><span></span><span></span></div>
+    <span>The taste The scent the bloome</span>
 </header>
+
 <div class="sidebar" id="sidebar">
     <h3>القائمة</h3>
-    <a onclick="showProduct('product1')">Flora Candle</a>
-    <a onclick="showProduct('product2')">Flora Chocolate</a>
-    <a onclick="showProduct('product3')">Flora Jam</a>
-    <a onclick="showProduct('product4')">Flora Parfum</a>
-    <a onclick="showProduct('product5')">Flora Rose Cream</a>
-    <a onclick="showProduct('product6')">Flora Rose Oil</a>
-    <a onclick="showProduct('product7')">Flora Pottery Collection</a>
+    <a onclick="scrollToDesc()">من هي فلورا؟</a>
+    <a onclick="scrollToDesc()">Terms and Policies</a>
 </div>
-<div class="main-content">
-    <div class="banner-products">
-        <div onclick="showProduct('product1')"><img src="IMG-20251128-WA0019.jpg" alt="Flora Candle"></div>
-        <div onclick="showProduct('product2')"><img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate"></div>
-        <div onclick="showProduct('product3')"><img src="IMG-20251128-WA0021.jpg" alt="Flora Jam"></div>
-        <div onclick="showProduct('product4')"><img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum"></div>
-        <div onclick="showProduct('product5')"><img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream"></div>
-        <div onclick="showProduct('product6')"><img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil"></div>
-        <div onclick="showProduct('product7')"><img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection"></div>
+
+<div class="products-grid" id="productsGrid">
+    <div class="card" onclick="showPopup('Flora Candle', 'IMG-20251128-WA0019.jpg', '150 جنيه')">
+        <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
+        <h2>Flora Candle</h2>
     </div>
-    <div id="product1" class="product-display"><img src="IMG-20251128-WA0019.jpg" alt="Flora Candle"><h3>Flora Candle</h3><p>السعر: 150 جنيه</p></div>
-    <div id="product2" class="product-display"><img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate"><h3>Flora Chocolate</h3><p>السعر: 800 جنيه</p></div>
-    <div id="product3" class="product-display"><img src="IMG-20251128-WA0021.jpg" alt="Flora Jam"><h3>Flora Jam</h3><p>السعر: 200 جنيه</p></div>
-    <div id="product4" class="product-display"><img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum"><h3>Flora Parfum</h3><p>السعر: 750 جنيه</p></div>
-    <div id="product5" class="product-display"><img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream"><h3>Flora Rose Cream</h3><p>السعر: 200 جنيه</p></div>
-    <div id="product6" class="product-display"><img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil"><h3>Flora Rose Oil</h3><p>السعر: 400 جنيه</p></div>
-    <div id="product7" class="product-display"><img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection"><h3>Flora Pottery Collection</h3><p>السعر: 200 جنيه</p></div>
+    <div class="card" onclick="showPopup('Flora Chocolate', 'IMG-20251128-WA0024.jpg', '800 جنيه')">
+        <img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate">
+        <h2>Flora Chocolate</h2>
+    </div>
+    <div class="card" onclick="showPopup('Flora Jam', 'IMG-20251128-WA0021.jpg', '200 جنيه')">
+        <img src="IMG-20251128-WA0021.jpg" alt="Flora Jam">
+        <h2>Flora Jam</h2>
+    </div>
+    <div class="card" onclick="showPopup('Flora Parfum', 'IMG-20251128-WA0025.jpg', '750 جنيه')">
+        <img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum">
+        <h2>Flora Parfum</h2>
+    </div>
+    <div class="card" onclick="showPopup('Flora Rose Cream', 'IMG-20251121-WA0009.jpg', '200 جنيه')">
+        <img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream">
+        <h2>Flora Rose Cream</h2>
+    </div>
+    <div class="card" onclick="showPopup('Flora Rose Oil', 'IMG-20251128-WA0020.jpg', '400 جنيه')">
+        <img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil">
+        <h2>Flora Rose Oil</h2>
+    </div>
+    <div class="card" onclick="showPopup('Flora Pottery Collection', 'IMG-20251126-WA0143.jpg', '200 جنيه')">
+        <img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection">
+        <h2>Flora Pottery Collection</h2>
+    </div>
 </div>
-<div class="description">
+
+<div class="overlay" id="overlay" onclick="closePopup()"></div>
+<div class="product-popup" id="productPopup">
+    <img id="popupImg" src="" alt="">
+    <h3 id="popupTitle"></h3>
+    <p id="popupPrice"></p>
+    <button onclick="buyNow()">اشتري الآن</button>
+</div>
+
+<div class="description" id="descSection">
     <h3>من هي فلورا؟</h3>
     <p>في فلورا نؤمن بأن الجمال يكمن في التفاصيل الصغيرة، وأن المزج بين الطبيعة والابتكار قادر على صناعة لحظة لا تُنسى. نحن علامة متخصصة في تقديم منتجات راقية تجمع بين الزهور الطبيعية والفنون الحرفية، لنقدم لكِ قطعًا تحمل روحًا مختلفة وتجربة حسية فريدة.</p>
     <p>نعمل في فلورا على تطوير تشكيلات متنوعة من المنتجات تشمل تنسيقات الزهور، والهدايا المميزة، وقطع الديكور المصنوعة يدويًا، إلى جانب إبداعات من العطور والفخار المصمم بعناية. كل منتج يُصنع بروح مبتكرة وجودة عالية ليعبّر عن ذوق عصري ويلائم كل مناسبة.</p>
     <p>نلتزم في فلورا بتقديم تجربة راقية من لحظة اختيار المنتج وحتى تسليمه، مع حرصنا الدائم على استخدام خامات مستدامة.<br>فلورا.. تفاصيل تصنع الفرق</p>
-    <h3>Terms and policies</h3>
+    <h3>Terms and Policies</h3>
     <p>Our return and exchange policy ensures that you receive products that meet your expectations. If there is any issue with your order, you may request a return or exchange within the specified timeframe, provided the item is in its original condition.</p>
     <p>تلتزم فلورا بتقديم منتجات تلبي توقعاتكم. وفي حال وجود أي مشكلة في الطلب، يمكنكم طلب الاستبدال أو الاسترجاع خلال المدة المحددة، بشرط أن يكون المنتج بحالته الأصلية.</p>
 </div>
+
 <div class="contact-info">
     <h3>Contact us</h3>
     <p>Email: info@flora.eg</p>
@@ -130,15 +246,32 @@ header span {
     <p>For customer support: support@flora.eg</p>
     <p>Visit us: Cairo, Egypt</p>
 </div>
+
 <script>
 const sidebar = document.getElementById('sidebar');
 function toggleSidebar() { sidebar.classList.toggle('show'); }
-function showProduct(id) {
-    const products = document.querySelectorAll('.product-display');
-    products.forEach(p => p.style.display = 'none');
-    document.getElementById(id).style.display = 'block';
-    document.getElementById(id).scrollIntoView({behavior: 'smooth'});
+
+function showPopup(title, imgSrc, price){
+    document.getElementById('popupTitle').innerText = title;
+    document.getElementById('popupImg').src = imgSrc;
+    document.getElementById('popupPrice').innerText = 'السعر: '+price;
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('productPopup').style.display = 'block';
+}
+
+function closePopup(){
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('productPopup').style.display = 'none';
+}
+
+function buyNow(){
+    alert('شكراً لاهتمامك! سيتم تحويلك لصفحة الدفع أو التواصل لشراء المنتج.');
+}
+
+function scrollToDesc(){
+    document.getElementById('descSection').scrollIntoView({behavior:'smooth'});
 }
 </script>
+
 </body>
 </html>
