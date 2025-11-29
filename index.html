@@ -105,7 +105,7 @@ header img:hover {
 }
 .product-detail {
     display: none;
-    max-width: 300px;
+    max-width: 400px;
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.1);
@@ -165,23 +165,26 @@ header img:hover {
 
 <div class="sidebar" id="sidebar">
     <h3>القيمة</h3>
-    <a onclick="showDetail('product1')">Flora Candle</a>
-    <a onclick="showDetail('product2')">Flora Chocolate</a>
-    <a onclick="showDetail('product3')">Flora Jam</a>
-    <a onclick="showDetail('product4')">Flora Parfum</a>
-    <a onclick="showDetail('product5')">Flora Rose Cream</a>
-    <a onclick="showDetail('product6')">Flora Rose Oil</a>
-    <a onclick="showDetail('product7')">Flora Pottery Collection</a>
+    <a onclick="toggleValueSection()">عرض المنتجات</a>
+    <div id="value-products" style="display:none; margin-top:10px;">
+        <a onclick="showDetailOnly('product1')">Flora Candle</a>
+        <a onclick="showDetailOnly('product2')">Flora Chocolate</a>
+        <a onclick="showDetailOnly('product3')">Flora Jam</a>
+        <a onclick="showDetailOnly('product4')">Flora Parfum</a>
+        <a onclick="showDetailOnly('product5')">Flora Rose Cream</a>
+        <a onclick="showDetailOnly('product6')">Flora Rose Oil</a>
+        <a onclick="showDetailOnly('product7')">Flora Pottery Collection</a>
+    </div>
 </div>
 
-<div class="products-grid">
-    <div onclick="showDetail('product1')"><img src="IMG-20251128-WA0019.jpg" alt="Flora Candle"></div>
-    <div onclick="showDetail('product2')"><img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate"></div>
-    <div onclick="showDetail('product3')"><img src="IMG-20251128-WA0021.jpg" alt="Flora Jam"></div>
-    <div onclick="showDetail('product4')"><img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum"></div>
-    <div onclick="showDetail('product5')"><img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream"></div>
-    <div onclick="showDetail('product6')"><img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil"></div>
-    <div onclick="showDetail('product7')"><img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection"></div>
+<div class="products-grid" id="products-grid">
+    <div onclick="showDetailOnly('product1')"><img src="IMG-20251128-WA0019.jpg" alt="Flora Candle"></div>
+    <div onclick="showDetailOnly('product2')"><img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate"></div>
+    <div onclick="showDetailOnly('product3')"><img src="IMG-20251128-WA0021.jpg" alt="Flora Jam"></div>
+    <div onclick="showDetailOnly('product4')"><img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum"></div>
+    <div onclick="showDetailOnly('product5')"><img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream"></div>
+    <div onclick="showDetailOnly('product6')"><img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil"></div>
+    <div onclick="showDetailOnly('product7')"><img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection"></div>
 </div>
 
 <div id="product1" class="product-detail">
@@ -231,13 +234,19 @@ header img:hover {
 
 <script>
 const sidebar = document.getElementById('sidebar');
+const productsGrid = document.getElementById('products-grid');
 function toggleSidebar() {
     sidebar.classList.toggle('show');
 }
-function showDetail(id) {
+function toggleValueSection() {
+    const section = document.getElementById('value-products');
+    section.style.display = section.style.display === 'none' ? 'block' : 'none';
+}
+function showDetailOnly(id) {
     const details = document.querySelectorAll('.product-detail');
     details.forEach(d => d.style.display = 'none');
     document.getElementById(id).style.display = 'block';
+    productsGrid.style.display = 'none';
     document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
 </script>
