@@ -9,7 +9,9 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     background-color: #fdf3e7;
+    scroll-behavior: smooth;
 }
+
 header {
     display: flex;
     align-items: center;
@@ -30,6 +32,7 @@ header img {
 header img:hover {
     transform: scale(1.1);
 }
+
 .products-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -42,13 +45,22 @@ header img:hover {
     cursor: pointer;
     border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.3s;
+    transition: transform 0.3s, opacity 0.5s;
+    opacity: 0;
+}
+.products-grid div.show {
+    opacity: 1;
 }
 .products-grid div img {
     width: 100%;
     height: 200px;
     object-fit: cover;
+    transition: transform 0.3s;
 }
+.products-grid div img:hover {
+    transform: scale(1.05);
+}
+
 .product-detail {
     display: none;
     max-width: 400px;
@@ -58,12 +70,14 @@ header img:hover {
     text-align: center;
     padding: 15px;
     margin: 20px auto;
+    animation: fadeIn 0.5s;
 }
-.product-detail img {
-    width: 100%;
-    border-radius: 12px;
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
 }
-.buy-btn {
+
+.buy-btn, .explore-btn {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
@@ -74,27 +88,11 @@ header img:hover {
     text-decoration: none;
     transition: transform 0.3s, background 0.3s;
 }
-.buy-btn:hover {
+.buy-btn:hover, .explore-btn:hover {
     background-color: #b5895a;
     transform: scale(1.05);
 }
-.explore-btn {
-    display: block;
-    width: fit-content;
-    margin: 40px auto;
-    padding: 14px 28px;
-    background-color: #cfa87c;
-    color: #000;
-    border-radius: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: background 0.3s, transform 0.3s;
-}
-.explore-btn:hover {
-    background-color: #b5895a;
-    transform: scale(1.05);
-}
+
 #value-products {
     position: fixed;
     top: 80px;
@@ -105,8 +103,6 @@ header img:hover {
     box-shadow: -3px 0 15px rgba(0,0,0,0.2);
     transition: right 0.4s ease;
     z-index: 1002;
-    overflow-y: auto;
-    max-height: 80vh;
 }
 #value-products.show {
     right: 0;
@@ -122,23 +118,29 @@ header img:hover {
     font-weight: bold;
     cursor: pointer;
     z-index: 1003;
+    transition: transform 0.3s;
 }
-footer {
-    background-color: #f5e0c9;
-    padding: 40px 20px;
-    color: #333;
-    text-align: right;
-    margin-top: 50px;
+.toggle-btn:hover {
+    transform: scale(1.05);
 }
-footer h3 {
+.footer {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #f5e0c9;
+    border-radius: 12px;
+}
+.footer h3 {
     margin-bottom: 15px;
-    color: #333;
 }
-footer p, footer a {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #555;
+.footer p, .footer a {
+    margin: 5px 0;
+    color: #333;
     text-decoration: none;
+    display: block;
+}
+.footer a:hover {
+    text-decoration: underline;
 }
 </style>
 </head>
@@ -149,7 +151,7 @@ footer p, footer a {
     <span>The taste The scent the bloome</span>
 </header>
 
-<div class="toggle-btn" onclick="toggleValueSection()">search</div>
+<div class="toggle-btn" onclick="toggleValueSection()">Search</div>
 <div id="value-products">
     <a onclick="showDetailOnly('product1')">Flora Candle</a>
     <a onclick="showDetailOnly('product2')">Flora Chocolate</a>
@@ -215,19 +217,20 @@ footer p, footer a {
 
 <a href="https://seifsamara.github.io/Flora/" target="_blank" class="explore-btn">Click here to explore Flora's pages</a>
 
-<footer>
-    <h3>من هي فلورا؟</h3>
-    <p>في فلورا نؤمن بأن الجمال يكمن في التفاصيل الصغيرة، وأن المزج بين الطبيعة والابتكار قادر على صناعة لحظة لا تُنسى. نحن علامة متخصصة في تقديم منتجات راقية تجمع بين الزهور الطبيعية والفنون الحرفية، لنقدم لكِ قطعًا تحمل روحًا مختلفة وتجربة حسية فريدة.</p>
-    <p>نعمل في فلورا على تطوير تشكيلات متنوعة من المنتجات تشمل تنسيقات الزهور، والهدايا المميزة، وقطع الديكور المصنوعة يدويًا، إلى جانب إبداعات من العطور والفخار المصمم بعناية. كل منتج يُصنع بروح مبتكرة وجودة عالية ليعبّر عن ذوق عصري ويلائم كل مناسبة.</p>
-    <p>نلتزم في فلورا بتقديم تجربة راقية من لحظة اختيار المنتج وحتى تسليمه، مع حرصنا الدائم على استخدام خامات مستدامة.<br>فلورا.. تفاصيل تصنع الفرق</p>
-    <h3>Terms and Policies</h3>
-    <p>Our return and exchange policy ensures that you receive products that meet your expectations. If there is any issue with your order, you may request a return or exchange within the specified timeframe, provided the item is in its original condition.</p>
-    <p>تلتزم فلورا بتقديم منتجات تلبي توقعاتكم. وفي حال وجود أي مشكلة في الطلب، يمكنكم طلب الاستبدال أو الاسترجاع خلال المدة المحددة، بشرط أن يكون المنتج بحالته الأصلية.</p>
-    <h3>Contact Us</h3>
-    <p>Email: info@flora.eg<br>Phone: +20 113668010</p>
-    <p>For customer support: support@flora.eg</p>
-    <p>Visit us: Cairo, Egypt<br>Full location details available upon request.</p>
-</footer>
+<div class="footer">
+<h3>من هي فلورا؟</h3>
+<p>في فلورا نؤمن بأن الجمال يكمن في التفاصيل الصغيرة، وأن المزج بين الطبيعة والابتكار قادر على صناعة لحظة لا تُنسى. نحن علامة متخصصة في تقديم منتجات راقية تجمع بين الزهور الطبيعية والفنون الحرفية، لنقدم لكِ قطعًا تحمل روحًا مختلفة وتجربة حسية فريدة.</p>
+<p>نعمل في فلورا على تطوير تشكيلات متنوعة من المنتجات تشمل تنسيقات الزهور، والهدايا المميزة، وقطع الديكور المصنوعة يدويًا، إلى جانب إبداعات من العطور والفخار المصمم بعناية. كل منتج يُصنع بروح مبتكرة وجودة عالية ليعبّر عن ذوق عصري ويلائم كل مناسبة.</p>
+<p>نلتزم في فلورا بتقديم تجربة راقية من لحظة اختيار المنتج وحتى تسليمه، مع حرصنا الدائم على استخدام خامات مستدامة.<br>فلورا.. تفاصيل تصنع الفرق</p>
+<h3>Terms and policies</h3>
+<p>Our return and exchange policy ensures that you receive products that meet your expectations. If there is any issue with your order, you may request a return or exchange within the specified timeframe, provided the item is in its original condition.<br><br>
+تلتزم فلورا بتقديم منتجات تلبي توقعاتكم. وفي حال وجود أي مشكلة في الطلب، يمكنكم طلب الاستبدال أو الاسترجاع خلال المدة المحددة، بشرط أن يكون المنتج بحالته الأصلية.</p>
+<h3>Contact us at:</h3>
+<p>Email: info@flora.eg</p>
+<p>Phone: +20 113668010</p>
+<p>For customer support: support@flora.eg</p>
+<p>Visit us: Cairo, Egypt<br>Full location details available upon request.</p>
+</div>
 
 <script>
 const productsGrid = document.getElementById('products-grid');
@@ -245,6 +248,16 @@ function showDetailOnly(id) {
     valueProducts.classList.remove('show');
     document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
+
+// fade-in effect for product grid
+window.addEventListener('load', () => {
+    const items = document.querySelectorAll('.products-grid div');
+    items.forEach((item, index) => {
+        setTimeout(() => {
+            item.classList.add('show');
+        }, index * 150);
+    });
+});
 </script>
 
 </body>
