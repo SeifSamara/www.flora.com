@@ -63,7 +63,9 @@ header img:hover {
     overflow-y: auto;
     z-index: 1000;
 }
-.sidebar.show { right: 0; }
+.sidebar.show {
+    right: 0;
+}
 .sidebar h3 {
     font-size: 20px;
     margin-bottom: 15px;
@@ -79,97 +81,74 @@ header img:hover {
     border-bottom: 1px solid #cfa87c;
     cursor: pointer;
 }
-.sidebar a:hover { color: #000; }
+.sidebar a:hover {
+    color: #000;
+}
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
-.card {
-    position: relative;
-    background-color: #fff;
+.products-grid div {
+    cursor: pointer;
     border-radius: 12px;
     overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s;
 }
-.card:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
-}
-.card img {
+.products-grid div img {
     width: 100%;
     height: 200px;
     object-fit: cover;
 }
-.card h2 {
-    margin: 10px;
-    font-size: 18px;
-    color: #333;
-}
-.product-popup {
+.product-detail {
     display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #fff;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
-    z-index: 2000;
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-}
-.product-popup img {
-    width: 100%;
-    border-radius: 12px;
-}
-.product-popup h3 {
-    margin: 15px 0 10px;
-    color: #333;
-}
-.product-popup p {
-    margin: 10px 0;
-    color: #555;
-    font-size: 16px;
-}
-.product-popup button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #cfa87c;
-    color: #000;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s;
-}
-.product-popup button:hover {
-    background-color: #b5895a;
-}
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 1500;
-}
-.description, .contact-info {
-    padding: 20px;
-    max-width: 900px;
-    margin: 20px auto;
+    max-width: 300px;
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 15px;
+    margin: 20px auto;
 }
-.description h3, .contact-info h3 { color: #333; margin-bottom: 10px; }
-.description p, .contact-info p { color: #555; line-height: 1.6; }
+.product-detail img {
+    width: 100%;
+    border-radius: 12px;
+}
+.buy-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #cfa87c;
+    color: #000;
+    border-radius: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.3s, background 0.3s;
+}
+.buy-btn:hover {
+    background-color: #b5895a;
+    transform: scale(1.05);
+}
+.explore-btn {
+    display: block;
+    width: fit-content;
+    margin: 40px auto;
+    padding: 14px 28px;
+    background-color: #cfa87c;
+    color: #000;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.3s;
+}
+.explore-btn:hover {
+    background-color: #b5895a;
+    transform: scale(1.05);
+}
 </style>
 </head>
 <body>
@@ -181,95 +160,85 @@ header img:hover {
         <span></span>
     </div>
     <img src="PicsArt_11-28-08.40.20.png" alt="لوجو Flora">
-    <span>The taste The scent the bloome</span>
+    <span>Flora</span>
 </header>
 
 <div class="sidebar" id="sidebar">
-    <h3>القائمة</h3>
-    <a onclick="scrollToDesc()">من هي فلورا؟</a>
-    <a onclick="scrollToDesc()">Terms and Policies</a>
+    <h3>المنتجات</h3>
+    <a onclick="showDetail('product1')">Flora Candle</a>
+    <a onclick="showDetail('product2')">Flora Chocolate</a>
+    <a onclick="showDetail('product3')">Flora Jam</a>
+    <a onclick="showDetail('product4')">Flora Parfum</a>
+    <a onclick="showDetail('product5')">Flora Rose Cream</a>
+    <a onclick="showDetail('product6')">Flora Rose Oil</a>
+    <a onclick="showDetail('product7')">Flora Pottery Collection</a>
 </div>
 
-<div class="products-grid" id="productsGrid">
-    <div class="card" onclick="showPopup('Flora Candle', 'IMG-20251128-WA0019.jpg', '150 جنيه')">
-        <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
-        <h2>Flora Candle</h2>
-    </div>
-    <div class="card" onclick="showPopup('Flora Chocolate', 'IMG-20251128-WA0024.jpg', '800 جنيه')">
-        <img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate">
-        <h2>Flora Chocolate</h2>
-    </div>
-    <div class="card" onclick="showPopup('Flora Jam', 'IMG-20251128-WA0021.jpg', '200 جنيه')">
-        <img src="IMG-20251128-WA0021.jpg" alt="Flora Jam">
-        <h2>Flora Jam</h2>
-    </div>
-    <div class="card" onclick="showPopup('Flora Parfum', 'IMG-20251128-WA0025.jpg', '750 جنيه')">
-        <img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum">
-        <h2>Flora Parfum</h2>
-    </div>
-    <div class="card" onclick="showPopup('Flora Rose Cream', 'IMG-20251121-WA0009.jpg', '200 جنيه')">
-        <img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream">
-        <h2>Flora Rose Cream</h2>
-    </div>
-    <div class="card" onclick="showPopup('Flora Rose Oil', 'IMG-20251128-WA0020.jpg', '400 جنيه')">
-        <img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil">
-        <h2>Flora Rose Oil</h2>
-    </div>
-    <div class="card" onclick="showPopup('Flora Pottery Collection', 'IMG-20251126-WA0143.jpg', '200 جنيه')">
-        <img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection">
-        <h2>Flora Pottery Collection</h2>
-    </div>
+<div class="products-grid">
+    <div onclick="showDetail('product1')"><img src="IMG-20251128-WA0019.jpg" alt="Flora Candle"></div>
+    <div onclick="showDetail('product2')"><img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate"></div>
+    <div onclick="showDetail('product3')"><img src="IMG-20251128-WA0021.jpg" alt="Flora Jam"></div>
+    <div onclick="showDetail('product4')"><img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum"></div>
+    <div onclick="showDetail('product5')"><img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream"></div>
+    <div onclick="showDetail('product6')"><img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil"></div>
+    <div onclick="showDetail('product7')"><img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection"></div>
 </div>
 
-<div class="overlay" id="overlay" onclick="closePopup()"></div>
-<div class="product-popup" id="productPopup">
-    <img id="popupImg" src="" alt="">
-    <h3 id="popupTitle"></h3>
-    <p id="popupPrice"></p>
-    <button onclick="buyNow()">اشتري الآن</button>
+<div id="product1" class="product-detail">
+    <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
+    <h3>Flora Candle</h3>
+    <p>السعر: 150 جنيه</p>
+    <a href="#" class="buy-btn">اشتري الآن</a>
+</div>
+<div id="product2" class="product-detail">
+    <img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate">
+    <h3>Flora Chocolate</h3>
+    <p>السعر: 800 جنيه</p>
+    <a href="#" class="buy-btn">اشتري الآن</a>
+</div>
+<div id="product3" class="product-detail">
+    <img src="IMG-20251128-WA0021.jpg" alt="Flora Jam">
+    <h3>Flora Jam</h3>
+    <p>السعر: 200 جنيه</p>
+    <a href="#" class="buy-btn">اشتري الآن</a>
+</div>
+<div id="product4" class="product-detail">
+    <img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum">
+    <h3>Flora Parfum</h3>
+    <p>السعر: 750 جنيه</p>
+    <a href="#" class="buy-btn">اشتري الآن</a>
+</div>
+<div id="product5" class="product-detail">
+    <img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream">
+    <h3>Flora Rose Cream</h3>
+    <p>السعر: 200 جنيه</p>
+    <a href="#" class="buy-btn">اشتري الآن</a>
+</div>
+<div id="product6" class="product-detail">
+    <img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil">
+    <h3>Flora Rose Oil</h3>
+    <p>السعر: 400 جنيه</p>
+    <a href="#" class="buy-btn">اشتري الآن</a>
+</div>
+<div id="product7" class="product-detail">
+    <img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection">
+    <h3>Flora Pottery Collection</h3>
+    <p>السعر: 200 جنيه</p>
+    <a href="#" class="buy-btn">اشتري الآن</a>
 </div>
 
-<div class="description" id="descSection">
-    <h3>من هي فلورا؟</h3>
-    <p>في فلورا نؤمن بأن الجمال يكمن في التفاصيل الصغيرة، وأن المزج بين الطبيعة والابتكار قادر على صناعة لحظة لا تُنسى. نحن علامة متخصصة في تقديم منتجات راقية تجمع بين الزهور الطبيعية والفنون الحرفية، لنقدم لكِ قطعًا تحمل روحًا مختلفة وتجربة حسية فريدة.</p>
-    <p>نعمل في فلورا على تطوير تشكيلات متنوعة من المنتجات تشمل تنسيقات الزهور، والهدايا المميزة، وقطع الديكور المصنوعة يدويًا، إلى جانب إبداعات من العطور والفخار المصمم بعناية. كل منتج يُصنع بروح مبتكرة وجودة عالية ليعبّر عن ذوق عصري ويلائم كل مناسبة.</p>
-    <p>نلتزم في فلورا بتقديم تجربة راقية من لحظة اختيار المنتج وحتى تسليمه، مع حرصنا الدائم على استخدام خامات مستدامة.<br>فلورا.. تفاصيل تصنع الفرق</p>
-    <h3>Terms and Policies</h3>
-    <p>Our return and exchange policy ensures that you receive products that meet your expectations. If there is any issue with your order, you may request a return or exchange within the specified timeframe, provided the item is in its original condition.</p>
-    <p>تلتزم فلورا بتقديم منتجات تلبي توقعاتكم. وفي حال وجود أي مشكلة في الطلب، يمكنكم طلب الاستبدال أو الاسترجاع خلال المدة المحددة، بشرط أن يكون المنتج بحالته الأصلية.</p>
-</div>
-
-<div class="contact-info">
-    <h3>Contact us</h3>
-    <p>Email: info@flora.eg</p>
-    <p>Phone: +20 113668010</p>
-    <p>For customer support: support@flora.eg</p>
-    <p>Visit us: Cairo, Egypt</p>
-</div>
+<a href="https://seifsamara.github.io/Flora/" target="_blank" class="explore-btn">Click here to explore Flora's pages</a>
 
 <script>
 const sidebar = document.getElementById('sidebar');
-function toggleSidebar() { sidebar.classList.toggle('show'); }
-
-function showPopup(title, imgSrc, price){
-    document.getElementById('popupTitle').innerText = title;
-    document.getElementById('popupImg').src = imgSrc;
-    document.getElementById('popupPrice').innerText = 'السعر: '+price;
-    document.getElementById('overlay').style.display = 'block';
-    document.getElementById('productPopup').style.display = 'block';
+function toggleSidebar() {
+    sidebar.classList.toggle('show');
 }
-
-function closePopup(){
-    document.getElementById('overlay').style.display = 'none';
-    document.getElementById('productPopup').style.display = 'none';
-}
-
-function buyNow(){
-    alert('شكراً لاهتمامك! سيتم تحويلك لصفحة الدفع أو التواصل لشراء المنتج.');
-}
-
-function scrollToDesc(){
-    document.getElementById('descSection').scrollIntoView({behavior:'smooth'});
+function showDetail(id) {
+    const details = document.querySelectorAll('.product-detail');
+    details.forEach(d => d.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+    document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
 </script>
 
