@@ -109,6 +109,18 @@ header img:hover {
 #value-products.show {
     right: 0;
 }
+.toggle-btn {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background-color: #cfa87c;
+    color: #000;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1003;
+}
 </style>
 </head>
 <body>
@@ -117,6 +129,8 @@ header img:hover {
     <img src="PicsArt_11-28-08.40.20.png" alt="لوجو Flora">
     <span>The taste The scent the bloome</span>
 </header>
+
+<div class="toggle-btn" onclick="toggleValueSection()">القيمة</div>
 
 <div id="value-products">
     <a onclick="showDetailOnly('product1')">Flora Candle</a>
@@ -196,7 +210,7 @@ function showDetailOnly(id) {
     details.forEach(d => d.style.display = 'none');
     document.getElementById(id).style.display = 'block';
     productsGrid.style.display = 'none';
-    valueProducts.style.right = '-300px';
+    valueProducts.classList.remove('show');
     document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
 </script>
