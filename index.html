@@ -9,9 +9,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     background-color: #fdf3e7;
-    scroll-behavior: smooth;
 }
-
 header {
     display: flex;
     align-items: center;
@@ -23,6 +21,7 @@ header {
     font-size: 28px;
     font-weight: bold;
     box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    position: relative;
 }
 header img {
     height: 100px;
@@ -32,7 +31,6 @@ header img {
 header img:hover {
     transform: scale(1.1);
 }
-
 .products-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -45,22 +43,13 @@ header img:hover {
     cursor: pointer;
     border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.3s, opacity 0.5s;
-    opacity: 0;
-}
-.products-grid div.show {
-    opacity: 1;
+    transition: transform 0.3s;
 }
 .products-grid div img {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    transition: transform 0.3s;
 }
-.products-grid div img:hover {
-    transform: scale(1.05);
-}
-
 .product-detail {
     display: none;
     max-width: 400px;
@@ -70,14 +59,12 @@ header img:hover {
     text-align: center;
     padding: 15px;
     margin: 20px auto;
-    animation: fadeIn 0.5s;
 }
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
+.product-detail img {
+    width: 100%;
+    border-radius: 12px;
 }
-
-.buy-btn, .explore-btn {
+.buy-btn {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
@@ -88,12 +75,28 @@ header img:hover {
     text-decoration: none;
     transition: transform 0.3s, background 0.3s;
 }
-.buy-btn:hover, .explore-btn:hover {
+.buy-btn:hover {
     background-color: #b5895a;
     transform: scale(1.05);
 }
-
-#value-products {
+.explore-btn {
+    display: block;
+    width: fit-content;
+    margin: 40px auto;
+    padding: 14px 28px;
+    background-color: #cfa87c;
+    color: #000;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.3s;
+}
+.explore-btn:hover {
+    background-color: #b5895a;
+    transform: scale(1.05);
+}
+#search-menu {
     position: fixed;
     top: 80px;
     right: -300px;
@@ -104,43 +107,36 @@ header img:hover {
     transition: right 0.4s ease;
     z-index: 1002;
 }
-#value-products.show {
+#search-menu.show {
     right: 0;
 }
-.toggle-btn {
+.hamburger {
     position: fixed;
     top: 100px;
     right: 20px;
-    background-color: #cfa87c;
-    color: #000;
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-weight: bold;
+    width: 30px;
+    height: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     cursor: pointer;
     z-index: 1003;
-    transition: transform 0.3s;
 }
-.toggle-btn:hover {
-    transform: scale(1.05);
+.hamburger span {
+    height: 4px;
+    background-color: #fff;
+    border-radius: 2px;
 }
-.footer {
-    max-width: 1200px;
-    margin: 50px auto;
-    padding: 20px;
-    background: #f5e0c9;
-    border-radius: 12px;
-}
-.footer h3 {
-    margin-bottom: 15px;
-}
-.footer p, .footer a {
-    margin: 5px 0;
-    color: #333;
-    text-decoration: none;
+#search-menu a {
     display: block;
+    text-decoration: none;
+    color: #333;
+    padding: 10px 0;
+    border-bottom: 1px solid #cfa87c;
+    cursor: pointer;
 }
-.footer a:hover {
-    text-decoration: underline;
+#search-menu a:hover {
+    color: #000;
 }
 </style>
 </head>
@@ -151,8 +147,13 @@ header img:hover {
     <span>The taste The scent the bloome</span>
 </header>
 
-<div class="toggle-btn" onclick="toggleValueSection()">Search</div>
-<div id="value-products">
+<div class="hamburger" onclick="toggleSearchMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<div id="search-menu">
     <a onclick="showDetailOnly('product1')">Flora Candle</a>
     <a onclick="showDetailOnly('product2')">Flora Chocolate</a>
     <a onclick="showDetailOnly('product3')">Flora Jam</a>
@@ -217,27 +218,12 @@ header img:hover {
 
 <a href="https://seifsamara.github.io/Flora/" target="_blank" class="explore-btn">Click here to explore Flora's pages</a>
 
-<div class="footer">
-<h3>من هي فلورا؟</h3>
-<p>في فلورا نؤمن بأن الجمال يكمن في التفاصيل الصغيرة، وأن المزج بين الطبيعة والابتكار قادر على صناعة لحظة لا تُنسى. نحن علامة متخصصة في تقديم منتجات راقية تجمع بين الزهور الطبيعية والفنون الحرفية، لنقدم لكِ قطعًا تحمل روحًا مختلفة وتجربة حسية فريدة.</p>
-<p>نعمل في فلورا على تطوير تشكيلات متنوعة من المنتجات تشمل تنسيقات الزهور، والهدايا المميزة، وقطع الديكور المصنوعة يدويًا، إلى جانب إبداعات من العطور والفخار المصمم بعناية. كل منتج يُصنع بروح مبتكرة وجودة عالية ليعبّر عن ذوق عصري ويلائم كل مناسبة.</p>
-<p>نلتزم في فلورا بتقديم تجربة راقية من لحظة اختيار المنتج وحتى تسليمه، مع حرصنا الدائم على استخدام خامات مستدامة.<br>فلورا.. تفاصيل تصنع الفرق</p>
-<h3>Terms and policies</h3>
-<p>Our return and exchange policy ensures that you receive products that meet your expectations. If there is any issue with your order, you may request a return or exchange within the specified timeframe, provided the item is in its original condition.<br><br>
-تلتزم فلورا بتقديم منتجات تلبي توقعاتكم. وفي حال وجود أي مشكلة في الطلب، يمكنكم طلب الاستبدال أو الاسترجاع خلال المدة المحددة، بشرط أن يكون المنتج بحالته الأصلية.</p>
-<h3>Contact us at:</h3>
-<p>Email: info@flora.eg</p>
-<p>Phone: +20 113668010</p>
-<p>For customer support: support@flora.eg</p>
-<p>Visit us: Cairo, Egypt<br>Full location details available upon request.</p>
-</div>
-
 <script>
 const productsGrid = document.getElementById('products-grid');
-const valueProducts = document.getElementById('value-products');
+const searchMenu = document.getElementById('search-menu');
 
-function toggleValueSection() {
-    valueProducts.classList.toggle('show');
+function toggleSearchMenu() {
+    searchMenu.classList.toggle('show');
 }
 
 function showDetailOnly(id) {
@@ -245,19 +231,9 @@ function showDetailOnly(id) {
     details.forEach(d => d.style.display = 'none');
     document.getElementById(id).style.display = 'block';
     productsGrid.style.display = 'none';
-    valueProducts.classList.remove('show');
+    searchMenu.classList.remove('show');
     document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
-
-// fade-in effect for product grid
-window.addEventListener('load', () => {
-    const items = document.querySelectorAll('.products-grid div');
-    items.forEach((item, index) => {
-        setTimeout(() => {
-            item.classList.add('show');
-        }, index * 150);
-    });
-});
 </script>
 
 </body>
