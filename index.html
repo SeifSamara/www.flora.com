@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -13,7 +13,7 @@ body {
 header {
     display: flex;
     align-items: center;
-    gap: 15px;
+    justify-content: space-between;
     background-color: #cfa87c;
     color: #fff;
     padding: 25px 50px;
@@ -28,17 +28,14 @@ header img {
 header span {
     font-size: 24px;
     color: #fff;
+    margin-left: 20px;
 }
 .menu-btn {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 35px;
-    height: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 35px;
+    height: 30px;
     cursor: pointer;
     z-index: 1001;
 }
@@ -125,17 +122,27 @@ header span {
 }
 .contact-info h3 { margin-bottom: 15px; color: #333; }
 .contact-info p { margin: 5px 0; color: #555; }
+.description {
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+.description h3 { margin-bottom: 15px; color: #333; }
+.description p { margin: 10px 0; color: #555; line-height: 1.6; }
 </style>
 </head>
 <body>
 <header>
+    <span>The taste The scent the bloome</span>
+    <img src="PicsArt_11-28-08.40.20.png" alt="لوجو Flora">
     <div class="menu-btn" onclick="toggleSidebar()">
         <span></span>
         <span></span>
         <span></span>
     </div>
-    <img src="PicsArt_11-28-08.40.20.png" alt="لوجو Flora">
-    <span>The taste The scent the bloome</span>
 </header>
 <div class="sidebar" id="sidebar">
     <h3>القائمة</h3>
@@ -192,6 +199,15 @@ header span {
         <h3>Flora Pottery Collection</h3>
         <p>السعر: 200 جنيه</p>
     </div>
+</div>
+<div class="description">
+    <h3>من هي فلورا؟</h3>
+    <p>في فلورا نؤمن بأن الجمال يكمن في التفاصيل الصغيرة، وأن المزج بين الطبيعة والابتكار قادر على صناعة لحظة لا تُنسى. نحن علامة متخصصة في تقديم منتجات راقية تجمع بين الزهور الطبيعية والفنون الحرفية، لنقدم لكِ قطعًا تحمل روحًا مختلفة وتجربة حسية فريدة.</p>
+    <p>نعمل في فلورا على تطوير تشكيلات متنوعة من المنتجات تشمل تنسيقات الزهور، والهدايا المميزة، وقطع الديكور المصنوعة يدويًا، إلى جانب إبداعات من العطور والفخار المصمم بعناية. كل منتج يُصنع بروح مبتكرة وجودة عالية ليعبّر عن ذوق عصري ويلائم كل مناسبة.</p>
+    <p>نلتزم في فلورا بتقديم تجربة راقية من لحظة اختيار المنتج وحتى تسليمه، مع حرصنا الدائم على استخدام خامات مستدامة.<br>فلورا.. تفاصيل تصنع الفرق</p>
+    <h3>Terms and policies</h3>
+    <p>Our return and exchange policy ensures that you receive products that meet your expectations. If there is any issue with your order, you may request a return or exchange within the specified timeframe, provided the item is in its original condition.</p>
+    <p>تلتزم فلورا بتقديم منتجات تلبي توقعاتكم. وفي حال وجود أي مشكلة في الطلب، يمكنكم طلب الاستبدال أو الاسترجاع خلال المدة المحددة، بشرط أن يكون المنتج بحالته الأصلية.</p>
 </div>
 <script>
 const sidebar = document.getElementById('sidebar');
