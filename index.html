@@ -1,147 +1,203 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flora</title>
-<style>
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    background-color: #fdf3e7;
-}
-header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 15px;
-    background-color: #cfa87c;
-    color: #fff;
-    padding: 25px 50px;
-    font-size: 28px;
-    font-weight: bold;
-    position: relative;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-}
-header img {
-    height: 100px;
-    border-radius: 12px;
-    transition: transform 0.3s;
-}
-header img:hover {
-    transform: scale(1.1);
-}
-header span {
-    font-size: 24px;
-    color: #fff;
-}
-.menu-btn {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 35px;
-    height: 30px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 1001;
-}
-.menu-btn span {
-    height: 4px;
-    background: #fff;
-    border-radius: 3px;
-    transition: all 0.3s ease;
-}
-.sidebar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 280px;
-    height: 100vh;
-    background-color: #f5e0c9;
-    padding: 25px;
-    box-shadow: -3px 0 15px rgba(0,0,0,0.2);
-    overflow-y: auto;
-    z-index: 1000;
-    transform: translateX(100%);
-    transition: transform 0.4s ease;
-}
-.sidebar.show {
-    transform: translateX(0);
-}
-.sidebar h3 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: #333;
-    border-bottom: 2px solid #cfa87c;
-    padding-bottom: 5px;
-}
-.sidebar a {
-    display: block;
-    text-decoration: none;
-    color: #333;
-    padding: 10px 0;
-    border-bottom: 1px solid #cfa87c;
-    cursor: pointer;
-}
-.sidebar a:hover {
-    color: #000;
-}
-.products-banner {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 20px auto;
-}
-.products-banner .card {
-    background-color: #fff;
-    border-radius: 12px;
-    text-align: center;
-    padding: 10px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-.products-banner .card:hover {
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-}
-.products-banner .card img {
-    width: 100%;
-    border-radius: 12px;
-    margin-bottom: 5px;
-}
-.products-banner .card h2 {
-    font-size: 18px;
-    margin: 5px 0;
-}
-.products-banner .card p {
-    font-size: 14px;
-    color: #555;
-    margin: 0;
-}
-.explore-btn {
-    display: block;
-    width: fit-content;
-    margin: 40px auto;
-    padding: 14px 28px;
-    background-color: #cfa87c;
-    color: #000;
-    border-radius: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: background 0.3s, transform 0.3s;
-}
-.explore-btn:hover {
-    background-color: #b5895a;
-    transform: scale(1.05);
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flora</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #fdf3e7;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 15px;
+            background-color: #cfa87c;
+            color: #fff;
+            padding: 25px 50px;
+            font-size: 28px;
+            font-weight: bold;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+
+        header img {
+            height: 100px;
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+
+        header img:hover {
+            transform: scale(1.1);
+        }
+
+        header span {
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .menu-btn {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 1001;
+        }
+
+        .menu-btn span {
+            height: 4px;
+            background: #fff;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 280px;
+            height: 100vh;
+            background-color: #f5e0c9;
+            padding: 25px;
+            box-shadow: -3px 0 15px rgba(0,0,0,0.2);
+            overflow-y: auto;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .sidebar.show {
+            transform: translateX(0);
+        }
+
+        .sidebar h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 2px solid #cfa87c;
+            padding-bottom: 5px;
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            padding: 10px 0;
+            border-bottom: 1px solid #cfa87c;
+            cursor: pointer;
+        }
+
+        .sidebar a:hover {
+            color: #000;
+        }
+
+        .products {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .products.active {
+            display: grid;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .card h2 {
+            margin: 10px 0 5px;
+            color: #333;
+        }
+
+        /* كروت المنتجات اللي في الصفحة الرئيسية */
+        .preview-products {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .preview-card {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .preview-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .preview-card img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .preview-card h4 {
+            margin: 10px 0 0;
+            color: #333;
+            font-size: 18px;
+        }
+
+        .explore-btn {
+            display: block;
+            width: fit-content;
+            margin: 40px auto;
+            padding: 14px 28px;
+            background-color: #cfa87c;
+            color: #000;
+            border-radius: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .explore-btn:hover {
+            background-color: #b5895a;
+            transform: scale(1.05);
+        }
+
+        .contact-info {
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
 
@@ -151,10 +207,50 @@ header span {
         <span></span>
         <span></span>
     </div>
+
     <img src="PicsArt_11-28-08.40.20.png" alt="لوجو Flora">
     <span>The taste The scent the bloome</span>
 </header>
 
+<!-- ⭐⭐ المنتجات في الصفحة الرئيسية — بدون أسعار ⭐⭐ -->
+<div class="preview-products">
+    <div class="preview-card" onclick="showProduct('product1')">
+        <img src="IMG-20251128-WA0019.jpg">
+        <h4>Flora Candle</h4>
+    </div>
+
+    <div class="preview-card" onclick="showProduct('product2')">
+        <img src="IMG-20251128-WA0024.jpg">
+        <h4>Flora Chocolate</h4>
+    </div>
+
+    <div class="preview-card" onclick="showProduct('product3')">
+        <img src="IMG-20251128-WA0021.jpg">
+        <h4>Flora Jam</h4>
+    </div>
+
+    <div class="preview-card" onclick="showProduct('product4')">
+        <img src="IMG-20251128-WA0025.jpg">
+        <h4>Flora Parfum</h4>
+    </div>
+
+    <div class="preview-card" onclick="showProduct('product5')">
+        <img src="IMG-20251121-WA0009.jpg">
+        <h4>Flora Rose Cream</h4>
+    </div>
+
+    <div class="preview-card" onclick="showProduct('product6')">
+        <img src="IMG-20251128-WA0020.jpg">
+        <h4>Flora Rose Oil</h4>
+    </div>
+
+    <div class="preview-card" onclick="showProduct('product7')">
+        <img src="IMG-20251126-WA0143.jpg">
+        <h4>Flora Pottery Collection</h4>
+    </div>
+</div>
+
+<!-- 🎯 القائمة الجانبية (زي ما هي من غير أي تغيير) -->
 <div class="sidebar" id="sidebar">
     <h3>القائمة</h3>
     <a onclick="showProduct('product1')">Flora Candle</a>
@@ -166,58 +262,78 @@ header span {
     <a onclick="showProduct('product7')">Flora Pottery Collection</a>
 </div>
 
-<div class="products-banner">
-    <div class="card" onclick="showProduct('product1')">
-        <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
+<!-- الصفحات الداخلية — فيها السعر زي ما هو -->
+<div id="product1" class="products active">
+    <div class="card">
+        <img src="IMG-20251128-WA0019.jpg">
         <h2>Flora Candle</h2>
         <p>السعر: 150 جنيه</p>
     </div>
-    <div class="card" onclick="showProduct('product2')">
-        <img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate">
+</div>
+
+<div id="product2" class="products">
+    <div class="card">
+        <img src="IMG-20251128-WA0024.jpg">
         <h2>Flora Chocolate</h2>
         <p>السعر: 800 جنيه</p>
     </div>
-    <div class="card" onclick="showProduct('product3')">
-        <img src="IMG-20251128-WA0021.jpg" alt="Flora Jam">
+</div>
+
+<div id="product3" class="products">
+    <div class="card">
+        <img src="IMG-20251128-WA0021.jpg">
         <h2>Flora Jam</h2>
         <p>السعر: 200 جنيه</p>
     </div>
-    <div class="card" onclick="showProduct('product4')">
-        <img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum">
+</div>
+
+<div id="product4" class="products">
+    <div class="card">
+        <img src="IMG-20251128-WA0025.jpg">
         <h2>Flora Parfum</h2>
         <p>السعر: 750 جنيه</p>
     </div>
-    <div class="card" onclick="showProduct('product5')">
-        <img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream">
+</div>
+
+<div id="product5" class="products">
+    <div class="card">
+        <img src="IMG-20251121-WA0009.jpg">
         <h2>Flora Rose Cream</h2>
         <p>السعر: 200 جنيه</p>
     </div>
-    <div class="card" onclick="showProduct('product6')">
-        <img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil">
+</div>
+
+<div id="product6" class="products">
+    <div class="card">
+        <img src="IMG-20251128-WA0020.jpg">
         <h2>Flora Rose Oil</h2>
         <p>السعر: 400 جنيه</p>
     </div>
-    <div class="card" onclick="showProduct('product7')">
-        <img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection">
+</div>
+
+<div id="product7" class="products">
+    <div class="card">
+        <img src="IMG-20251126-WA0143.jpg">
         <h2>Flora Pottery Collection</h2>
         <p>السعر: 200 جنيه</p>
     </div>
 </div>
 
-<a href="https://seifsamara.github.io/Flora/" target="_blank" class="explore-btn">Click here to explore Flora's pages</a>
-
 <script>
-const sidebar = document.getElementById('sidebar');
-const productBanners = document.querySelectorAll('.products-banner .card');
+    const sidebar = document.getElementById('sidebar');
+    const productSections = document.querySelectorAll('.products');
 
-function toggleSidebar() {
-    sidebar.classList.toggle('show');
-}
+    function toggleSidebar() {
+        sidebar.classList.toggle('show');
+    }
 
-function showProduct(id) {
-    alert('هنا ممكن تضيف عرض المنتج الكامل: ' + id);
-    // ممكن تضيف كود لفتح تفاصيل كاملة للمنتج هنا بدون إخفاء البانر الرئيسي
-}
+    function showProduct(id) {
+        productSections.forEach(section => {
+            section.classList.remove('active');
+        });
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0, 0);
+    }
 </script>
 
 </body>
