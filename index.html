@@ -95,7 +95,7 @@ header img:hover {
     background-color: #b5895a;
     transform: scale(1.05);
 }
-#value-products {
+#search {
     position: fixed;
     top: 80px;
     right: -300px;
@@ -106,7 +106,7 @@ header img:hover {
     transition: right 0.4s ease;
     z-index: 1002;
 }
-#value-products.show {
+#search.show {
     right: 0;
 }
 .toggle-btn {
@@ -130,9 +130,9 @@ header img:hover {
     <span>The taste The scent the bloome</span>
 </header>
 
-<div class="toggle-btn" onclick="toggleValueSection()">القيمة</div>
+<div class="toggle-btn" onclick="toggleSearch()">Search</div>
 
-<div id="value-products">
+<div id="search">
     <a onclick="showDetailOnly('product1')">Flora Candle</a>
     <a onclick="showDetailOnly('product2')">Flora Chocolate</a>
     <a onclick="showDetailOnly('product3')">Flora Jam</a>
@@ -199,10 +199,10 @@ header img:hover {
 
 <script>
 const productsGrid = document.getElementById('products-grid');
-const valueProducts = document.getElementById('value-products');
+const searchSection = document.getElementById('search');
 
-function toggleValueSection() {
-    valueProducts.classList.toggle('show');
+function toggleSearch() {
+    searchSection.classList.toggle('show');
 }
 
 function showDetailOnly(id) {
@@ -210,7 +210,7 @@ function showDetailOnly(id) {
     details.forEach(d => d.style.display = 'none');
     document.getElementById(id).style.display = 'block';
     productsGrid.style.display = 'none';
-    valueProducts.classList.remove('show');
+    searchSection.classList.remove('show');
     document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
 </script>
