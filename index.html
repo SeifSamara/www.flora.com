@@ -12,51 +12,77 @@
         }
 
         header {
-            background-color: #cfa87c;
-            color: #fff;
-            padding: 20px 50px;
-            position: relative;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-        }
-
-        .logo-section {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 20px;
+            background-color: #cfa87c;
+            color: #fff;
+            padding: 25px 50px;
+            font-size: 28px;
+            font-weight: bold;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            z-index: 100;
+            flex-direction: column;
+            text-align: center;
         }
 
-        .logo-section img {
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        header img {
             height: 100px;
             border-radius: 12px;
             transition: transform 0.3s;
         }
 
-        .logo-section img:hover {
+        header img:hover {
             transform: scale(1.1);
         }
 
-        .logo-section span {
-            font-size: 24px;
-            color: #fff;
-            font-weight: bold;
+        .logo-slogan {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
         }
 
-        .controls-section {
+        header span {
+            font-size: 24px;
+            color: #fff;
+            margin-top: 10px;
+        }
+
+        .header-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
+            gap: 15px;
+        }
+
+        .header-right {
+            right: 20px;
+        }
+
+        .header-left {
+            left: 20px;
         }
 
         .menu-btn {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
             width: 35px;
             height: 30px;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 101;
         }
 
         .menu-btn span {
@@ -74,11 +100,10 @@
             cursor: pointer;
             font-size: 18px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .cart-icon:hover {
-            transform: scale(1.05);
+            z-index: 101;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .cart-icon span {
@@ -87,7 +112,8 @@
             border-radius: 50%;
             padding: 2px 6px;
             font-size: 12px;
-            margin-right: 5px;
+            min-width: 18px;
+            text-align: center;
         }
 
         .sidebar {
@@ -249,6 +275,7 @@
             background: #b5895a;
         }
 
+        /* البنر في الصفحة الرئيسية */
         .banner-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -287,6 +314,7 @@
             font-size: 18px;
         }
 
+        /* عرض المنتج الفردي */
         .products {
             display: none;
             padding: 20px;
@@ -438,6 +466,7 @@
             transform: scale(1.1);
         }
 
+        /* للشاشات الصغيرة */
         @media (max-width: 1200px) {
             .banner-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -451,13 +480,14 @@
             
             header {
                 padding: 15px 20px;
+                font-size: 22px;
             }
             
-            .logo-section img {
+            header img {
                 height: 70px;
             }
             
-            .logo-section span {
+            header span {
                 font-size: 18px;
             }
             
@@ -473,6 +503,16 @@
             .cart-icon {
                 padding: 8px 12px;
                 font-size: 16px;
+            }
+
+            .header-controls {
+                position: static;
+                transform: none;
+                margin-top: 15px;
+            }
+
+            .header-content {
+                flex-direction: column;
             }
         }
 
@@ -498,11 +538,11 @@
                 padding: 10px 15px;
             }
             
-            .logo-section img {
+            header img {
                 height: 60px;
             }
             
-            .logo-section span {
+            header span {
                 font-size: 16px;
             }
         }
@@ -511,17 +551,22 @@
 <body>
 
 <header>
-    <div class="logo-section">
-        <img src="PicsArt_11-28-08.40.20.png" alt="لوجو Flora">
-        <span>The taste The scent the bloome</span>
+    <div class="header-content">
+        <div class="logo-slogan">
+            <img src="PicsArt_11-28-08.40.20.png" alt="لوجو Flora">
+            <span>The taste The scent the bloome</span>
+        </div>
     </div>
     
-    <div class="controls-section">
+    <div class="header-controls header-right">
         <div class="menu-btn" onclick="toggleSidebar()">
             <span></span>
             <span></span>
             <span></span>
         </div>
+    </div>
+    
+    <div class="header-controls header-left">
         <div class="cart-icon" onclick="toggleCart()">
             🛒 <span id="cart-count">0</span>
         </div>
@@ -555,6 +600,7 @@
     </div>
 </div>
 
+<!-- الصفحة الرئيسية - البنر -->
 <div id="home" class="banner-grid">
     <div class="banner-card" onclick="showProduct('product1')">
         <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
@@ -586,6 +632,7 @@
     </div>
 </div>
 
+<!-- صفحات المنتجات الفردية -->
 <div id="product1" class="products">
     <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
@@ -663,22 +710,8 @@
     </div>
 </div>
 
+<!-- قسم "من هي فلورا" -->
 <div class="info-section">
     <h3>من هي فلورا؟</h3>
     <p>
-        في فلورا نؤمن بأن الجمال يكمن في التفاصيل الصغيرة، وأن المزج بين الطبيعة والابتكار قادر على صناعة لحظة لا تُنسى. نحن علامة متخصصة في تقديم منتجات راقية تجمع بين الزهور الطبيعية والفنون الحرفية، لنقدم لكِ قطعًا تحمل روحًا مختلفة وتجربة حسية فريدة.<br><br>
-        نعمل في فلورا على تطوير تشكيلات متنوعة من المنتجات تشمل تنسيقات الزهور، والهدايا المميزة، وقطع الديكور المصنوعة يدويًا، إلى جانب إبداعات من العطور والفخار المصمم بعناية. كل منتج يُصنع بروح مبتكرة وجودة عالية ليعبّر عن ذوق عصري ويلائم كل مناسبة.<br><br>
-        نلتزم في فلورا بتقديم تجربة راقية من لحظة اختيار المنتج وحتى تسليمه، مع حرصنا الدائم على استخدام خامات مستدامة.<br>
-        فلورا.. تفاصيل تصنع الفرق
-    </p>
-</div>
-
-<div class="info-section">
-    <h3>سياسة الاستبدال والاسترجاع</h3>
-    <p>
-        Our return and exchange policy ensures that you receive products that meet your expectations. If there is any issue with your order, you may request a return or exchange within the specified timeframe, provided the item is in its original condition.<br><br>
-        تلتزم فلورا بتقديم منتجات تلبي توقعاتكم. وفي حال وجود أي مشكلة في الطلب، يمكنكم طلب الاستبدال أو الاسترجاع خلال المدة المحددة، بشرط أن يكون المنتج بحالته الأصلية.
-    </p>
-</div>
-
-<a href="https://bit.ly/3JT6WyX" target="_blank" class="expl
+        في فلورا نؤمن بأن الجمال يكمن في التفاصيل الصغيرة، وأن المزج بين الطبيعة والابتكار قادر على صناعة لحظة لا تُنسى. نحن علامة متخصصة ف
