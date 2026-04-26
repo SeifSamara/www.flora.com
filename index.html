@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Petal melt</title>
+    <title>Petal Melt | شوكولاتة فاخرة</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
             background-color: #fdf3e7;
         }
 
@@ -16,7 +21,7 @@
             color: #fff;
             padding: 20px 50px;
             position: relative;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
         }
 
         .logo-section {
@@ -31,16 +36,17 @@
             height: 100px;
             border-radius: 12px;
             transition: transform 0.3s;
+            object-fit: cover;
         }
 
         .logo-section img:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .logo-section span {
             font-size: 24px;
-            color: #fff;
             font-weight: bold;
+            letter-spacing: 1px;
         }
 
         .controls-section {
@@ -76,9 +82,12 @@
             border-radius: 20px;
             cursor: pointer;
             font-size: 18px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
             order: 1;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .cart-icon:hover {
@@ -89,11 +98,11 @@
             background: #ff4444;
             color: white;
             border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 12px;
-            margin-right: 5px;
+            padding: 2px 8px;
+            font-size: 14px;
         }
 
+        /* القائمة الجانبية */
         .sidebar {
             position: fixed;
             top: 0;
@@ -102,7 +111,7 @@
             height: 100vh;
             background-color: #f5e0c9;
             padding: 25px;
-            box-shadow: -3px 0 15px rgba(0,0,0,0.2);
+            box-shadow: -3px 0 15px rgba(0, 0, 0, 0.2);
             overflow-y: auto;
             z-index: 1000;
             transform: translateX(100%);
@@ -125,17 +134,20 @@
             display: block;
             text-decoration: none;
             color: #333;
-            padding: 10px 0;
+            padding: 12px 0;
             border-bottom: 1px solid #cfa87c;
             cursor: pointer;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            font-weight: 500;
         }
 
         .sidebar a:hover {
             color: #000;
+            padding-right: 10px;
             background-color: rgba(207, 168, 124, 0.1);
         }
 
+        /* سلة التسوق */
         .cart-sidebar {
             position: fixed;
             top: 0;
@@ -143,7 +155,7 @@
             width: 320px;
             height: 100vh;
             background: #fff;
-            box-shadow: 3px 0 15px rgba(0,0,0,0.2);
+            box-shadow: 3px 0 15px rgba(0, 0, 0, 0.2);
             z-index: 1001;
             transform: translateX(-100%);
             transition: transform 0.4s ease;
@@ -168,9 +180,8 @@
             background: none;
             border: none;
             color: white;
-            font-size: 20px;
+            font-size: 24px;
             cursor: pointer;
-            padding: 5px;
         }
 
         .cart-items {
@@ -253,48 +264,66 @@
             background: #b5895a;
         }
 
+        /* شبكة المنتجات */
         .banner-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            padding: 20px;
+            gap: 25px;
+            padding: 40px 30px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .banner-card {
-            background-color: #fff;
-            border-radius: 15px;
+            background: white;
+            border-radius: 20px;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
             cursor: pointer;
         }
 
         .banner-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
         .banner-card img {
             width: 100%;
-            height: 180px;
+            height: 220px;
             object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 10px;
+            border-radius: 16px;
+            margin-bottom: 15px;
         }
 
         .banner-card h2 {
-            margin: 10px 0 5px;
-            color: #333;
-            font-size: 18px;
+            font-size: 1.3rem;
+            color: #5a3e2b;
+            margin-top: 10px;
         }
 
+        .banner-card p {
+            color: #b87333;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        .diabetic-badge {
+            background: #2e7d64;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        /* صفحة المنتج المفرد */
         .products {
             display: none;
-            padding: 20px;
-            max-width: 800px;
+            padding: 30px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -303,135 +332,106 @@
         }
 
         .product-card {
-            background-color: #fff;
-            border-radius: 15px;
-            padding: 30px;
+            background: white;
+            border-radius: 30px;
+            padding: 35px;
             text-align: center;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .product-card img {
             width: 100%;
             max-width: 400px;
-            border-radius: 12px;
+            border-radius: 20px;
             margin-bottom: 20px;
         }
 
         .product-card h2 {
-            margin: 10px 0 5px;
-            color: #333;
-            font-size: 28px;
+            font-size: 2rem;
+            color: #5a3e2b;
         }
 
         .product-card .price {
-            font-size: 24px;
+            font-size: 1.8rem;
             color: #cfa87c;
             font-weight: bold;
             margin: 15px 0;
         }
 
-        .product-card p {
-            font-size: 16px;
-            color: #555;
-            margin: 0;
-            line-height: 1.6;
-        }
-
         .back-btn {
             display: inline-block;
-            margin: 20px 0;
-            padding: 12px 24px;
-            background-color: #cfa87c;
-            color: #000;
-            border-radius: 20px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: background 0.3s;
+            margin-bottom: 20px;
+            padding: 10px 25px;
+            background: #cfa87c;
             border: none;
-            font-size: 16px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
         .back-btn:hover {
-            background-color: #b5895a;
+            background: #b5895a;
+            transform: scale(1.02);
         }
 
-        .info-section {
-            padding: 30px;
-            max-width: 1000px;
-            margin: 40px auto;
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        /* قسم التبرع */
+        .donation-section {
+            background: linear-gradient(135deg, #f5e0c9, #e6ccb0);
             text-align: center;
+            padding: 40px 20px;
+            margin: 30px auto;
+            max-width: 900px;
+            border-radius: 30px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
         }
-
-        .info-section h3 {
-            margin-bottom: 20px;
-            color: #cfa87c;
-            font-size: 24px;
-            border-bottom: 2px solid #cfa87c;
-            padding-bottom: 10px;
-            display: inline-block;
+        .donation-section h3 {
+            color: #5a3e2b;
+            font-size: 28px;
+            margin-bottom: 15px;
         }
-
-        .info-section p {
-            font-size: 16px;
-            color: #555;
-            line-height: 1.8;
-            text-align: right;
-        }
-
-        .explore-btn {
-            display: block;
-            width: fit-content;
-            margin: 40px auto;
-            padding: 14px 28px;
-            background-color: #cfa87c;
-            color: #000;
-            border-radius: 20px;
+        .donation-section p {
             font-size: 18px;
-            font-weight: bold;
-            text-decoration: none;
-            transition: background 0.3s, transform 0.3s;
+            color: #3a2a1f;
+            margin-bottom: 20px;
         }
-
-        .explore-btn:hover {
-            background-color: #b5895a;
+        .donate-btn {
+            background: #2d6a4f;
+            color: white;
+            padding: 14px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .donate-btn:hover {
+            background: #1b4d3e;
             transform: scale(1.05);
         }
 
-        .contact-info {
-            padding: 20px;
-            max-width: 800px;
-            margin: 20px auto;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-        }
-
-        .contact-info h3 {
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .contact-info p {
-            margin: 5px 0;
-            color: #555;
-        }
-
+        .info-section,
         .social-media {
-            text-align: center;
-            padding: 30px;
-            background: #fff;
-            margin: 20px auto;
             max-width: 1000px;
-            border-radius: 15px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            margin: 50px auto;
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
+        .info-section h3,
         .social-media h3 {
             color: #cfa87c;
+            font-size: 1.7rem;
             margin-bottom: 20px;
+            border-bottom: 2px solid #cfa87c;
+            display: inline-block;
+            padding-bottom: 5px;
         }
 
         .social-links {
@@ -439,30 +439,27 @@
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
+            margin-top: 20px;
         }
 
         .social-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
             background: #f5e0c9;
-            border-radius: 25px;
+            padding: 10px 25px;
+            border-radius: 50px;
             text-decoration: none;
-            color: #333;
-            transition: transform 0.3s;
+            color: #5a3e2b;
+            transition: 0.3s;
         }
 
         .social-link:hover {
-            transform: translateY(-3px);
             background: #cfa87c;
             color: white;
         }
 
         .whatsapp-float {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
+            bottom: 25px;
+            left: 25px;
             background: #25D366;
             color: white;
             width: 60px;
@@ -471,11 +468,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 28px;
             text-decoration: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: 0.3s;
             z-index: 999;
-            transition: transform 0.3s;
         }
 
         .whatsapp-float:hover {
@@ -483,88 +480,32 @@
         }
 
         .footer-section {
-            text-align: center;
-            padding: 40px 20px;
             background: #f5e0c9;
+            text-align: center;
+            padding: 35px;
             margin-top: 40px;
+            font-size: 0.9rem;
+            color: #5a3e2b;
         }
 
-        .footer-section h3 {
-            color: #cfa87c;
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 1200px) {
-            .banner-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 1000px) {
             .banner-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
-            header {
-                padding: 15px 20px;
-            }
-            
-            .logo-section img {
-                height: 70px;
-            }
-            
-            .logo-section span {
-                font-size: 18px;
-            }
-            
-            .cart-sidebar {
-                width: 280px;
-            }
-            
-            .menu-btn {
-                width: 30px;
-                height: 25px;
-            }
-            
-            .cart-icon {
-                padding: 8px 12px;
-                font-size: 16px;
-            }
-            
-            .social-links {
-                flex-direction: column;
-                align-items: center;
-            }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 600px) {
             .banner-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .cart-icon {
-                padding: 6px 10px;
-                font-size: 14px;
-            }
-            
-            .whatsapp-float {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
-                bottom: 15px;
-                left: 15px;
-            }
-            
-            header {
-                padding: 10px 15px;
-            }
-            
-            .logo-section img {
-                height: 60px;
-            }
-            
             .logo-section span {
                 font-size: 16px;
+            }
+            .logo-section img {
+                height: 70px;
+            }
+            .cart-sidebar {
+                width: 280px;
             }
         }
     </style>
@@ -573,10 +514,9 @@
 
 <header>
     <div class="logo-section">
-        <img src="PicsArt_11-28-08.40.20.png" alt="لوجو Flora">
-        <span>The taste The scent the bloome</span>
+        <img src="Petals Melt.jpg" alt="Petal Melt Logo">
+        <span>Petal Melt | شوكولاتة راقية</span>
     </div>
-    
     <div class="controls-section">
         <div class="cart-icon" onclick="toggleCart()">
             🛒 <span id="cart-count">0</span>
@@ -589,338 +529,148 @@
     </div>
 </header>
 
+<!-- القائمة الجانبية -->
 <div class="sidebar" id="sidebar">
     <h3>القائمة</h3>
-    <a onclick="showHome()">الرئيسية</a>
-    <div style="margin: 15px 0; color: #666; font-weight: bold;">المنتجات</div>
-    <a onclick="showProduct('product1')">Flora Candle</a>
-    <a onclick="showProduct('product2')">Flora Chocolate</a>
-    <a onclick="showProduct('product3')">Flora Jam</a>
-    <a onclick="showProduct('product4')">Flora Parfum</a>
-    <a onclick="showProduct('product5')">Flora Rose Cream</a>
-    <a onclick="showProduct('product6')">Flora Rose Oil</a>
-    <a onclick="showProduct('product7')">Flora Pottery Collection</a>
+    <a onclick="showHome()">🏠 الرئيسية</a>
+    <div style="margin: 15px 0 5px; font-weight: bold; color:#a5673f;">🍫 تشكيلتنا</div>
+    <a onclick="showProduct('product1')">✨ Vitality Line</a>
+    <a onclick="showProduct('product2')">🌸 Serenity Line</a>
+    <a onclick="showProduct('product3')">🔥 Warmth & Comfort</a>
+    <a onclick="showProduct('product4')">🌟 Glow Line</a>
+    <a onclick="showProduct('product5')">💚 منتجات مرضى السكر</a>
 </div>
 
+<!-- سلة التسوق -->
 <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-header">
-        <h3>سلة التسوق</h3>
+        <h3>🛍️ سلة المشتريات</h3>
         <button class="close-cart" onclick="toggleCart()">✕</button>
     </div>
-    <div class="cart-items" id="cartItems">
-        <!-- المنتجات تضاف هنا -->
-    </div>
+    <div class="cart-items" id="cartItems"></div>
     <div class="cart-total">
         <p>المجموع: <span id="total-price">0</span> جنيه</p>
-        <button class="checkout-btn" onclick="checkout()">إتمام الطلب عبر واتساب</button>
+        <button class="checkout-btn" onclick="checkout()">📲 إتمام الطلب عبر واتساب</button>
     </div>
 </div>
 
+<!-- الصفحة الرئيسية (شبكة المنتجات) -->
 <div id="home" class="banner-grid">
     <div class="banner-card" onclick="showProduct('product1')">
-        <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
-        <h2>Flora Candle</h2>
+        <img src="https://placehold.co/400x300/f9e0c0/8B5A2B?text=Vitality+Chocolate" alt="Vitality Line">
+        <h2>✨ Vitality Line</h2>
+        <p>شوكولاتة بالجنسنغ + فواكه استوائية</p>
     </div>
     <div class="banner-card" onclick="showProduct('product2')">
-        <img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate">
-        <h2>Flora Chocolate</h2>
+        <img src="https://placehold.co/400x300/f5d6c6/8B5A2B?text=Serenity+Chocolate" alt="Serenity Line">
+        <h2>🌸 Serenity Line</h2>
+        <p>شوكولاتة باللافندر & شاي أخضر</p>
     </div>
     <div class="banner-card" onclick="showProduct('product3')">
-        <img src="IMG-20251128-WA0021.jpg" alt="Flora Jam">
-        <h2>Flora Jam</h2>
+        <img src="https://placehold.co/400x300/f7e4c2/8B5A2B?text=Warmth+Comfort" alt="Warmth and comfort">
+        <h2>🔥 Warmth & Comfort</h2>
+        <p>شوكولاتة بالقرفة، زنجبيل & عسل</p>
     </div>
     <div class="banner-card" onclick="showProduct('product4')">
-        <img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum">
-        <h2>Flora Parfum</h2>
+        <img src="https://placehold.co/400x300/fce9d8/8B5A2B?text=Glow+Chocolate" alt="Glow Line">
+        <h2>🌟 Glow Line</h2>
+        <p>شوكولاتة بالكولاجين & توت أكاتشي</p>
     </div>
     <div class="banner-card" onclick="showProduct('product5')">
-        <img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream">
-        <h2>Flora Rose Cream</h2>
-    </div>
-    <div class="banner-card" onclick="showProduct('product6')">
-        <img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil">
-        <h2>Flora Rose Oil</h2>
-    </div>
-    <div class="banner-card" onclick="showProduct('product7')">
-        <img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection">
-        <h2>Flora Pottery Collection</h2>
+        <img src="https://placehold.co/400x300/d4e2d4/2e7d64?text=Diabetic+Chocolate" alt="منتجات مرضى السكر">
+        <h2>💚 منتجات مرضى السكر</h2>
+        <p>خالي من السكر - ستيفيا - آمن وصحي</p>
+        <div class="diabetic-badge">مناسب لمرضى السكر</div>
     </div>
 </div>
 
+<!-- صفحات المنتجات -->
 <div id="product1" class="products">
     <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
-        <img src="IMG-20251128-WA0019.jpg" alt="Flora Candle">
-        <h2>Flora Candle</h2>
-        <div class="price">السعر: 150 جنيه</div>
-        <p>شمعة فلورا العطرية - تجربة حسية فريدة</p>
-        <button class="add-to-cart" onclick="addToCart('product1', 'Flora Candle', 150, 'IMG-20251128-WA0019.jpg')">أضف إلى السلة</button>
+        <img src="https://placehold.co/500x400/f9e0c0/8B5A2B?text=Vitality+Line" alt="Vitality">
+        <h2>✨ Vitality Line</h2>
+        <div class="price">السعر: 250 جنيه</div>
+        <p>شوكولاتة سوداء 70% مع خلاصة الجنسنغ، مانجو، وبرتقال. تمنحك نشاطاً وحيوية طوال اليوم.</p>
+        <button class="add-to-cart" onclick="addToCart('product1', 'Vitality Line', 250, 'https://placehold.co/400x300/f9e0c0/8B5A2B?text=Vitality+Chocolate')">➕ أضف إلى السلة</button>
     </div>
 </div>
 
 <div id="product2" class="products">
     <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
-        <img src="IMG-20251128-WA0024.jpg" alt="Flora Chocolate">
-        <h2>Flora Chocolate</h2>
-        <div class="price">السعر: 800 جنيه</div>
-        <p>شوكولاتة فلورا الفاخرة - نكهات استثنائية</p>
-        <button class="add-to-cart" onclick="addToCart('product2', 'Flora Chocolate', 800, 'IMG-20251128-WA0024.jpg')">أضف إلى السلة</button>
+        <img src="https://placehold.co/500x400/f5d6c6/8B5A2B?text=Serenity+Line" alt="Serenity">
+        <h2>🌸 Serenity Line</h2>
+        <div class="price">السعر: 280 جنيه</div>
+        <p>شوكولاتة بيضاء باللافندر الطبيعي ومستخلص الشاي الأخضر، تمنحك لحظات من الهدوء والصفاء.</p>
+        <button class="add-to-cart" onclick="addToCart('product2', 'Serenity Line', 280, 'https://placehold.co/400x300/f5d6c6/8B5A2B?text=Serenity+Chocolate')">➕ أضف إلى السلة</button>
     </div>
 </div>
 
 <div id="product3" class="products">
     <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
-        <img src="IMG-20251128-WA0021.jpg" alt="Flora Jam">
-        <h2>Flora Jam</h2>
-        <div class="price">السعر: 200 جنيه</div>
-        <p>مربى فلورا - مصنوع من أفضل الفواكه</p>
-        <button class="add-to-cart" onclick="addToCart('product3', 'Flora Jam', 200, 'IMG-20251128-WA0021.jpg')">أضف إلى السلة</button>
+        <img src="https://placehold.co/500x400/f7e4c2/8B5A2B?text=Warmth+Comfort" alt="Warmth">
+        <h2>🔥 Warmth & Comfort</h2>
+        <div class="price">السعر: 230 جنيه</div>
+        <p>شوكولاتة بالحليب مع القرفة، الزنجبيل، ولمسة من عسل الجبال. دافئة ومريحة في كل قضمة.</p>
+        <button class="add-to-cart" onclick="addToCart('product3', 'Warmth and Comfort', 230, 'https://placehold.co/400x300/f7e4c2/8B5A2B?text=Warmth+Comfort')">➕ أضف إلى السلة</button>
     </div>
 </div>
 
 <div id="product4" class="products">
     <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
-        <img src="IMG-20251128-WA0025.jpg" alt="Flora Parfum">
-        <h2>Flora Parfum</h2>
-        <div class="price">السعر: 750 جنيه</div>
-        <p>عطر فلورا - رائحة أنيقة تدوم طويلاً</p>
-        <button class="add-to-cart" onclick="addToCart('product4', 'Flora Parfum', 750, 'IMG-20251128-WA0025.jpg')">أضف إلى السلة</button>
+        <img src="https://placehold.co/500x400/fce9d8/8B5A2B?text=Glow+Line" alt="Glow">
+        <h2>🌟 Glow Line</h2>
+        <div class="price">السعر: 300 جنيه</div>
+        <p>شوكولاتة روبي طبيعية مع كولاجين بحري وتوت أكاتشي، تدعم نضارة البشرة وإشراقها الطبيعي.</p>
+        <button class="add-to-cart" onclick="addToCart('product4', 'Glow Line', 300, 'https://placehold.co/400x300/fce9d8/8B5A2B?text=Glow+Chocolate')">➕ أضف إلى السلة</button>
     </div>
 </div>
 
 <div id="product5" class="products">
     <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
-        <img src="IMG-20251121-WA0009.jpg" alt="Flora Rose Cream">
-        <h2>Flora Rose Cream</h2>
-        <div class="price">السعر: 200 جنيه</div>
-        <p>كريم الورد - ترطيب عميق للبشرة</p>
-        <button class="add-to-cart" onclick="addToCart('product5', 'Flora Rose Cream', 200, 'IMG-20251121-WA0009.jpg')">أضف إلى السلة</button>
+        <img src="https://placehold.co/500x400/d4e2d4/2e7d64?text=Diabetic+Safe" alt="منتجات مرضى السكر">
+        <h2>💚 شوكولاتة مرضى السكر</h2>
+        <div class="price">السعر: 220 جنيه</div>
+        <p>شوكولاتة خالية من السكر، محلاة بالستيفيا والإريثريتول، غنية بالألياف ومناسبة للحمية الكيتونية. آمنة لمرضى السكر.</p>
+        <button class="add-to-cart" onclick="addToCart('product5', 'شوكولاتة مرضى السكر', 220, 'https://placehold.co/400x300/d4e2d4/2e7d64?text=Diabetic+Chocolate')">➕ أضف إلى السلة</button>
     </div>
 </div>
 
-<div id="product6" class="products">
-    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
-    <div class="product-card">
-        <img src="IMG-20251128-WA0020.jpg" alt="Flora Rose Oil">
-        <h2>Flora Rose Oil</h2>
-        <div class="price">السعر: 400 جنيه</div>
-        <p>زيت الورد - فوائد متعددة للبشرة والشعر</p>
-        <button class="add-to-cart" onclick="addToCart('product6', 'Flora Rose Oil', 400, 'IMG-20251128-WA0020.jpg')">أضف إلى السلة</button>
-    </div>
+<!-- قسم التبرع لمؤسسة إحسان -->
+<div class="donation-section">
+    <h3>🤝 شارك في الخير</h3>
+    <p>تبرع الآن لمؤسسة <strong>إحسان</strong> لدعم الأسر الأكثر احتياجاً ومرضى السكر غير القادرين.</p>
+    <button class="donate-btn" onclick="donateToEhsan()">💚 تبرع لمؤسسة إحسان</button>
 </div>
 
-<div id="product7" class="products">
-    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
-    <div class="product-card">
-        <img src="IMG-20251126-WA0143.jpg" alt="Flora Pottery Collection">
-        <h2>Flora Pottery Collection</h2>
-        <div class="price">السعر: 200 جنيه</div>
-        <p>مجموعة الفخار - قطع يدوية الصنع</p>
-        <button class="add-to-cart" onclick="addToCart('product7', 'Flora Pottery Collection', 200, 'IMG-20251126-WA0143.jpg')">أضف إلى السلة</button>
-    </div>
-</div>
-
+<!-- قسم معلومات إضافية -->
 <div class="info-section">
-    <h3>من هي فلورا؟</h3>
-    <p>
-        في فلورا نؤمن بأن الجمال يكمن في التفاصيل الصغيرة، وأن المزج بين الطبيعة والابتكار قادر على صناعة لحظة لا تُنسى. نحن علامة متخصصة في تقديم منتجات راقية تجمع بين الزهور الطبيعية والفنون الحرفية، لنقدم لكِ قطعًا تحمل روحًا مختلفة وتجربة حسية فريدة.<br><br>
-        نعمل في فلورا على تطوير تشكيلات متنوعة من المنتجات تشمل تنسيقات الزهور، والهدايا المميزة، وقطع الديكور المصنوعة يدويًا، إلى جانب إبداعات من العطور والفخار المصمم بعناية. كل منتج يُصنع بروح مبتكرة وجودة عالية ليعبّر عن ذوق عصري ويلائم كل مناسبة.<br><br>
-        نلتزم في فلورا بتقديم تجربة راقية من لحظة اختيار المنتج وحتى تسليمه، مع حرصنا الدائم على استخدام خامات مستدامة.<br>
-        فلورا.. تفاصيل تصنع الفرق
-    </p>
-</div>
-
-<div class="info-section">
-    <h3>سياسة الاستبدال والاسترجاع</h3>
-    <p>
-        Our return and exchange policy ensures that you receive products that meet your expectations. If there is any issue with your order, you may request a return or exchange within the specified timeframe, provided the item is in its original condition.<br><br>
-        تلتزم فلورا بتقديم منتجات تلبي توقعاتكم. وفي حال وجود أي مشكلة في الطلب، يمكنكم طلب الاستبدال أو الاسترجاع خلال المدة المحددة، بشرط أن يكون المنتج بحالته الأصلية.
-    </p>
+    <h3>🍫 Petal Melt – Chocolate Reimagined</h3>
+    <p>نحن نقدم شوكولاتة وظيفية فاخرة تجمع بين المتعة والفوائد الصحية. تشكيلتنا مصممة لتلبي احتياجاتك: النشاط، الهدوء، الدفء، الإشراق، وأيضاً منتجات مناسبة لمرضى السكر. جميع المنتجات مصنوعة يدويًا من أجود أنواع الكاكاو والمكونات الطبيعية.</p>
 </div>
 
 <div class="social-media">
-    <h3>تابعونا على وسائل التواصل الاجتماعي</h3>
+    <h3>📱 تابعونا</h3>
     <div class="social-links">
-        <a href="https://www.facebook.com/yourpage" target="_blank" class="social-link">
-            📘 Facebook
-        </a>
-        <a href="https://www.instagram.com/yourpage" target="_blank" class="social-link">
-            📷 Instagram
-        </a>
-        <a href="https://www.tiktok.com/@yourpage" target="_blank" class="social-link">
-            🎵 TikTok
-        </a>
-        
+        <a href="#" class="social-link">📸 إنستجرام</a>
+        <a href="#" class="social-link">📘 فيسبوك</a>
+        <a href="#" class="social-link">🐦 تويتر</a>
     </div>
 </div>
 
-<a href="https://seifsamara.github.io/Flora/" target="_blank" class="explore-btn">
-    Click here to explore Flora's pages
-</a>
+<a href="https://wa.me/201000000000?text=أهلاً%20أرغب%20في%20طلب%20من%20Petal%20Melt" class="whatsapp-float" target="_blank">💬</a>
 
-<div class="contact-info">
-    <h3>Contact Us</h3>
-    <p>Email: info@flora.eg</p>
-    <p>Phone: +20 113668010</p>
-    <p>For customer support: support@flora.eg</p>
-    <p>Visit us: Cairo, Egypt</p>
-    <p>Full location details available upon request.</p>
+<div class="footer-section">
+    <p>© 2026 Petal Melt | شوكولاتة الفخامة والرفاهية</p>
 </div>
 
-
-<a href="https://wa.me/20113668010" class="whatsapp-float" target="_blank">
-    💬
-</a>
-
 <script>
-    const sidebar = document.getElementById('sidebar');
-    const homeSection = document.getElementById('home');
-    const productSections = document.querySelectorAll('.products');
     let cart = [];
 
     function toggleSidebar() {
-        sidebar.classList.toggle('show');
-    }
-
-    function toggleCart() {
-        document.getElementById('cartSidebar').classList.toggle('show');
-    }
-
-    function showHome() {
-        homeSection.style.display = 'grid';
-        productSections.forEach(section => {
-            section.classList.remove('active');
-        });
-        sidebar.classList.remove('show');
-        document.getElementById('cartSidebar').classList.remove('show');
-    }
-
-    function showProduct(id) {
-        homeSection.style.display = 'none';
-        productSections.forEach(section => {
-            if(section.id === id){
-                section.classList.add('active');
-            } else {
-                section.classList.remove('active');
-            }
-        });
-        sidebar.classList.remove('show');
-        document.getElementById('cartSidebar').classList.remove('show');
-    }
-
-    function addToCart(productId, productName, price, image) {
-        const existingItem = cart.find(item => item.id === productId);
-        
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            cart.push({
-                id: productId,
-                name: productName,
-                price: price,
-                image: image,
-                quantity: 1
-            });
-        }
-        
-        updateCart();
-        showNotification('تمت الإضافة إلى السلة!');
-        document.getElementById('cartSidebar').classList.add('show');
-    }
-
-    function removeFromCart(productId) {
-        cart = cart.filter(item => item.id !== productId);
-        updateCart();
-    }
-
-    function updateCart() {
-        const cartItems = document.getElementById('cartItems');
-        const cartCount = document.getElementById('cart-count');
-        const totalPrice = document.getElementById('total-price');
-        
-        cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
-        
-        cartItems.innerHTML = '';
-        
-        if (cart.length === 0) {
-            cartItems.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">السلة فارغة</p>';
-        } else {
-            cart.forEach(item => {
-                cartItems.innerHTML += `
-                    <div class="cart-item">
-                        <img src="${item.image}" alt="${item.name}">
-                        <div class="cart-item-info">
-                            <div style="font-weight: bold;">${item.name}</div>
-                            <div class="cart-item-price">${item.price} جنيه × ${item.quantity}</div>
-                        </div>
-                        <button class="remove-item" onclick="removeFromCart('${item.id}')">×</button>
-                    </div>
-                `;
-            });
-        }
-        
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        totalPrice.textContent = total;
-    }
-
-    function showNotification(message) {
-        const notification = document.createElement('div');
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #4CAF50;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            z-index: 10000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            font-size: 16px;
-        `;
-        notification.textContent = message;
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.remove();
-        }, 3000);
-    }
-
-    function checkout() {
-        if (cart.length === 0) {
-            alert('السلة فارغة!');
-            return;
-        }
-        
-        const orderDetails = cart.map(item => 
-            `${item.name} - ${item.quantity} × ${item.price} جنيه`
-        ).join('%0A');
-        
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        
-        const message = `مرحباً، أريد طلب:%0A%0A${orderDetails}%0A%0Aالمجموع: ${total} جنيه%0A%0Aشكراً!`;
-        
-        window.open(`https://wa.me/20113668010?text=${message}`, '_blank');
-    }
-
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('.sidebar') && !event.target.closest('.menu-btn')) {
-            sidebar.classList.remove('show');
-        }
-        if (!event.target.closest('.cart-sidebar') && !event.target.closest('.cart-icon')) {
-            document.getElementById('cartSidebar').classList.remove('show');
-        }
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        showHome();
-        updateCart();
-    });
-</script>
-
-</body>
-</html>
+        document.getElementById('sidebar').classList.toggle('show');
+    
