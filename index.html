@@ -13,15 +13,15 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #fdf3e7;
+            background-color: #FDF8F5; /* كريمي فاتح جداً */
         }
 
         header {
-            background-color: #cfa87c;
+            background-color: #F4C2C2; /* وردي فاتح Blush Pink */
             color: #fff;
             padding: 20px 50px;
             position: relative;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .logo-section {
@@ -47,6 +47,7 @@
             font-size: 24px;
             font-weight: bold;
             letter-spacing: 1px;
+            color: #5C3A2E; /* بني شوكولاتة */
         }
 
         .controls-section {
@@ -70,14 +71,14 @@
 
         .menu-btn span {
             height: 4px;
-            background: #fff;
+            background: #5C3A2E; /* بني شوكولاتة */
             border-radius: 3px;
             transition: all 0.3s ease;
         }
 
         .cart-icon {
-            background: #fff;
-            color: #cfa87c;
+            background: #FFF5EE;
+            color: #5C3A2E;
             padding: 10px 15px;
             border-radius: 20px;
             cursor: pointer;
@@ -95,23 +96,22 @@
         }
 
         .cart-icon span {
-            background: #ff4444;
+            background: #D4A373; /* روز جولد قريب */
             color: white;
             border-radius: 50%;
             padding: 2px 8px;
             font-size: 14px;
         }
 
-        /* القائمة الجانبية */
         .sidebar {
             position: fixed;
             top: 0;
             right: 0;
             width: 280px;
             height: 100vh;
-            background-color: #f5e0c9;
+            background-color: #FFF5EE;
             padding: 25px;
-            box-shadow: -3px 0 15px rgba(0, 0, 0, 0.2);
+            box-shadow: -3px 0 15px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
             z-index: 1000;
             transform: translateX(100%);
@@ -125,37 +125,36 @@
         .sidebar h3 {
             font-size: 20px;
             margin-bottom: 15px;
-            color: #333;
-            border-bottom: 2px solid #cfa87c;
+            color: #5C3A2E;
+            border-bottom: 2px solid #D4A373; /* روز جولد */
             padding-bottom: 5px;
         }
 
         .sidebar a {
             display: block;
             text-decoration: none;
-            color: #333;
+            color: #5C3A2E;
             padding: 12px 0;
-            border-bottom: 1px solid #cfa87c;
+            border-bottom: 1px solid #F4C2C2;
             cursor: pointer;
             transition: all 0.3s;
             font-weight: 500;
         }
 
         .sidebar a:hover {
-            color: #000;
+            color: #D4A373;
             padding-right: 10px;
-            background-color: rgba(207, 168, 124, 0.1);
+            background-color: rgba(244, 194, 194, 0.2);
         }
 
-        /* سلة التسوق */
         .cart-sidebar {
             position: fixed;
             top: 0;
             left: 0;
             width: 320px;
             height: 100vh;
-            background: #fff;
-            box-shadow: 3px 0 15px rgba(0, 0, 0, 0.2);
+            background: #FFF5EE;
+            box-shadow: 3px 0 15px rgba(0, 0, 0, 0.1);
             z-index: 1001;
             transform: translateX(-100%);
             transition: transform 0.4s ease;
@@ -172,14 +171,14 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px;
-            background: #cfa87c;
-            color: white;
+            background: #F4C2C2;
+            color: #5C3A2E;
         }
 
         .close-cart {
             background: none;
             border: none;
-            color: white;
+            color: #5C3A2E;
             font-size: 24px;
             cursor: pointer;
         }
@@ -194,7 +193,7 @@
             display: flex;
             align-items: center;
             padding: 10px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #F4C2C2;
             gap: 10px;
         }
 
@@ -210,12 +209,12 @@
         }
 
         .cart-item-price {
-            color: #cfa87c;
+            color: #D4A373;
             font-weight: bold;
         }
 
         .remove-item {
-            background: #ff4444;
+            background: #D4A373;
             color: white;
             border: none;
             border-radius: 50%;
@@ -227,14 +226,14 @@
 
         .cart-total {
             padding: 20px;
-            border-top: 2px solid #cfa87c;
-            background: #f9f9f9;
+            border-top: 2px solid #D4A373;
+            background: #FDF8F5;
         }
 
         .checkout-btn {
             width: 100%;
             padding: 12px;
-            background: #cfa87c;
+            background: #5C3A2E; /* بني شوكولاتة */
             color: white;
             border: none;
             border-radius: 8px;
@@ -245,26 +244,26 @@
         }
 
         .checkout-btn:hover {
-            background: #b5895a;
+            background: #3E251C;
         }
 
         .add-to-cart {
-            background: #cfa87c;
-            color: white;
+            background: #D4A373; /* روز جولد */
+            color: #5C3A2E;
             border: none;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 10px;
             transition: background 0.3s;
-            font-size: 16px;
+            font-size: 14px;
+            font-weight: bold;
         }
 
         .add-to-cart:hover {
-            background: #b5895a;
+            background: #C49A6C;
         }
 
-        /* شبكة المنتجات */
         .banner-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -275,18 +274,18 @@
         }
 
         .banner-card {
-            background: white;
+            background: #FFF5EE;
             border-radius: 20px;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
             cursor: pointer;
         }
 
         .banner-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
         }
 
         .banner-card img {
@@ -299,31 +298,20 @@
 
         .banner-card h2 {
             font-size: 1.3rem;
-            color: #5a3e2b;
+            color: #5C3A2E;
             margin-top: 10px;
         }
 
         .banner-card p {
-            color: #b87333;
+            color: #D4A373;
             font-weight: bold;
             margin-top: 8px;
         }
 
-        .diabetic-badge {
-            background: #2e7d64;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            display: inline-block;
-            margin-top: 8px;
-        }
-
-        /* صفحة المنتج المفرد */
         .products {
             display: none;
             padding: 30px;
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -332,72 +320,88 @@
         }
 
         .product-card {
-            background: white;
+            background: #FFF5EE;
             border-radius: 30px;
-            padding: 35px;
+            padding: 25px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
         }
 
         .product-card img {
             width: 100%;
-            max-width: 400px;
+            max-width: 300px;
             border-radius: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .product-card h2 {
-            font-size: 2rem;
-            color: #5a3e2b;
+            font-size: 1.5rem;
+            color: #5C3A2E;
         }
 
         .product-card .price {
-            font-size: 1.8rem;
-            color: #cfa87c;
+            font-size: 1.4rem;
+            color: #D4A373;
             font-weight: bold;
-            margin: 15px 0;
+            margin: 10px 0;
+        }
+
+        .sub-products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .sub-product-card {
+            background: #FFF5EE;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
 
         .back-btn {
             display: inline-block;
             margin-bottom: 20px;
             padding: 10px 25px;
-            background: #cfa87c;
+            background: #D4A373;
             border: none;
             border-radius: 40px;
             cursor: pointer;
             font-size: 1rem;
             font-weight: bold;
             transition: 0.3s;
+            color: #5C3A2E;
         }
 
         .back-btn:hover {
-            background: #b5895a;
+            background: #C49A6C;
             transform: scale(1.02);
         }
 
-        /* قسم التبرع */
         .donation-section {
-            background: linear-gradient(135deg, #f5e0c9, #e6ccb0);
+            background: linear-gradient(135deg, #F4C2C2, #FDF8F5);
             text-align: center;
             padding: 40px 20px;
             margin: 30px auto;
             max-width: 900px;
             border-radius: 30px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
         }
         .donation-section h3 {
-            color: #5a3e2b;
+            color: #5C3A2E;
             font-size: 28px;
             margin-bottom: 15px;
         }
         .donation-section p {
             font-size: 18px;
-            color: #3a2a1f;
+            color: #5C3A2E;
             margin-bottom: 20px;
         }
         .donate-btn {
-            background: #2d6a4f;
+            background: #9CAF88; /* Sage Green أخضر هادي */
             color: white;
             padding: 14px 35px;
             border: none;
@@ -406,30 +410,28 @@
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         .donate-btn:hover {
-            background: #1b4d3e;
+            background: #7D8F6E;
             transform: scale(1.05);
         }
 
-        .info-section,
-        .social-media {
+        .info-section, .social-media {
             max-width: 1000px;
             margin: 50px auto;
-            background: white;
+            background: #FFF5EE;
             border-radius: 25px;
             padding: 30px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
-        .info-section h3,
-        .social-media h3 {
-            color: #cfa87c;
+        .info-section h3, .social-media h3 {
+            color: #D4A373;
             font-size: 1.7rem;
             margin-bottom: 20px;
-            border-bottom: 2px solid #cfa87c;
+            border-bottom: 2px solid #D4A373;
             display: inline-block;
             padding-bottom: 5px;
         }
@@ -443,24 +445,24 @@
         }
 
         .social-link {
-            background: #f5e0c9;
+            background: #F4C2C2;
             padding: 10px 25px;
             border-radius: 50px;
             text-decoration: none;
-            color: #5a3e2b;
+            color: #5C3A2E;
             transition: 0.3s;
         }
 
         .social-link:hover {
-            background: #cfa87c;
-            color: white;
+            background: #D4A373;
+            color: #5C3A2E;
         }
 
         .whatsapp-float {
             position: fixed;
             bottom: 25px;
             left: 25px;
-            background: #25D366;
+            background: #9CAF88;
             color: white;
             width: 60px;
             height: 60px;
@@ -470,22 +472,23 @@
             justify-content: center;
             font-size: 28px;
             text-decoration: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             transition: 0.3s;
             z-index: 999;
         }
 
         .whatsapp-float:hover {
             transform: scale(1.1);
+            background: #7D8F6E;
         }
 
         .footer-section {
-            background: #f5e0c9;
+            background: #F4C2C2;
             text-align: center;
             padding: 35px;
             margin-top: 40px;
             font-size: 0.9rem;
-            color: #5a3e2b;
+            color: #5C3A2E;
         }
 
         @media (max-width: 1000px) {
@@ -514,7 +517,7 @@
 
 <header>
     <div class="logo-section">
-        <img src="Petals Melt.jpg" alt="Petal Melt Logo">
+        <img src="الاوان.jpeg" alt="Petal Melt Logo">
         <span>Petal Melt | شوكولاتة راقية</span>
     </div>
     <div class="controls-section">
@@ -529,11 +532,10 @@
     </div>
 </header>
 
-<!-- القائمة الجانبية -->
 <div class="sidebar" id="sidebar">
     <h3>القائمة</h3>
     <a onclick="showHome()">🏠 الرئيسية</a>
-    <div style="margin: 15px 0 5px; font-weight: bold; color:#a5673f;">🍫 تشكيلتنا</div>
+    <div style="margin: 15px 0 5px; font-weight: bold; color:#5C3A2E;">🍫 تشكيلتنا</div>
     <a onclick="showProduct('product1')">✨ Vitality Line</a>
     <a onclick="showProduct('product2')">🌸 Serenity Line</a>
     <a onclick="showProduct('product3')">🔥 Warmth & Comfort</a>
@@ -541,7 +543,6 @@
     <a onclick="showProduct('product5')">💚 منتجات مرضى السكر</a>
 </div>
 
-<!-- سلة التسوق -->
 <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-header">
         <h3>🛍️ سلة المشتريات</h3>
@@ -554,123 +555,102 @@
     </div>
 </div>
 
-<!-- الصفحة الرئيسية (شبكة المنتجات) -->
 <div id="home" class="banner-grid">
     <div class="banner-card" onclick="showProduct('product1')">
-        <img src="https://placehold.co/400x300/f9e0c0/8B5A2B?text=Vitality+Chocolate" alt="Vitality Line">
+        <img src="https://placehold.co/400x300/F4C2C2/5C3A2E?text=Vitality+Chocolate" alt="Vitality Line">
         <h2>✨ Vitality Line</h2>
         <p>شوكولاتة بالجنسنغ + فواكه استوائية</p>
     </div>
     <div class="banner-card" onclick="showProduct('product2')">
-        <img src="https://placehold.co/400x300/f5d6c6/8B5A2B?text=Serenity+Chocolate" alt="Serenity Line">
+        <img src="https://placehold.co/400x300/FDD0D0/5C3A2E?text=Serenity+Chocolate" alt="Serenity Line">
         <h2>🌸 Serenity Line</h2>
         <p>شوكولاتة باللافندر & شاي أخضر</p>
     </div>
     <div class="banner-card" onclick="showProduct('product3')">
-        <img src="https://placehold.co/400x300/f7e4c2/8B5A2B?text=Warmth+Comfort" alt="Warmth and comfort">
+        <img src="https://placehold.co/400x300/FCE4E4/5C3A2E?text=Warmth+Comfort" alt="Warmth and comfort">
         <h2>🔥 Warmth & Comfort</h2>
         <p>شوكولاتة بالقرفة، زنجبيل & عسل</p>
     </div>
     <div class="banner-card" onclick="showProduct('product4')">
-        <img src="https://placehold.co/400x300/fce9d8/8B5A2B?text=Glow+Chocolate" alt="Glow Line">
+        <img src="https://placehold.co/400x300/FDE8E8/5C3A2E?text=Glow+Chocolate" alt="Glow Line">
         <h2>🌟 Glow Line</h2>
         <p>شوكولاتة بالكولاجين & توت أكاتشي</p>
     </div>
     <div class="banner-card" onclick="showProduct('product5')">
-        <img src="https://placehold.co/400x300/d4e2d4/2e7d64?text=Diabetic+Chocolate" alt="منتجات مرضى السكر">
+        <img src="https://placehold.co/400x300/9CAF88/FFFFFF?text=Diabetic+Chocolate" alt="منتجات مرضى السكر">
         <h2>💚 منتجات مرضى السكر</h2>
         <p>خالي من السكر - ستيفيا - آمن وصحي</p>
-        <div class="diabetic-badge">مناسب لمرضى السكر</div>
+        <div style="background:#9CAF88; color:white; padding:4px 10px; border-radius:20px; display:inline-block; margin-top:8px; font-size:12px;">مناسب لمرضى السكر</div>
     </div>
 </div>
 
-<!-- صفحات المنتجات -->
+<!-- منتجات عادية -->
 <div id="product1" class="products">
     <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
-        <img src="https://placehold.co/500x400/f9e0c0/8B5A2B?text=Vitality+Line" alt="Vitality">
+        <img src="https://placehold.co/500x400/F4C2C2/5C3A2E?text=Vitality+Line" alt="Vitality">
         <h2>✨ Vitality Line</h2>
         <div class="price">السعر: 250 جنيه</div>
-        <p>شوكولاتة سوداء 70% مع خلاصة الجنسنغ، مانجو، وبرتقال. تمنحك نشاطاً وحيوية طوال اليوم.</p>
-        <button class="add-to-cart" onclick="addToCart('product1', 'Vitality Line', 250, 'https://placehold.co/400x300/f9e0c0/8B5A2B?text=Vitality+Chocolate')">➕ أضف إلى السلة</button>
+        <p>شوكولاتة سوداء 70% مع خلاصة الجنسنغ، مانجو، وبرتقال.</p>
+        <button class="add-to-cart" onclick="addToCart('product1', 'Vitality Line', 250, 'https://placehold.co/400x300/F4C2C2/5C3A2E?text=Vitality+Chocolate')">➕ أضف إلى السلة</button>
     </div>
 </div>
 
 <div id="product2" class="products">
     <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
-        <img src="https://placehold.co/500x400/f5d6c6/8B5A2B?text=Serenity+Line" alt="Serenity">
+        <img src="https://placehold.co/500x400/FDD0D0/5C3A2E?text=Serenity+Line" alt="Serenity">
         <h2>🌸 Serenity Line</h2>
         <div class="price">السعر: 280 جنيه</div>
-        <p>شوكولاتة بيضاء باللافندر الطبيعي ومستخلص الشاي الأخضر، تمنحك لحظات من الهدوء والصفاء.</p>
-        <button class="add-to-cart" onclick="addToCart('product2', 'Serenity Line', 280, 'https://placehold.co/400x300/f5d6c6/8B5A2B?text=Serenity+Chocolate')">➕ أضف إلى السلة</button>
+        <p>شوكولاتة بيضاء باللافندر الطبيعي ومستخلص الشاي الأخضر.</p>
+        <button class="add-to-cart" onclick="addToCart('product2', 'Serenity Line', 280, 'https://placehold.co/400x300/FDD0D0/5C3A2E?text=Serenity+Chocolate')">➕ أضف إلى السلة</button>
     </div>
 </div>
 
 <div id="product3" class="products">
     <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
-        <img src="https://placehold.co/500x400/f7e4c2/8B5A2B?text=Warmth+Comfort" alt="Warmth">
+        <img src="https://placehold.co/500x400/FCE4E4/5C3A2E?text=Warmth+Comfort" alt="Warmth">
         <h2>🔥 Warmth & Comfort</h2>
         <div class="price">السعر: 230 جنيه</div>
-        <p>شوكولاتة بالحليب مع القرفة، الزنجبيل، ولمسة من عسل الجبال. دافئة ومريحة في كل قضمة.</p>
-        <button class="add-to-cart" onclick="addToCart('product3', 'Warmth and Comfort', 230, 'https://placehold.co/400x300/f7e4c2/8B5A2B?text=Warmth+Comfort')">➕ أضف إلى السلة</button>
+        <p>شوكولاتة بالحليب مع القرفة، الزنجبيل، ولمسة من عسل الجبال.</p>
+        <button class="add-to-cart" onclick="addToCart('product3', 'Warmth and Comfort', 230, 'https://placehold.co/400x300/FCE4E4/5C3A2E?text=Warmth+Comfort')">➕ أضف إلى السلة</button>
     </div>
 </div>
 
 <div id="product4" class="products">
     <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
-        <img src="https://placehold.co/500x400/fce9d8/8B5A2B?text=Glow+Line" alt="Glow">
+        <img src="https://placehold.co/500x400/FDE8E8/5C3A2E?text=Glow+Line" alt="Glow">
         <h2>🌟 Glow Line</h2>
         <div class="price">السعر: 300 جنيه</div>
-        <p>شوكولاتة روبي طبيعية مع كولاجين بحري وتوت أكاتشي، تدعم نضارة البشرة وإشراقها الطبيعي.</p>
-        <button class="add-to-cart" onclick="addToCart('product4', 'Glow Line', 300, 'https://placehold.co/400x300/fce9d8/8B5A2B?text=Glow+Chocolate')">➕ أضف إلى السلة</button>
+        <p>شوكولاتة روبي طبيعية مع كولاجين بحري وتوت أكاتشي.</p>
+        <button class="add-to-cart" onclick="addToCart('product4', 'Glow Line', 300, 'https://placehold.co/400x300/FDE8E8/5C3A2E?text=Glow+Chocolate')">➕ أضف إلى السلة</button>
     </div>
 </div>
 
+<!-- صفحة مرضى السكر - فيها كذا منتج -->
 <div id="product5" class="products">
     <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
-    <div class="product-card">
-        <img src="https://placehold.co/500x400/d4e2d4/2e7d64?text=Diabetic+Safe" alt="منتجات مرضى السكر">
-        <h2>💚 شوكولاتة مرضى السكر</h2>
-        <div class="price">السعر: 220 جنيه</div>
-        <p>شوكولاتة خالية من السكر، محلاة بالستيفيا والإريثريتول، غنية بالألياف ومناسبة للحمية الكيتونية. آمنة لمرضى السكر.</p>
-        <button class="add-to-cart" onclick="addToCart('product5', 'شوكولاتة مرضى السكر', 220, 'https://placehold.co/400x300/d4e2d4/2e7d64?text=Diabetic+Chocolate')">➕ أضف إلى السلة</button>
-    </div>
-</div>
-
-<!-- قسم التبرع لمؤسسة إحسان -->
-<div class="donation-section">
-    <h3>🤝 شارك في الخير</h3>
-    <p>تبرع الآن لمؤسسة <strong>إحسان</strong> لدعم الأسر الأكثر احتياجاً ومرضى السكر غير القادرين.</p>
-    <button class="donate-btn" onclick="donateToEhsan()">💚 تبرع لمؤسسة إحسان</button>
-</div>
-
-<!-- قسم معلومات إضافية -->
-<div class="info-section">
-    <h3>🍫 Petal Melt – Chocolate Reimagined</h3>
-    <p>نحن نقدم شوكولاتة وظيفية فاخرة تجمع بين المتعة والفوائد الصحية. تشكيلتنا مصممة لتلبي احتياجاتك: النشاط، الهدوء، الدفء، الإشراق، وأيضاً منتجات مناسبة لمرضى السكر. جميع المنتجات مصنوعة يدويًا من أجود أنواع الكاكاو والمكونات الطبيعية.</p>
-</div>
-
-<div class="social-media">
-    <h3>📱 تابعونا</h3>
-    <div class="social-links">
-        <a href="#" class="social-link">📸 إنستجرام</a>
-        <a href="#" class="social-link">📘 فيسبوك</a>
-        <a href="#" class="social-link">🐦 تويتر</a>
-    </div>
-</div>
-
-<a href="https://wa.me/201000000000?text=أهلاً%20أرغب%20في%20طلب%20من%20Petal%20Melt" class="whatsapp-float" target="_blank">💬</a>
-
-<div class="footer-section">
-    <p>© 2026 Petal Melt | شوكولاتة الفخامة والرفاهية</p>
-</div>
-
-<script>
-    let cart = [];
-
-    function toggleSidebar() {
-        document.getElementById('sidebar').classList.toggle('show');
-    
+    <h2 style="text-align:center; color:#5C3A2E; margin-bottom:20px;">💚 منتجات مناسبة لمرضى السكر</h2>
+    <div class="sub-products-grid">
+        <div class="sub-product-card">
+            <img src="https://placehold.co/300x200/d4e2d4/6B8C5C?text=Dark+Stevia" style="width:100%; border-radius:16px;">
+            <h3>شوكولاتة داكن بالستيفيا</h3>
+            <div class="price">180 جنيه</div>
+            <p>خالية من السكر، محلاة بالستيفيا الطبيعي</p>
+            <button class="add-to-cart" onclick="addToCart('diab1', 'شوكولاتة داكن بالستيفيا', 180, 'https://placehold.co/400x300/d4e2d4/6B8C5C?text=Dark+Stevia')">➕ أضف إلى السلة</button>
+        </div>
+        <div class="sub-product-card">
+            <img src="https://placehold.co/300x200/e6f0e6/6B8C5C?text=Hazelnut+No+Sugar" style="width:100%; border-radius:16px;">
+            <h3>بندق بالحليب الخالي من السكر</h3>
+            <div class="price">190 جنيه</div>
+            <p>بندق محمص مع حليب خالي اللاكتوز</p>
+            <button class="add-to-cart" onclick="addToCart('diab2', 'بندق بالحليب الخالي من السكر', 190, 'https://placehold.co/400x300/e6f0e6/6B8C5C?text=Hazelnut+No+Sugar')">➕ أضف إلى السلة</button>
+        </div>
+        <div class="sub-product-card">
+            <img src="https://placehold.co/300x200/c8e0c8/6B8C5C?text=Coconut+Keto" style="width:100%; border-radius:16px;">
+            <h3>كيتو جوز الهند</h3>
+            <div class="price">210 جنيه</div>
+            <p>شوكولاتة بيضاء كيتو صديقة للسكر</p>
+            <button class="add-to-cart" onc
