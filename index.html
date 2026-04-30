@@ -32,8 +32,8 @@
         }
 
         .logo-section img {
-            height: 200px;
-            border-radius: 24px;
+            height: 100px;
+            border-radius: 12px;
             transition: transform 0.3s;
             object-fit: cover;
         }
@@ -101,11 +101,12 @@
             font-size: 14px;
         }
 
+        /* السلايدر الجانبي (القائمة) */
         .sidebar {
             position: fixed;
             top: 0;
             right: 0;
-            width: 280px;
+            width: 320px;
             height: 100vh;
             background-color: #FFF5EE;
             padding: 25px;
@@ -121,30 +122,63 @@
         }
 
         .sidebar h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
+            font-size: 24px;
+            margin-bottom: 20px;
             color: #5C3A2E;
             border-bottom: 2px solid #D4A373;
-            padding-bottom: 5px;
+            padding-bottom: 10px;
         }
 
-        .sidebar a {
-            display: block;
+        .sidebar .product-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
             text-decoration: none;
             color: #5C3A2E;
-            padding: 12px 0;
+            padding: 15px 0;
             border-bottom: 1px solid #F4C2C2;
             cursor: pointer;
             transition: all 0.3s;
-            font-weight: 500;
         }
 
-        .sidebar a:hover {
+        .sidebar .product-link:hover {
             color: #D4A373;
             padding-right: 10px;
             background-color: rgba(244, 194, 194, 0.2);
         }
 
+        .sidebar .product-link img {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .sidebar .product-link div {
+            flex: 1;
+        }
+
+        .sidebar .product-link .product-name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .sidebar .product-link .product-price {
+            font-size: 14px;
+            color: #D4A373;
+        }
+
+        .close-sidebar {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #5C3A2E;
+            float: left;
+            margin-bottom: 20px;
+        }
+
+        /* سلة التسوق (الشمال) */
         .cart-sidebar {
             position: fixed;
             top: 0;
@@ -262,6 +296,7 @@
             background: #C49A6C;
         }
 
+        /* الشبكة الرئيسية */
         .banner-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -306,10 +341,11 @@
             margin-top: 8px;
         }
 
+        /* صفحات المنتجات */
         .products {
             display: none;
             padding: 30px;
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -320,44 +356,28 @@
         .product-card {
             background: #FFF5EE;
             border-radius: 30px;
-            padding: 25px;
+            padding: 35px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            margin-bottom: 30px;
         }
 
         .product-card img {
             width: 100%;
-            max-width: 300px;
+            max-width: 400px;
             border-radius: 20px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .product-card h2 {
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: #5C3A2E;
         }
 
         .product-card .price {
-            font-size: 1.4rem;
+            font-size: 1.8rem;
             color: #D4A373;
             font-weight: bold;
-            margin: 10px 0;
-        }
-
-        .sub-products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
-
-        .sub-product-card {
-            background: #FFF5EE;
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            margin: 15px 0;
         }
 
         .back-btn {
@@ -377,6 +397,21 @@
         .back-btn:hover {
             background: #C49A6C;
             transform: scale(1.02);
+        }
+
+        .sub-products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .sub-product-card {
+            background: #FFF5EE;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
 
         .donation-section {
@@ -506,7 +541,7 @@
             .logo-section img {
                 height: 70px;
             }
-            .cart-sidebar {
+            .cart-sidebar, .sidebar {
                 width: 280px;
             }
         }
@@ -517,7 +552,7 @@
 <header>
     <div class="logo-section">
         <img src="الاوان.jpeg" alt="Petal Melt Logo" onerror="this.src='PicsArt_04-26-10.53.50.png'">
-        <span>Petal Melt </span>
+        <span>Petal Melt</span>
     </div>
     <div class="controls-section">
         <div class="cart-icon" onclick="toggleCart()">
@@ -531,17 +566,53 @@
     </div>
 </header>
 
+<!-- السلايدر الجانبي (القائمة) -->
 <div class="sidebar" id="sidebar">
-    <h3>القائمة</h3>
-    <a onclick="showHome()">🏠 الرئيسية</a>
-    <div style="margin: 15px 0 5px; font-weight: bold; color:#5C3A2E;">🍫 تشكيلتنا</div>
-    <a onclick="showProduct('product1')">✨ Vitality Line</a>
-    <a onclick="showProduct('product2')">🌸 Serenity Line</a>
-    <a onclick="showProduct('product3')">🔥 Warmth & Comfort</a>
-    <a onclick="showProduct('product4')">🌟 Glow Line</a>
-    <a onclick="showProduct('product5')">💚 منتجات مرضى السكر</a>
+    <button class="close-sidebar" onclick="toggleSidebar()">✕</button>
+    <h3>🍫 تشكيلتنا</h3>
+    
+    <div class="product-link" onclick="showProductAndCloseSidebar('product1')">
+        <img src="https://placehold.co/50x50/F4C2C2/5C3A2E?text=V">
+        <div>
+            <div class="product-name">✨ Vitality Line</div>
+            <div class="product-price">250 جنيه</div>
+        </div>
+    </div>
+    
+    <div class="product-link" onclick="showProductAndCloseSidebar('product2')">
+        <img src="https://placehold.co/50x50/FDD0D0/5C3A2E?text=S">
+        <div>
+            <div class="product-name">🌸 Serenity Line</div>
+            <div class="product-price">280 جنيه</div>
+        </div>
+    </div>
+    
+    <div class="product-link" onclick="showProductAndCloseSidebar('product3')">
+        <img src="https://placehold.co/50x50/FCE4E4/5C3A2E?text=W">
+        <div>
+            <div class="product-name">🔥 Warmth & Comfort</div>
+            <div class="product-price">230 جنيه</div>
+        </div>
+    </div>
+    
+    <div class="product-link" onclick="showProductAndCloseSidebar('product4')">
+        <img src="https://placehold.co/50x50/FDE8E8/5C3A2E?text=G">
+        <div>
+            <div class="product-name">🌟 Glow Line</div>
+            <div class="product-price">300 جنيه</div>
+        </div>
+    </div>
+    
+    <div class="product-link" onclick="showProductAndCloseSidebar('product5')">
+        <img src="https://placehold.co/50x50/9CAF88/FFFFFF?text=D">
+        <div>
+            <div class="product-name">💚 منتجات مرضى السكر</div>
+            <div class="product-price">180 - 210 جنيه</div>
+        </div>
+    </div>
 </div>
 
+<!-- سلة التسوق -->
 <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-header">
         <h3>🛍️ سلة المشتريات</h3>
@@ -554,16 +625,17 @@
     </div>
 </div>
 
+<!-- الشبكة الرئيسية -->
 <div id="home" class="banner-grid">
     <div class="banner-card" onclick="showProduct('product1')">
         <img src="https://placehold.co/400x300/F4C2C2/5C3A2E?text=Vitality">
         <h2>✨ Vitality Line</h2>
-
+        <p>شوكولاتة بالجنسنغ + فواكه استوائية</p>
     </div>
     <div class="banner-card" onclick="showProduct('product2')">
         <img src="https://placehold.co/400x300/FDD0D0/5C3A2E?text=Serenity">
         <h2>🌸 Serenity Line</h2>
-        <p></p>
+        <p>شوكولاتة باللافندر & شاي أخضر</p>
     </div>
     <div class="banner-card" onclick="showProduct('product3')">
         <img src="https://placehold.co/400x300/FCE4E4/5C3A2E?text=Warmth">
@@ -583,13 +655,14 @@
     </div>
 </div>
 
+<!-- صفحات المنتجات -->
 <div id="product1" class="products">
     <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
     <div class="product-card">
         <img src="https://placehold.co/500x400/F4C2C2/5C3A2E?text=Vitality">
         <h2>✨ Vitality Line</h2>
         <div class="price">السعر: 250 جنيه</div>
-        <p>شوكولاتة سوداء 70% مع خلاصة الجنسنغ، مانجو، وبرتقال.</p>
+        <p>شوكولاتة سوداء 70% مع خلاصة الجنسنغ، مانجو، وبرتقال. تمنحك نشاطاً وحيوية طوال اليوم.</p>
         <button class="add-to-cart" onclick="addToCart('product1', 'Vitality Line', 250, 'https://placehold.co/400x300/F4C2C2/5C3A2E?text=Vitality')">➕ أضف إلى السلة</button>
     </div>
 </div>
@@ -600,7 +673,7 @@
         <img src="https://placehold.co/500x400/FDD0D0/5C3A2E?text=Serenity">
         <h2>🌸 Serenity Line</h2>
         <div class="price">السعر: 280 جنيه</div>
-        <p>شوكولاتة بيضاء باللافندر الطبيعي ومستخلص الشاي الأخضر.</p>
+        <p>شوكولاتة بيضاء باللافندر الطبيعي ومستخلص الشاي الأخضر، تمنحك لحظات من الهدوء والصفاء.</p>
         <button class="add-to-cart" onclick="addToCart('product2', 'Serenity Line', 280, 'https://placehold.co/400x300/FDD0D0/5C3A2E?text=Serenity')">➕ أضف إلى السلة</button>
     </div>
 </div>
@@ -611,7 +684,7 @@
         <img src="https://placehold.co/500x400/FCE4E4/5C3A2E?text=Warmth">
         <h2>🔥 Warmth & Comfort</h2>
         <div class="price">السعر: 230 جنيه</div>
-        <p>شوكولاتة بالحليب مع القرفة، الزنجبيل، ولمسة من عسل الجبال.</p>
+        <p>شوكولاتة بالحليب مع القرفة، الزنجبيل، ولمسة من عسل الجبال. دافئة ومريحة في كل قضمة.</p>
         <button class="add-to-cart" onclick="addToCart('product3', 'Warmth and Comfort', 230, 'https://placehold.co/400x300/FCE4E4/5C3A2E?text=Warmth')">➕ أضف إلى السلة</button>
     </div>
 </div>
@@ -622,39 +695,5 @@
         <img src="https://placehold.co/500x400/FDE8E8/5C3A2E?text=Glow">
         <h2>🌟 Glow Line</h2>
         <div class="price">السعر: 300 جنيه</div>
-        <p>شوكولاتة روبي طبيعية مع كولاجين بحري وتوت أكاتشي.</p>
-        <button class="add-to-cart" onclick="addToCart('product4', 'Glow Line', 300, 'https://placehold.co/400x300/FDE8E8/5C3A2E?text=Glow')">➕ أضف إلى السلة</button>
-    </div>
-</div>
-
-<div id="product5" class="products">
-    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
-    <h2 style="text-align:center; color:#5C3A2E; margin-bottom:20px;">💚 منتجات مناسبة لمرضى السكر</h2>
-    <div class="sub-products-grid">
-        <div class="sub-product-card">
-            <img src="https://placehold.co/300x200/d4e2d4/5C3A2E?text=Dark+Stevia" style="width:100%; border-radius:16px;">
-            <h3>شوكولاتة داكن بالستيفيا</h3>
-            <div class="price">180 جنيه</div>
-            <p>خالية من السكر، محلاة بالستيفيا الطبيعي</p>
-            <button class="add-to-cart" onclick="addToCart('diab1', 'شوكولاتة داكن بالستيفيا', 180, 'https://placehold.co/400x300/d4e2d4/5C3A2E?text=Dark+Stevia')">➕ أضف إلى السلة</button>
-        </div>
-        <div class="sub-product-card">
-            <img src="https://placehold.co/300x200/e6f0e6/5C3A2E?text=Hazelnut" style="width:100%; border-radius:16px;">
-            <h3>بندق بالحليب الخالي من السكر</h3>
-            <div class="price">190 جنيه</div>
-            <p>بندق محمص مع حليب خالي اللاكتوز</p>
-            <button class="add-to-cart" onclick="addToCart('diab2', 'بندق بالحليب الخالي من السكر', 190, 'https://placehold.co/400x300/e6f0e6/5C3A2E?text=Hazelnut')">➕ أضف إلى السلة</button>
-        </div>
-        <div class="sub-product-card">
-            <img src="https://placehold.co/300x200/c8e0c8/5C3A2E?text=Coconut+Keto" style="width:100%; border-radius:16px;">
-            <h3>كيتو جوز الهند</h3>
-            <div class="price">210 جنيه</div>
-            <p>شوكولاتة بيضاء كيتو صديقة للسكر</p>
-            <button class="add-to-cart" onclick="addToCart('diab3', 'كيتو جوز الهند', 210, 'https://placehold.co/400x300/c8e0c8/5C3A2E?text=Coconut+Keto')">➕ أضف إلى السلة</button>
-        </div>
-        <div class="sub-product-card">
-            <img src="https://placehold.co/300x200/d9ead9/5C3A2E?text=Matcha" style="width:100%; border-radius:16px;">
-            <h3>ماتشا بالإريثريتول</h3>
-            <div class="price">200 جنيه</div>
-            <p>ماتشا عضوي بدون سكر، غني بمضادات الأكسدة</p>
-            <button class="add-to-cart" onclick="addToCart('diab4', 'مات
+        <p>شوكولاتة روبي طبيعية مع كولاجين بحري وتوت أكاتشي، تدعم نضارة البشرة وإشراقها الطبيعي.</p>
+        <button class="add-to-cart" onclick="addToCart('product4', 'Glow 
