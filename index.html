@@ -38,10 +38,6 @@
             object-fit: cover;
         }
 
-        .logo-section img:hover {
-            transform: scale(1.05);
-        }
-
         .logo-section span {
             font-size: 24px;
             font-weight: bold;
@@ -121,61 +117,65 @@
             transform: translateX(0);
         }
 
-        .sidebar h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #5C3A2E;
-            border-bottom: 2px solid #D4A373;
-            padding-bottom: 10px;
-        }
-
-        .sidebar .product-link {
+        .sidebar-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 15px;
-            text-decoration: none;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #D4A373;
+            padding-bottom: 15px;
+        }
+
+        .sidebar-header h3 {
+            font-size: 24px;
             color: #5C3A2E;
-            padding: 15px 0;
-            border-bottom: 1px solid #F4C2C2;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .sidebar .product-link:hover {
-            color: #D4A373;
-            padding-right: 10px;
-            background-color: rgba(244, 194, 194, 0.2);
-        }
-
-        .sidebar .product-link img {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            object-fit: cover;
-        }
-
-        .sidebar .product-link div {
-            flex: 1;
-        }
-
-        .sidebar .product-link .product-name {
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        .sidebar .product-link .product-price {
-            font-size: 14px;
-            color: #D4A373;
         }
 
         .close-sidebar {
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 28px;
             cursor: pointer;
             color: #5C3A2E;
-            float: left;
-            margin-bottom: 20px;
+        }
+
+        .product-list-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #FFFFFF;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #F4C2C2;
+        }
+
+        .product-list-item:hover {
+            background: #F4C2C2;
+            transform: translateX(-5px);
+        }
+
+        .product-list-item img {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .product-list-item .info {
+            flex: 1;
+        }
+
+        .product-list-item .info h4 {
+            color: #5C3A2E;
+            margin-bottom: 5px;
+        }
+
+        .product-list-item .info .price {
+            color: #D4A373;
+            font-weight: bold;
         }
 
         /* سلة التسوق (الشمال) */
@@ -551,7 +551,7 @@
 
 <header>
     <div class="logo-section">
-        <img src="الاوان.jpeg" alt="Petal Melt Logo" onerror="this.src='PicsArt_04-26-10.53.50.png'">
+        <img src="الاوان.jpeg" alt="Petal Melt Logo" onerror="this.src='https://placehold.co/200x200/F4C2C2/5C3A2E?text=Petal+Melt'">
         <span>Petal Melt</span>
     </div>
     <div class="controls-section">
@@ -568,46 +568,48 @@
 
 <!-- السلايدر الجانبي (القائمة) -->
 <div class="sidebar" id="sidebar">
-    <button class="close-sidebar" onclick="toggleSidebar()">✕</button>
-    <h3>🍫 تشكيلتنا</h3>
+    <div class="sidebar-header">
+        <h3>🍫 تشكيلتنا</h3>
+        <button class="close-sidebar" onclick="toggleSidebar()">✕</button>
+    </div>
     
-    <div class="product-link" onclick="showProductAndCloseSidebar('product1')">
-        <img src="https://placehold.co/50x50/F4C2C2/5C3A2E?text=V">
-        <div>
-            <div class="product-name">✨ Vitality Line</div>
-            <div class="product-price">250 جنيه</div>
+    <div class="product-list-item" onclick="showProductAndCloseSidebar('product1')">
+        <img src="https://placehold.co/60x60/F4C2C2/5C3A2E?text=V">
+        <div class="info">
+            <h4>✨ Vitality Line</h4>
+            <div class="price">250 جنيه</div>
         </div>
     </div>
     
-    <div class="product-link" onclick="showProductAndCloseSidebar('product2')">
-        <img src="https://placehold.co/50x50/FDD0D0/5C3A2E?text=S">
-        <div>
-            <div class="product-name">🌸 Serenity Line</div>
-            <div class="product-price">280 جنيه</div>
+    <div class="product-list-item" onclick="showProductAndCloseSidebar('product2')">
+        <img src="https://placehold.co/60x60/FDD0D0/5C3A2E?text=S">
+        <div class="info">
+            <h4>🌸 Serenity Line</h4>
+            <div class="price">280 جنيه</div>
         </div>
     </div>
     
-    <div class="product-link" onclick="showProductAndCloseSidebar('product3')">
-        <img src="https://placehold.co/50x50/FCE4E4/5C3A2E?text=W">
-        <div>
-            <div class="product-name">🔥 Warmth & Comfort</div>
-            <div class="product-price">230 جنيه</div>
+    <div class="product-list-item" onclick="showProductAndCloseSidebar('product3')">
+        <img src="https://placehold.co/60x60/FCE4E4/5C3A2E?text=W">
+        <div class="info">
+            <h4>🔥 Warmth & Comfort</h4>
+            <div class="price">230 جنيه</div>
         </div>
     </div>
     
-    <div class="product-link" onclick="showProductAndCloseSidebar('product4')">
-        <img src="https://placehold.co/50x50/FDE8E8/5C3A2E?text=G">
-        <div>
-            <div class="product-name">🌟 Glow Line</div>
-            <div class="product-price">300 جنيه</div>
+    <div class="product-list-item" onclick="showProductAndCloseSidebar('product4')">
+        <img src="https://placehold.co/60x60/FDE8E8/5C3A2E?text=G">
+        <div class="info">
+            <h4>🌟 Glow Line</h4>
+            <div class="price">300 جنيه</div>
         </div>
     </div>
     
-    <div class="product-link" onclick="showProductAndCloseSidebar('product5')">
-        <img src="https://placehold.co/50x50/9CAF88/FFFFFF?text=D">
-        <div>
-            <div class="product-name">💚 منتجات مرضى السكر</div>
-            <div class="product-price">180 - 210 جنيه</div>
+    <div class="product-list-item" onclick="showProductAndCloseSidebar('product5')">
+        <img src="https://placehold.co/60x60/9CAF88/FFFFFF?text=D">
+        <div class="info">
+            <h4>💚 منتجات مرضى السكر</h4>
+            <div class="price">180 - 210 جنيه</div>
         </div>
     </div>
 </div>
@@ -696,4 +698,178 @@
         <h2>🌟 Glow Line</h2>
         <div class="price">السعر: 300 جنيه</div>
         <p>شوكولاتة روبي طبيعية مع كولاجين بحري وتوت أكاتشي، تدعم نضارة البشرة وإشراقها الطبيعي.</p>
-        <button class="add-to-cart" onclick="addToCart('product4', 'Glow 
+        <button class="add-to-cart" onclick="addToCart('product4', 'Glow Line', 300, 'https://placehold.co/400x300/FDE8E8/5C3A2E?text=Glow')">➕ أضف إلى السلة</button>
+    </div>
+</div>
+
+<div id="product5" class="products">
+    <button class="back-btn" onclick="showHome()">← الرجوع للرئيسية</button>
+    <h2 style="text-align:center; color:#5C3A2E; margin-bottom:20px;">💚 منتجات مناسبة لمرضى السكر</h2>
+    <div class="sub-products-grid">
+        <div class="sub-product-card">
+            <img src="https://placehold.co/300x200/d4e2d4/5C3A2E?text=Dark+Stevia" style="width:100%; border-radius:16px;">
+            <h3>شوكولاتة داكن بالستيفيا</h3>
+            <div class="price">180 جنيه</div>
+            <p>خالية من السكر، محلاة بالستيفيا الطبيعي</p>
+            <button class="add-to-cart" onclick="addToCart('diab1', 'شوكولاتة داكن بالستيفيا', 180, 'https://placehold.co/400x300/d4e2d4/5C3A2E?text=Dark+Stevia')">➕ أضف إلى السلة</button>
+        </div>
+        <div class="sub-product-card">
+            <img src="https://placehold.co/300x200/e6f0e6/5C3A2E?text=Hazelnut" style="width:100%; border-radius:16px;">
+            <h3>بندق بالحليب الخالي من السكر</h3>
+            <div class="price">190 جنيه</div>
+            <p>بندق محمص مع حليب خالي اللاكتوز</p>
+            <button class="add-to-cart" onclick="addToCart('diab2', 'بندق بالحليب الخالي من السكر', 190, 'https://placehold.co/400x300/e6f0e6/5C3A2E?text=Hazelnut')">➕ أضف إلى السلة</button>
+        </div>
+        <div class="sub-product-card">
+            <img src="https://placehold.co/300x200/c8e0c8/5C3A2E?text=Coconut+Keto" style="width:100%; border-radius:16px;">
+            <h3>كيتو جوز الهند</h3>
+            <div class="price">210 جنيه</div>
+            <p>شوكولاتة بيضاء كيتو صديقة للسكر</p>
+            <button class="add-to-cart" onclick="addToCart('diab3', 'كيتو جوز الهند', 210, 'https://placehold.co/400x300/c8e0c8/5C3A2E?text=Coconut+Keto')">➕ أضف إلى السلة</button>
+        </div>
+        <div class="sub-product-card">
+            <img src="https://placehold.co/300x200/d9ead9/5C3A2E?text=Matcha" style="width:100%; border-radius:16px;">
+            <h3>ماتشا بالإريثريتول</h3>
+            <div class="price">200 جنيه</div>
+            <p>ماتشا عضوي بدون سكر، غني بمضادات الأكسدة</p>
+            <button class="add-to-cart" onclick="addToCart('diab4', 'ماتشا بالإريثريتول', 200, 'https://placehold.co/400x300/d9ead9/5C3A2E?text=Matcha')">➕ أضف إلى السلة</button>
+        </div>
+    </div>
+</div>
+
+<div class="donation-section">
+    <h3>🤝 شارك في الخير</h3>
+    <p>تبرع الآن لمؤسسة <strong>إحسان</strong> لدعم الأسر الأكثر احتياجاً ومرضى السكر غير القادرين.</p>
+    <button class="donate-btn" onclick="donateToEhsan()">💚 تبرع لمؤسسة إحسان</button>
+</div>
+
+<div class="info-section">
+    <h3>🍫 Petal Melt – Chocolate Reimagined</h3>
+    <p>نحن نقدم شوكولاتة وظيفية فاخرة تجمع بين المتعة والفوائد الصحية. تشكيلتنا مصممة لتلبي احتياجاتك: النشاط، الهدوء، الدفء، الإشراق، وأيضاً منتجات مناسبة لمرضى السكر.</p>
+</div>
+
+<div class="social-media">
+    <h3>📱 تابعونا</h3>
+    <div class="social-links">
+        <a href="#" class="social-link">📸 إنستجرام</a>
+        <a href="#" class="social-link">📘 فيسبوك</a>
+        <a href="#" class="social-link">🐦 تويتر</a>
+    </div>
+</div>
+
+<a href="https://wa.me/201000000000?text=أهلاً%20أرغب%20في%20طلب%20من%20Petal%20Melt" class="whatsapp-float" target="_blank">💬</a>
+
+<div class="footer-section">
+    <p>© 2026 Petal Melt | شوكولاتة الفخامة والرفاهية</p>
+</div>
+
+<script>
+    let cart = [];
+
+    function toggleSidebar() {
+        document.getElementById('sidebar').classList.toggle('show');
+    }
+
+    function toggleCart() {
+        document.getElementById('cartSidebar').classList.toggle('show');
+        updateCartDisplay();
+    }
+
+    function showHome() {
+        document.querySelectorAll('.products').forEach(p => p.classList.remove('active'));
+        document.getElementById('home').style.display = 'grid';
+        document.getElementById('sidebar').classList.remove('show');
+    }
+
+    function showProduct(productId) {
+        document.getElementById('home').style.display = 'none';
+        document.querySelectorAll('.products').forEach(p => p.classList.remove('active'));
+        document.getElementById(productId).classList.add('active');
+        document.getElementById('sidebar').classList.remove('show');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showProductAndCloseSidebar(productId) {
+        showProduct(productId);
+        document.getElementById('sidebar').classList.remove('show');
+    }
+
+    function addToCart(id, name, price, img) {
+        const existing = cart.find(item => item.id === id);
+        if (existing) {
+            existing.quantity++;
+        } else {
+            cart.push({ id, name, price, img, quantity: 1 });
+        }
+        updateCartCount();
+        updateCartDisplay();
+        document.getElementById('cartSidebar').classList.add('show');
+    }
+
+    function updateCartCount() {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.getElementById('cart-count').innerText = totalItems;
+    }
+
+    function updateCartDisplay() {
+        const cartContainer = document.getElementById('cartItems');
+        const totalSpan = document.getElementById('total-price');
+        if (!cartContainer) return;
+
+        if (cart.length === 0) {
+            cartContainer.innerHTML = '<div style="text-align:center; padding:20px;">🛒 السلة فارغة</div>';
+            totalSpan.innerText = '0';
+            return;
+        }
+
+        let html = '';
+        let total = 0;
+        cart.forEach((item, index) => {
+            total += item.price * item.quantity;
+            html += `
+                <div class="cart-item">
+                    <img src="${item.img}" alt="${item.name}">
+                    <div class="cart-item-info">
+                        <div><strong>${item.name}</strong></div>
+                        <div class="cart-item-price">${item.price} جنيه</div>
+                        <div>الكمية: ${item.quantity}</div>
+                    </div>
+                    <button class="remove-item" onclick="removeFromCart(${index})">🗑</button>
+                </div>
+            `;
+        });
+        cartContainer.innerHTML = html;
+        totalSpan.innerText = total;
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartCount();
+        updateCartDisplay();
+    }
+
+    function checkout() {
+        if (cart.length === 0) {
+            alert("سلة التسوق فارغة! أضف منتجات أولاً.");
+            return;
+        }
+        let message = "🍫 طلب جديد من Petal Melt:%0A";
+        cart.forEach(item => {
+            message += `- ${item.name} × ${item.quantity} = ${item.price * item.quantity} جنيه%0A`;
+        });
+        const total = cart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
+        message += `%0Aالإجمالي: ${total} جنيه`;
+        const phone = "201000000000";
+        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+    }
+
+    function donateToEhsan() {
+        window.open("https://ehsan.sa/donate", "_blank");
+    }
+
+    document.getElementById('home').style.display = 'grid';
+    document.querySelectorAll('.products').forEach(p => p.classList.remove('active'));
+    updateCartCount();
+</script>
+</body>
+</html>
